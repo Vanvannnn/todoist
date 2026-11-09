@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Anneau d'alarme -->
+    <path android:fillColor="#FFFF2D3D"
+        android:pathData="M54,28A26,26 0,1 1,28 54A26,26 0,0 1,54 28M54,34A20,20 0,1 0,74 54A20,20 0,0 0,54 34Z" />
+    <!-- Point d'exclamation -->
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M50.5,40h7l-1.4,18h-4.2zM54,62a3.6,3.6 0,1 1,0 7.2a3.6,3.6 0,1 1,0 -7.2z" />
+    <!-- Ondes de vibration -->
+    <path android:fillColor="#FFFF6A1A"
+        android:pathData="M20,46l4,0l-3,8l3,8l-4,0l-3,-8z" />
+    <path android:fillColor="#FFFF6A1A"
+        android:pathData="M88,46l-4,0l3,8l-3,8l4,0l3,-8z" />
+</vector>

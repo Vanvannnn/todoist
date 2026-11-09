@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brr_black">#FF0A0A0B</color>
+    <color name="brr_red">#FFFF2D3D</color>
+    <color name="brr_alarm_red">#FF8A0010</color>
+    <color name="ic_launcher_background">#FF0E0E10</color>
+</resources>
