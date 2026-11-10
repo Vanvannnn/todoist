@@ -167,34 +167,6 @@
       "dependsOn": []
      },
      {
-      "title": "Réviser la physique",
-      "deadline": {
-       "date": "2026-11-12",
-       "minute": 1439
-      },
-      "window": null,
-      "recurrence": null,
-      "priority": "NORMAL",
-      "level": "INSISTANT",
-      "minutes": 120,
-      "sessionMinutes": null,
-      "dependsOn": []
-     },
-     {
-      "title": "Réviser la chimie",
-      "deadline": {
-       "date": "2026-11-12",
-       "minute": 1439
-      },
-      "window": null,
-      "recurrence": null,
-      "priority": "NORMAL",
-      "level": "INSISTANT",
-      "minutes": 70,
-      "sessionMinutes": null,
-      "dependsOn": []
-     },
-     {
       "title": "Lire un livre",
       "deadline": null,
       "window": null,
@@ -329,6 +301,98 @@
        "end": 1350,
        "fixed": false
       },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 45,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Je dois envoyer un mail à ma prof demain matin, réviser le partiel de droit avant vendredi et faire du sport 3 fois cette semaine.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Envoyer un mail à ma prof",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 720,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 10,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Réviser le partiel de droit",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1439
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Faire du sport",
+      "deadline": null,
+      "window": null,
+      "recurrence": {
+       "type": "count",
+       "n": 3
+      },
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Il faut que je lave la voiture et que je l'emmène au contrôle technique.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Laver la voiture",
+      "deadline": null,
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 45,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Emmener au contrôle technique",
+      "deadline": null,
+      "window": null,
       "recurrence": null,
       "priority": "NORMAL",
       "level": "INSISTANT",

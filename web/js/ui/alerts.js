@@ -179,9 +179,10 @@ export function feedback(level, phone, base = '') {
   } else out.push(phone.mode === 'vibrate' ? 'Mode vibreur : pas de son' : 'Mode silencieux : ni son ni vibration');
   if (phone.mode !== 'silent' && level >= 2) {
     const pattern = level === 2 ? [250, 120, 250] : level === 3 ? [500, 200, 500, 200, 500] : [800, 250, 800, 250, 800, 250, 800];
-    if (navigator.vibrate?.(pattern)) out.push('Vibration réelle (appareil compatible)');
+    if (navigator.userActivation?.hasBeenActive && navigator.vibrate?.(pattern)) { vibrating = true; out.push('Vibration réelle (appareil compatible)'); }
     else out.push('Vibration simulée (secousse visuelle)');
   }
   return out;
 }
-export function stopFeedback() { if (current) { current.pause(); current = null; } navigator.vibrate?.(0); }
+let vibrating = false;
+export function stopFeedback() { if (current) { current.pause(); current = null; } if (vibrating) { navigator.vibrate?.(0); vibrating = false; } }

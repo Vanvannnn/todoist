@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Remplacer « ./ » par l'adresse publique lors du déploiement. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>./assistant.html</loc></url>
+  <url><loc>./confidentialite.html</loc></url>
+  <url><loc>./demo.html</loc></url>
+  <url><loc>./fonctionnalites.html</loc></url>
+  <url><loc>./</loc></url>
+  <url><loc>./punchlines.html</loc></url>
+  <url><loc>./telecharger.html</loc></url>
+</urlset>

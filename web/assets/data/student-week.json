@@ -1,0 +1,17 @@
+{
+  "$comment": "Semaine type d'un étudiant (données de démonstration partagées : tests JS/Kotlin et simulateur).",
+  "now": { "date": "2026-11-09", "minute": 600 },
+  "events": [
+    { "date": "2026-11-09", "start": 480, "end": 600, "title": "Analyse — CM", "location": "Amphi A", "profile": "COURS", "travelBefore": 20, "travelAfter": 20 },
+    { "date": "2026-11-09", "start": 810, "end": 930, "title": "Marketing — TD", "location": "Salle B204", "profile": "COURS", "travelBefore": 20, "travelAfter": 30 },
+    { "date": "2026-11-10", "start": 600, "end": 720, "title": "Statistiques — CM", "location": "Amphi C", "profile": "COURS", "travelBefore": 20, "travelAfter": 20 },
+    { "date": "2026-11-10", "start": 840, "end": 1020, "title": "Gestion — TD", "location": "Salle A110", "profile": "COURS", "travelBefore": 20, "travelAfter": 30 },
+    { "date": "2026-11-11", "start": 510, "end": 750, "title": "Comptabilité — CM", "location": "Amphi B", "profile": "COURS", "travelBefore": 20, "travelAfter": 20 },
+    { "date": "2026-11-12", "start": 540, "end": 720, "title": "Droit des affaires", "location": "Amphi A", "profile": "COURS", "travelBefore": 20, "travelAfter": 20 },
+    { "date": "2026-11-12", "start": 840, "end": 960, "title": "Anglais", "location": "Salle L12", "profile": "COURS", "travelBefore": 20, "travelAfter": 30 },
+    { "date": "2026-11-12", "start": 1080, "end": 1140, "title": "Dentiste", "location": "Cabinet Dr Martin", "profile": "RDV", "travelBefore": 25, "travelAfter": 25 },
+    { "date": "2026-11-13", "start": 600, "end": 720, "title": "Économie — CM", "location": "Amphi C", "profile": "COURS", "travelBefore": 20, "travelAfter": 20 },
+    { "date": "2026-11-14", "start": 600, "end": 780, "title": "Job — librairie", "location": "Librairie du centre", "profile": "TRAVAIL", "travelBefore": 30, "travelAfter": 30 }
+  ],
+  "dictation": "Cette semaine, j'aimerais réviser les mathématiques, avancer mon dossier de marketing, faire les courses, ranger mon appartement et préparer mon exposé. Il faudrait que le dossier de marketing soit terminé avant jeudi soir. Les mathématiques, j'aimerais bien en faire un peu chaque jour. Les courses, je peux les faire demain après-midi. Et ce soir, il faudrait absolument que je termine mon exposé parce que je dois le rendre demain matin."
+}

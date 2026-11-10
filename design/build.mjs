@@ -73,6 +73,7 @@ write('android/app/src/main/java/com/brr/app/punchline/PunchlineCatalog.kt', pk)
 // ---------- Web : données et sons ----------
 write('web/assets/data/punchlines.json', JSON.stringify(pl));
 write('web/assets/data/tokens.json', JSON.stringify(t));
+fs.copyFileSync(path.join(root, 'design/fixtures/student-week.json'), path.join(root, 'web/assets/data/student-week.json'));
 const raw = path.join(root, 'android/app/src/main/res/raw');
 for (const f of fs.readdirSync(raw)) {
   fs.mkdirSync(path.join(root, 'web/assets/sounds'), { recursive: true });

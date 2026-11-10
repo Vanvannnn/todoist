@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<!-- @head -->
+<title>Démo des alertes — BULLYLIST</title>
+<meta name="description" content="Déclenche toi-même les quatre niveaux de rappel Bullylist, du simple rappel au Bully Mode: Nuclear.">
+<meta property="og:title" content="Démo des alertes — BULLYLIST">
+</head>
+<body class="site">
+<!-- @nav -->
+<main>
+  <header class="page-head"><div class="wrap">
+    <h1 class="h-page">Choisis ton niveau de harcèlement.</h1>
+    <p class="lead">Écris une vraie tâche, règle le retard et déclenche l'alerte. Les phrases viennent de la même bibliothèque que l'application.</p>
+  </div></header>
+
+  <section class="wrap demo" style="padding-bottom:96px">
+    <div>
+      <div class="lvl-tabs" role="group" aria-label="Niveau d'alerte">
+        <button data-level="1" aria-pressed="false"><b>1</b><span>Normal</span></button>
+        <button data-level="2" aria-pressed="false"><b>2</b><span>Insistant</span></button>
+        <button data-level="3" aria-pressed="false"><b>3</b><span>Bully Mode</span></button>
+        <button data-level="4" aria-pressed="true"><b>4</b><span>Nuclear</span></button>
+      </div>
+      <div class="field"><label for="d-task">Tâche</label><input id="d-task" type="text" value="Sortir les poubelles" maxlength="80"></div>
+      <div class="field"><label for="d-late">Retard : <span id="d-late-v">47</span> min</label><input id="d-late" type="range" min="0" max="240" value="47"></div>
+      <div class="field" id="d-var-field"><span class="lab">Mise en scène</span><div class="seg" id="d-var" role="group" aria-label="Variante"></div></div>
+      <div class="field"><span class="lab">Son</span><div class="seg" id="d-sound" role="group" aria-label="Son">
+        <button data-v="off" aria-pressed="true">Muet</button><button data-v="on" aria-pressed="false">Avec le son</button></div></div>
+      <p style="margin-top:28px; display:flex; gap:10px; flex-wrap:wrap">
+        <button class="btn btn-primary" id="d-fire">Déclencher l'alerte</button>
+        <button class="btn" id="d-new">Autre punchline</button>
+      </p>
+      <p class="stage-status" id="d-status" aria-live="polite" style="text-align:left"></p>
+    </div>
+    <div class="phone"><div class="phone-screen" id="d-screen"><div class="phone-notch"></div><div class="phone-status"><span>18:02</span><span>5G</span></div></div></div>
+  </section>
+</main>
+<!-- @foot -->
+<script type="module" src="js/site/common.js"></script>
+<script type="module" src="js/site/demo.js"></script>
+</body>
+</html>

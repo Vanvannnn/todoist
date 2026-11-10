@@ -40,7 +40,7 @@ const SUBJ = { termine: 'terminer', finisse: 'finir', fasse: 'faire', rende: 're
   avance: 'avancer', commence: 'commencer', reponde: 'répondre', paie: 'payer', sorte: 'sortir' };
 const STRIP_RE = /\b(absolument|imperativement|vraiment|urgent|urgente|sans faute|obligatoirement|a tout prix|au plus vite|en priorite|un peu|\d+ fois|deux fois|trois fois|chaque jour|tous les jours|quotidiennement|chaque soir|tous les soirs|chaque matin|tous les matins)\b/g;
 const INFINITIVE = /^(?:s'|se\s+)?[a-z-]+(?:er|ir|re|oir)$/;
-const PRONOUN_START = /^(?:en|les|le|la|l'|y|lui|leur|m'en|m'y)\s*[a-z]/;
+const PRONOUN_START = /^(?:(?:en|les|le|la|y|lui|leur|m'en|m'y)\s+|l')[a-z]/;
 // Seul un groupe nominal hérite du verbe précédent (« réviser les maths, la physique ») ; « c'est urgent » arrête la liste.
 const DETERMINER = /^(?:le|la|les|l'|un|une|des|du|de la|de l'|mon|ma|mes|ton|ta|tes|son|sa|ses|notre|nos|votre|vos|leur|leurs|cet|cette|ces)\b/;
 const NOT_VERBS = new Set(['hier', 'soir', 'pire', 'cher', 'dernier', 'premier', 'entier', 'leur', 'mer', 'fer', 'air', 'noir', 'espoir', 'devoir']);
@@ -245,18 +245,24 @@ export function parseDictation(text, now, opts = {}) {
       const tail = sn.slice(tailStart, tailEnd);
       if (PRONOUN_START.test(tail)) continue; // « en faire », « les faire » : renvoie à une tâche déjà citée
       let pos = 0; let prevVerb = null;
+      const subjCtx = /\bque\s+(?:je|j')\s*$/.test(sn.slice(0, tailStart).trimEnd() + ' ') || /que\s+je\s+$/.test(sn.slice(0, tailStart));
       for (const part of tail.split(/(\s*,\s*(?:et\s+|puis\s+)?|\s+(?:et|puis|ainsi que)\s+)/)) {
         const segStart = tailStart + pos; pos += part.length;
         if (/^\s*(,|et|puis|ainsi que)/.test(part) && /^[\s,]*(?:et|puis|ainsi que)?[\s,]*$/.test(part)) continue;
         // « …et de ranger ma chambre » : la préposition ne fait pas partie de la tâche.
-        const trimmed = part.replace(/^\s+/, '').replace(/^(?:de|d')\s*(?=[a-z])/, '');
+        // « …et que je l'emmène » : on retire « que je » et le pronom complément.
+        const afterQue = /^\s*que\s+(?:je\s+|j')/.test(part);
+        const trimmed = part.replace(/^\s+/, '').replace(/^(?:de|d')\s*(?=[a-z])/, '')
+          .replace(/^que\s+(?:je\s+|j')/, '').replace(/^(?:l'|(?:le|la|les|lui|leur)\s+)(?=[a-z]+e\b)/, '');
         if (!trimmed) continue;
         const lead = part.length - trimmed.length;
         const first = trimmed.split(/\s+/)[0];
-        const isVerb = (INFINITIVE.test(first) && !NOT_VERBS.has(first)) || SUBJ[first];
+        // Subjonctif régulier du 1er groupe (« lave », « emmène ») → infinitif.
+        const subj = SUBJ[first] ?? ((subjCtx || afterQue) && /^[a-z]{3,}e$/.test(first) ? norm(so.substr(segStart + lead, first.length)).replace(/e(?=[a-z]e$)/, 'e') + 'r' : null);
+        const isVerb = (INFINITIVE.test(first) && !NOT_VERBS.has(first)) || subj;
         if (!isVerb && !(prevVerb && DETERMINER.test(trimmed))) { if (items.length) break; continue; }
-        items.push({ start: segStart + lead, end: segStart + part.length, verb: isVerb ? (SUBJ[first] ?? null) : null, inherit: isVerb ? null : prevVerb });
-        if (isVerb) prevVerb = SUBJ[first] ?? so.substr(segStart + lead, first.length);
+        items.push({ start: segStart + lead, end: segStart + part.length, verb: isVerb ? (subj ?? null) : null, inherit: isVerb ? null : prevVerb });
+        if (isVerb) prevVerb = subj ?? so.substr(segStart + lead, first.length);
       }
     }
 

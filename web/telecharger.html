@@ -1,0 +1,72 @@
+<!-- GÉNÉRÉ depuis src/pages/telecharger.html par tools/build-pages.mjs — modifier la source. -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121419">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/alerts.css"><link rel="stylesheet" href="assets/css/site.css">
+<meta property="og:site_name" content="BULLYLIST"><meta property="og:image" content="assets/img/og.svg">
+<title>Télécharger — BULLYLIST</title>
+<meta name="description" content="Télécharge l'APK Android de Bullylist : version, taille, compatibilité et instructions d'installation.">
+<meta property="og:title" content="Télécharger BULLYLIST pour Android">
+</head>
+<body class="site">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="index.html" aria-label="BULLYLIST, accueil"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 1h24v24l-6 6H1V7z" fill="currentColor"/><path d="M13.5 7h5l-.9 11.5h-3.2zM13.4 21.6h5.2v4.4h-5.2z" fill="var(--bg)"/></svg>BULLYLIST</a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Menu"><svg width="18" height="14" viewBox="0 0 18 14"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg></button>
+  <ul>
+    <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+    <li><a href="demo.html">Démo des alertes</a></li>
+    <li><a href="assistant.html">Assistant vocal</a></li>
+    <li><a href="punchlines.html">Punchlines</a></li>
+    <li><a href="simulateur/">Simulateur</a></li>
+  </ul>
+  <a class="btn btn-primary btn-sm cta" href="telecharger.html">Télécharger</a>
+</div></header>
+<main>
+  <header class="page-head"><div class="wrap">
+    <h1 class="h-page">Installe ton pire ennemi.</h1>
+    <p class="lead">Bullylist est distribué directement en APK, hors Play Store. Gratuit, sans compte, sans publicité.</p>
+  </div></header>
+  <section class="wrap dl" style="padding-bottom:96px">
+    <div id="dl-box"><p class="muted">Recherche de la dernière version…</p></div>
+    <div>
+      <h2 class="h-item">Installer l'APK</h2>
+      <ol>
+        <li>Télécharge le fichier depuis ton téléphone, ou copie-le par câble, Drive ou e-mail.</li>
+        <li>Ouvre-le. Android te demande d'autoriser « Installer des applis inconnues » pour l'application qui l'ouvre (navigateur, Fichiers…) : accepte pour cette source uniquement.</li>
+        <li>Au premier lancement, suis l'écran d'accueil : notifications, alarmes exactes, notifications plein écran (Android 14+) et micro pour l'assistant vocal.</li>
+        <li>Facultatif : autorise l'accès à l'agenda pour que Bullylist lise tes agendas Google déjà présents sur le téléphone.</li>
+      </ol>
+      <p class="notice">Vérifie l'empreinte SHA-256 affichée ici avant d'installer un APK reçu par un autre canal. Une mise à jour ne s'installe que si elle est signée avec la même clé que la version déjà présente.</p>
+    </div>
+  </section>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <div><div class="tag">YOUR TASKS. YOUR PROBLEM. OUR BUSINESS.</div><p>BULLYLIST — le meilleur ennemi de ta procrastination.<br>Application Android hors ligne, sans compte et sans publicité.</p></div>
+  <nav aria-label="Pied de page"><a href="fonctionnalites.html">Fonctionnalités</a><a href="demo.html">Démo</a><a href="assistant.html">Assistant vocal</a><a href="punchlines.html">Punchlines</a><a href="telecharger.html">Télécharger</a><a href="simulateur/">Simulateur</a><a href="confidentialite.html">Confidentialité</a></nav>
+</div></footer>
+<script type="module" src="js/site/common.js"></script>
+<script type="module">
+const box = document.getElementById('dl-box');
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+try {
+  const r = await fetch('downloads/latest.json', { cache: 'no-store' });
+  if (!r.ok) throw new Error('absent');
+  const v = await r.json();
+  const mo = (v.size / 1048576).toFixed(1).replace('.', ',');
+  box.innerHTML = `<h2 class="h-sec">Version ${esc(v.version)}</h2>
+    <dl><dt>Publiée le</dt><dd>${esc(new Date(v.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }))}</dd>
+    <dt>Taille</dt><dd>${mo} Mo</dd><dt>Compatibilité</dt><dd>Android ${esc(v.minAndroid)} ou plus récent (API ${esc(v.minSdk)})</dd>
+    <dt>Variante</dt><dd>${esc(v.variant)}</dd><dt>SHA-256</dt><dd class="mono" style="font-size:13px">${esc(v.sha256)}</dd></dl>
+    <a class="btn btn-primary" href="downloads/${encodeURIComponent(v.file)}" download>Télécharger l'APK (${mo} Mo)</a>
+    ${v.notes ? `<p class="prose" style="margin-top:24px">${esc(v.notes)}</p>` : ''}`;
+} catch {
+  box.innerHTML = `<h2 class="h-sec">Pas encore d'APK publié.</h2><p class="prose" style="margin-top:14px">Le bouton de téléchargement apparaît ici dès qu'un APK réellement compilé a été publié avec <code>scripts/publish-apk.sh</code>. En attendant, le <a href="simulateur/">simulateur</a> te permet d'essayer l'application dans ton navigateur.</p>`;
+}
+</script>
+</body>
+</html>

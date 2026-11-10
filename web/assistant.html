@@ -1,0 +1,80 @@
+<!-- GÉNÉRÉ depuis src/pages/assistant.html par tools/build-pages.mjs — modifier la source. -->
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#121419">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/alerts.css"><link rel="stylesheet" href="assets/css/site.css">
+<meta property="og:site_name" content="BULLYLIST"><meta property="og:image" content="assets/img/og.svg">
+<link rel="stylesheet" href="assets/css/plan.css">
+<title>Assistant vocal — BULLYLIST</title>
+<meta name="description" content="Explique ta semaine à voix haute : Bullylist en tire les tâches, les échéances et les durées, puis construit un planning réaliste entre tes cours.">
+<meta property="og:title" content="L'assistant vocal — BULLYLIST">
+</head>
+<body class="site">
+<header class="nav"><div class="wrap">
+  <a class="logo" href="index.html" aria-label="BULLYLIST, accueil"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 1h24v24l-6 6H1V7z" fill="currentColor"/><path d="M13.5 7h5l-.9 11.5h-3.2zM13.4 21.6h5.2v4.4h-5.2z" fill="var(--bg)"/></svg>BULLYLIST</a>
+  <button class="nav-toggle" aria-expanded="false" aria-label="Menu"><svg width="18" height="14" viewBox="0 0 18 14"><path d="M0 1h18M0 7h18M0 13h18" stroke="currentColor" stroke-width="2"/></svg></button>
+  <ul>
+    <li><a href="fonctionnalites.html">Fonctionnalités</a></li>
+    <li><a href="demo.html">Démo des alertes</a></li>
+    <li><a href="assistant.html">Assistant vocal</a></li>
+    <li><a href="punchlines.html">Punchlines</a></li>
+    <li><a href="simulateur/">Simulateur</a></li>
+  </ul>
+  <a class="btn btn-primary btn-sm cta" href="telecharger.html">Télécharger</a>
+</div></header>
+<main>
+  <header class="page-head"><div class="wrap">
+    <h1 class="h-page">Parle. Ta semaine s'organise.</h1>
+    <p class="lead">Pas de formulaire à remplir tâche par tâche. Tu racontes ce que tu as à faire, Bullylist comprend l'ensemble et construit un planning qui tient debout.</p>
+  </div></header>
+
+  <section class="wrap" style="padding-bottom:40px">
+    <h2 class="h-sec">Un exemple, en vrai.</h2>
+    <p class="prose" style="margin-top:14px">Lundi, 10 h. Un étudiant avec une semaine de cours chargée dicte ceci. Tout ce qui suit est calculé en direct dans ta page par le même moteur que l'application.</p>
+    <div class="voice-demo">
+      <div class="panel"><h3>Ce qu'il dit</h3><p class="transcript" id="a-transcript" aria-live="polite"></p></div>
+      <div class="panel"><h3>Ce que Bullylist comprend</h3><ul class="xtasks" id="a-tasks"></ul></div>
+    </div>
+    <div class="panel" style="margin-top:32px"><h3>« Voici comment je te propose d'organiser ta semaine. »</h3><div class="plan" id="a-plan"><p class="muted">Le planning apparaît une fois la dictée terminée.</p></div></div>
+    <p style="margin-top:20px"><button class="btn" id="a-replay">Rejouer l'exemple</button></p>
+  </section>
+
+  <section class="block"><div class="wrap">
+    <h2 class="h-sec">À toi.</h2>
+    <p class="prose" style="margin-top:14px">Écris ou dicte ta semaine. Le planning se construit autour de l'emploi du temps de démonstration (cours, dentiste, job du samedi).</p>
+    <div class="field"><label for="a-input">Ta dictée</label><textarea id="a-input" rows="4">Je dois envoyer un mail à ma prof demain matin, réviser le partiel de droit avant vendredi et faire du sport 3 fois cette semaine.</textarea></div>
+    <p style="display:flex; gap:10px; flex-wrap:wrap; margin-top:16px">
+      <button class="btn btn-primary" id="a-run">Organiser ma semaine</button>
+      <button class="btn" id="a-mic" aria-pressed="false">Dicter au micro</button>
+    </p>
+    <p class="muted" id="a-mic-note" style="font-size:14px; max-width:64ch">Dans le navigateur, la dictée utilise la reconnaissance vocale de Chrome, effectuée par un service en ligne de Google. Rien n'est enregistré par Bullylist. Dans l'application Android, la reconnaissance du téléphone est utilisée, hors ligne si le pack de langue est installé.</p>
+    <div class="voice-demo" style="margin-top:24px">
+      <div class="panel"><h3>Tâches comprises</h3><ul class="xtasks" id="a-tasks2"></ul></div>
+      <div class="panel"><h3>Planning proposé</h3><div class="plan" id="a-plan2"></div></div>
+    </div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <h2 class="h-sec">Les règles du planning.</h2>
+    <div class="ledger" style="margin-top:32px">
+      <article><h3 class="h-item">Jamais pendant un engagement</h3><p>Cours, rendez-vous et travail sont intouchables, tout comme les trajets avant et après. Un déplacement ne compte jamais pour zéro minute.</p></article>
+      <article><h3 class="h-item">Des pauses partout</h3><p>Quinze minutes entre deux blocs de travail, un vrai déjeuner, un dîner, et des blocs de 90 minutes au maximum.</p></article>
+      <article><h3 class="h-item">Pas plus de 5 heures par jour</h3><p>Le travail est réparti sur plusieurs jours et chaque journée garde du temps libre. Le plafond est réglable.</p></article>
+      <article><h3 class="h-item">Une marge avant chaque échéance</h3><p>Une heure de sécurité au minimum. Si c'est impossible, Bullylist le dit et propose de réduire, déplacer ou reporter.</p></article>
+      <article><h3 class="h-item">Rien d'inventé</h3><p>Sans échéance donnée, aucune n'est créée. Une heure supposée (« jeudi soir » → 18 h) est affichée comme hypothèse, modifiable.</p></article>
+    </div>
+  </div></section>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <div><div class="tag">YOUR TASKS. YOUR PROBLEM. OUR BUSINESS.</div><p>BULLYLIST — le meilleur ennemi de ta procrastination.<br>Application Android hors ligne, sans compte et sans publicité.</p></div>
+  <nav aria-label="Pied de page"><a href="fonctionnalites.html">Fonctionnalités</a><a href="demo.html">Démo</a><a href="assistant.html">Assistant vocal</a><a href="punchlines.html">Punchlines</a><a href="telecharger.html">Télécharger</a><a href="simulateur/">Simulateur</a><a href="confidentialite.html">Confidentialité</a></nav>
+</div></footer>
+<script type="module" src="js/site/common.js"></script>
+<script type="module" src="js/site/assistant.js"></script>
+</body>
+</html>
