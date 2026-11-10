@@ -109,9 +109,11 @@ fun AlarmScreen(
     onTomorrow: () -> Unit,
     onDisable: () -> Unit,
     variant: AlarmVariant = remember(content) { variantFor(content) },
+    /** null : suit le réglage système « Supprimer les animations ». */
+    motionOverride: Boolean? = null,
 ) {
     val ctx = LocalContext.current
-    val motion = remember { Settings.Global.getFloat(ctx.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f }
+    val motion = motionOverride ?: remember { Settings.Global.getFloat(ctx.contentResolver, Settings.Global.ANIMATOR_DURATION_SCALE, 1f) > 0f }
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
     LaunchedEffect(Unit) { while (true) { now = System.currentTimeMillis(); delay(500) } }
     val shownAt = remember(content) { System.currentTimeMillis() }
@@ -275,7 +277,8 @@ private fun TaskTitle(title: String, motion: Boolean, big: Boolean) {
 @Composable
 private fun Quote(messages: List<String>, motion: Boolean, color: Color, bar: Color? = null) {
     var index by remember { mutableIntStateOf(0) }
-    var shown by remember { mutableStateOf("") }
+    // Sans animation (réglage système), la phrase s'affiche entière dès la première image.
+    var shown by remember { mutableStateOf(if (motion) "" else "« ${messages.firstOrNull().orEmpty()} »") }
     LaunchedEffect(messages) {
         while (true) {
             val full = "« ${messages.getOrElse(index) { "" }} »"

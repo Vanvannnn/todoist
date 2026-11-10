@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /dev/
+Disallow: /test/
 Sitemap: sitemap.xml

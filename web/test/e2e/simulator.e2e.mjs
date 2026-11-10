@@ -51,6 +51,8 @@ await step('tout accepter → créneaux enregistrés', async () => {
 });
 
 await step('tâche en retard → alerte Nuclear (écran verrouillé)', async () => {
+  // Les cours de démonstration (dont l'horaire dépend de l'heure du test) mettraient le rappel en pause : on les retire.
+  await page.evaluate(() => { const S = window.__sim.state; S.events = S.events.filter((e) => e.source !== 'demo'); });
   await page.click('#c-late');
   await page.waitForSelector('.al-4', { timeout: 4000 });
   assert.match(await page.locator('.al-4 .status').innerText(), /ÉCHEC DEPUIS/);
@@ -64,8 +66,6 @@ await step('« Je passe à l\'action » termine la tâche', async () => {
 });
 
 await step('pause de calendrier : rappel retenu et reporté', async () => {
-  // Isolé des cours de démonstration, dont l'horaire dépend du moment où le test tourne.
-  await page.evaluate(() => { const S = window.__sim.state; S.events = S.events.filter((e) => e.source !== 'demo'); });
   await page.click('#c-pause');
   await page.waitForTimeout(1500);
   assert.equal(await page.locator('.al').count(), 0, 'aucune alerte pendant le cours');
