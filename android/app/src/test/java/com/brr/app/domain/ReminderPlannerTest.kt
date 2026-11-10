@@ -136,3 +136,33 @@ class ReminderPlannerTest {
         assertNotNull(plan)
     }
 }
+
+/** Mode pause : mêmes cas que le web (design/fixtures/pause.json). */
+class PausePlannerTest {
+    private val day = 1_700_000_000_000L - 1_700_000_000_000L % 86_400_000L
+    private val M = 60_000L
+
+    @org.junit.Test fun `reports attendus pendant cours et rendez-vous`() {
+        val p = com.brr.app.Fixtures.obj("pause.json")
+        val ev = p.getJSONArray("events")
+        // Fusion des intervalles comme côté web (fin d'engagement + trajet).
+        val raw = (0 until ev.length()).map { ev.getJSONObject(it) }.filter { it.getString("profile") != "PERSO" }
+            .map { com.brr.app.domain.PauseWindow(day + it.getInt("start") * M, day + (it.getInt("end") + it.getInt("travelAfter")) * M, it.getString("title")) }
+        val s = ReminderSettings(pauses = raw)
+        val cases = p.getJSONArray("cases")
+        for (i in 0 until cases.length()) {
+            val c = cases.getJSONObject(i)
+            val task = PlannerTask(null, true, false, true, com.brr.app.domain.model.ReminderLevel.valueOf(c.getString("level")), null, emptyList(), ReminderState(), bypassPause = c.getBoolean("bypass"))
+            org.junit.Assert.assertEquals(c.getString("why"), c.getInt("expect").toLong(), (ReminderPlanner.applyPauses(day + c.getInt("at") * M, s, task) - day) / M)
+        }
+    }
+
+    @org.junit.Test fun `un rappel pendant un cours est décalé, jamais supprimé`() {
+        val zone = java.time.ZoneId.of("Europe/Paris")
+        val due = day + 14 * 60 * M + 30 * M
+        val s = ReminderSettings(pauses = listOf(com.brr.app.domain.PauseWindow(day + 14 * 60 * M, day + 16 * 60 * M + 30 * M, "Cours")))
+        val task = PlannerTask(due, true, false, true, com.brr.app.domain.model.ReminderLevel.INSISTANT, null, emptyList(), ReminderState())
+        org.junit.Assert.assertEquals(day + (16 * 60 + 30) * M, ReminderPlanner.nextTrigger(task, s, day + 9 * 60 * M, zone)?.at)
+        org.junit.Assert.assertEquals(due, ReminderPlanner.nextTrigger(task, s.copy(pauseEnabled = false), day + 9 * 60 * M, zone)?.at)
+    }
+}

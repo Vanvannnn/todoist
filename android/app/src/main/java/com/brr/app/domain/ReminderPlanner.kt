@@ -18,7 +18,13 @@ data class ReminderSettings(
     val allDayReminderMinute: Int = 9 * 60,
     /** Au-delà de ce délai, une échéance ratée (téléphone éteint…) ne déclenche plus de rappel de rattrapage. */
     val catchUpWindowMinutes: Int = 12 * 60,
+    /** Mode pause : engagements du calendrier (trajet inclus) pendant lesquels les rappels sont retenus. */
+    val pauses: List<PauseWindow> = emptyList(),
+    val pauseEnabled: Boolean = true,
 )
+
+/** Intervalle de pause [start, end[ en millisecondes (fin d'engagement + trajet). */
+data class PauseWindow(val start: Long, val end: Long, val title: String)
 
 /** État du cycle de rappel d'une tâche (persisté avec la tâche). */
 data class ReminderState(
@@ -39,6 +45,8 @@ data class PlannerTask(
     val nagIntervalMinutes: Int?,
     val preOffsetsMinutes: List<Int>,
     val state: ReminderState,
+    /** Niveau 4 uniquement : autorisé explicitement à sonner pendant une pause. */
+    val bypassPause: Boolean = false,
 )
 
 enum class TriggerKind { PRE_REMINDER, DUE, SNOOZE, ESCALATION }
@@ -70,8 +78,30 @@ object ReminderPlanner {
 
     fun nextTrigger(task: PlannerTask, settings: ReminderSettings, now: Long, zone: ZoneId): PlannedTrigger? {
         val raw = rawNextTrigger(task, settings, now, zone) ?: return null
-        return raw.copy(at = applyAllowedWindow(raw.at, settings, zone))
+        // Plage autorisée et pauses peuvent se repousser l'une l'autre : on itère jusqu'à stabilité.
+        var at = raw.at
+        repeat(8) {
+            val next = applyPauses(applyAllowedWindow(at, settings, zone), settings, task)
+            if (next == at) return raw.copy(at = at)
+            at = next
+        }
+        return raw.copy(at = at)
     }
+
+    /**
+     * Reporte un instant tombant pendant une pause à la fin de celle-ci (jamais de rappel perdu, seulement décalé).
+     * Le niveau 4 ne traverse une pause que si la tâche l'autorise explicitement.
+     */
+    fun applyPauses(at: Long, settings: ReminderSettings, task: PlannerTask? = null): Long {
+        if (!settings.pauseEnabled) return at
+        if (task != null && task.bypassPause && task.level == ReminderLevel.BRR) return at
+        var t = at
+        for (p in settings.pauses.sortedBy { it.start }) if (t >= p.start && t < p.end) t = p.end
+        return t
+    }
+
+    fun activePause(now: Long, settings: ReminderSettings): PauseWindow? =
+        if (!settings.pauseEnabled) null else settings.pauses.firstOrNull { now >= it.start && now < it.end }
 
     private fun rawNextTrigger(task: PlannerTask, settings: ReminderSettings, now: Long, zone: ZoneId): PlannedTrigger? {
         if (task.completed || !task.remindersEnabled) return null

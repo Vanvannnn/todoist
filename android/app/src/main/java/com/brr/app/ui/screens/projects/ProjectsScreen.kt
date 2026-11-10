@@ -116,7 +116,7 @@ fun ProjectsScreen(container: AppContainer, onOpenProject: (Long) -> Unit) {
             }
         }
         FloatingActionButton(
-            onClick = { creating = true }, containerColor = MaterialTheme.colorScheme.primary, contentColor = Color.White,
+            onClick = { creating = true }, containerColor = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary,
             shape = RoundedCornerShape(18.dp), modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
         ) { Icon(Icons.Default.Add, "Nouveau projet") }
     }

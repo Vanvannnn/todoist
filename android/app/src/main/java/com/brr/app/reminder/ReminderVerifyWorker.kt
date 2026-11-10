@@ -15,7 +15,10 @@ import java.util.concurrent.TimeUnit
  */
 class ReminderVerifyWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, params) {
     override suspend fun doWork(): Result = try {
-        (applicationContext as BrrApplication).container.reminderCoordinator.rescheduleAll()
+        val c = (applicationContext as BrrApplication).container
+        // Calendriers d'abord (cours déplacés, annulés…), puis recalcul de toutes les alarmes avec les nouvelles pauses.
+        runCatching { c.calendars.sync() }
+        c.reminderCoordinator.rescheduleAll()
         Result.success()
     } catch (e: Exception) {
         Result.retry()

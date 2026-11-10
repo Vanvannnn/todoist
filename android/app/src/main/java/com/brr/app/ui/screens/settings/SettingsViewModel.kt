@@ -43,6 +43,7 @@ class SettingsViewModel(private val c: AppContainer) : ViewModel() {
     fun setVolume(v: Float) = edit({ c.settings.setVolume(v) })
     fun setVibration(e: Boolean, s: Float) = edit({ c.settings.setVibration(e, s) })
     fun setCategory(cat: PunchlineCategory, enabled: Boolean) = edit({ c.settings.setCategoryEnabled(cat, enabled) })
+    fun setHumorMax(v: Int) = edit({ c.settings.setHumorMax(v) })
     fun setContextual(v: Boolean) = edit({ c.settings.setContextual(v) })
 
     fun addPunchline(text: String, cat: PunchlineCategory, intensity: Int) = edit({ if (text.isNotBlank()) c.punchlines.addCustom(text, cat, intensity) })

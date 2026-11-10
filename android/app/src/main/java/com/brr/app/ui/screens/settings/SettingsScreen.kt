@@ -37,7 +37,10 @@ import com.brr.app.ui.theme.Brr
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun SettingsScreen(container: AppContainer, onAlarms: () -> Unit, onPunchlines: () -> Unit, onPermissions: () -> Unit, onHistory: () -> Unit) {
+fun SettingsScreen(
+    container: AppContainer, onAlarms: () -> Unit, onPunchlines: () -> Unit, onPermissions: () -> Unit, onHistory: () -> Unit,
+    onCalendars: () -> Unit = {}, onVoice: () -> Unit = {},
+) {
     val vm = brrViewModel { SettingsViewModel(container) }
     val s by vm.settings.collectAsStateWithLifecycle()
     val st = s ?: return
@@ -48,7 +51,7 @@ fun SettingsScreen(container: AppContainer, onAlarms: () -> Unit, onPunchlines: 
         Text("Règle le niveau de nuisance qui te convient.", style = MaterialTheme.typography.bodyMedium, color = Brr.colors.muted, modifier = Modifier.padding(horizontal = 20.dp))
 
         Group("Rappels")
-        SettingRow("Bully Mode: Nuclear", if (st.brrModeEnabled) "Activé : le niveau 4 peut se déclencher." else "Désactivé : les rappels plafonnent au niveau Harcèlement.", BrrIcons.Bolt) {
+        SettingRow("Bully Mode: Nuclear", if (st.brrModeEnabled) "Activé : le niveau 4 peut se déclencher." else "Désactivé : les rappels plafonnent au niveau Bully Mode.", BrrIcons.Bolt) {
             Switch(st.brrModeEnabled, vm::setBrr)
         }
         SettingRow("Escalade progressive", "Chaque relance monte d'un niveau, jusqu'au niveau choisi pour la tâche.", BrrIcons.Megaphone) {
@@ -61,6 +64,8 @@ fun SettingsScreen(container: AppContainer, onAlarms: () -> Unit, onPunchlines: 
                 ReminderLevel.entries.forEach { l -> ChoiceChip(l.label, st.defaultLevel == l, { vm.setDefaultLevel(l) }, Brr.colors.level(l)) }
             }
         }
+        SettingRow("Calendriers et mode pause", "CELCAT, iCloud, Google, fichiers .ics · pause pendant les cours", com.brr.app.ui.components.BrrIcons.Calendar, onClick = onCalendars) { Chevron() }
+        SettingRow("Assistant vocal", "Dicte ta semaine, Bullylist la planifie entre tes cours", com.brr.app.ui.components.BrrIcons.Mic, onClick = onVoice) { Chevron() }
         SettingRow("Personnalisation des alarmes", "Relances, horaires, sons, volume, vibrations, aperçus", BrrIcons.Alarm, onClick = onAlarms) { Chevron() }
         SettingRow("Bibliothèque de punchlines", "Catégories, messages perso, contextualisation", BrrIcons.Notes, onClick = onPunchlines) { Chevron() }
         SettingRow("Fiabilité et autorisations", "Notifications, alarmes exactes, plein écran, batterie", BrrIcons.Shield, onClick = onPermissions) { Chevron() }

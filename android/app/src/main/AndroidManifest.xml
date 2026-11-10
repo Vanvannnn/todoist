@@ -15,6 +15,17 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- V2 : assistant vocal (reconnaissance du téléphone, aucun enregistrement conservé) -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- V2 : lecture seule des agendas du téléphone (Google Agenda…) pour le mode pause et le planning -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <!-- V2 : téléchargement des liens iCal (CELCAT, iCloud…). Aucune autre connexion. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Android 11+ : rendre visible le service de reconnaissance vocale -->
+    <queries>
+        <intent><action android:name="android.speech.RecognitionService" /></intent>
+    </queries>
 
     <application
         android:name=".BrrApplication"

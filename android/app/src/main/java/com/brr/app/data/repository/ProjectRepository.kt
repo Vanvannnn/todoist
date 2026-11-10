@@ -23,9 +23,7 @@ class ProjectRepository(db: BrrDatabase) {
         dao.findByName(name.trim())?.id ?: create(name, PALETTE[(name.hashCode() and 0x7fffffff) % PALETTE.size])
 
     companion object {
-        val PALETTE: List<Long> = listOf(
-            0xFFFF2D3D, 0xFFFF6A1A, 0xFFFFB020, 0xFF2ECC71, 0xFF1ABC9C,
-            0xFF4C8DFF, 0xFF8B5CF6, 0xFFEC4899, 0xFF94A3B8,
-        )
+        /** Couleurs de projet désaturées : les couleurs vives sont réservées aux alertes (design/tokens.json). */
+        val PALETTE: List<Long> = com.brr.app.ui.theme.BullyTokens.projectColors
     }
 }

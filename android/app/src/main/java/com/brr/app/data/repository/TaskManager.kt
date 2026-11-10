@@ -16,6 +16,7 @@ class TaskManager(
     private val tasks: TaskRepository,
     private val projects: ProjectRepository,
     private val reminders: ReminderCoordinator,
+    private val settings: com.brr.app.data.prefs.SettingsRepository? = null,
 ) {
     data class Draft(
         val id: Long = 0,
@@ -34,6 +35,10 @@ class TaskManager(
         val customMessage: String? = null,
         val subtasks: List<Pair<String, Boolean>> = emptyList(),
         val offsets: List<Int> = emptyList(),
+        val plannedStart: Long? = null,
+        val plannedMinutes: Int? = null,
+        val deadlineAt: Long? = null,
+        val bypassPause: Boolean = false,
     )
 
     suspend fun save(d: Draft): Long {
@@ -48,7 +53,8 @@ class TaskManager(
             priority = d.priority, projectId = d.projectId, reminderLevel = d.level, remindersEnabled = d.remindersEnabled,
             repeatType = d.repeatType, repeatInterval = d.repeatInterval.coerceAtLeast(1), repeatDays = d.repeatDays,
             nagIntervalMinutes = d.nagIntervalMinutes?.takeIf { it > 0 }, customMessage = d.customMessage?.trim()?.ifBlank { null },
-            updatedAt = now,
+            updatedAt = now, plannedStart = d.plannedStart ?: base.plannedStart, plannedMinutes = d.plannedMinutes ?: base.plannedMinutes,
+            deadlineAt = d.deadlineAt ?: base.deadlineAt, bypassPause = d.bypassPause && d.level == ReminderLevel.BRR,
         )
         if (scheduleChanged) entity = entity.withReminderState(com.brr.app.domain.ReminderState(), null)
         val id = tasks.save(entity, d.subtasks, d.offsets)
@@ -65,7 +71,19 @@ class TaskManager(
         ))
     }
 
-    suspend fun complete(id: Long): Long? = reminders.complete(id)
+    suspend fun complete(id: Long): Long? {
+        // Apprentissage : la durée réelle d'une tâche planifiée affine les estimations futures.
+        val t = tasks.get(id)
+        val start = t?.plannedStart
+        val now = System.currentTimeMillis()
+        if (t != null && start != null && now > start && now - start < (t.plannedMinutes ?: 60) * 3 * 60_000L) {
+            settings?.learnDuration(com.brr.app.domain.voice.VoiceParser.norm(t.title), ((now - start) / 60_000).toInt())
+        }
+        return reminders.complete(id)
+    }
+
+    /** Enregistre un planning validé : un créneau = une tâche dont le rappel sonne au début du bloc. */
+    suspend fun savePlan(drafts: List<Draft>): List<Long> = drafts.map { save(it) }
     suspend fun reopen(id: Long) = reminders.reopen(id)
     suspend fun snooze(id: Long, minutes: Int) = reminders.snooze(id, minutes)
     suspend fun postponeToTomorrow(id: Long) = reminders.postponeToTomorrow(id)

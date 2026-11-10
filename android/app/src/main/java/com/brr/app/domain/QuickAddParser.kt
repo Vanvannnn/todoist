@@ -21,7 +21,7 @@ data class QuickAddResult(
 
 /**
  * Analyse une saisie rapide en langage naturel (français).
- * Exemples : « Sortir les poubelles demain 20h !1 #Maison @brr », « Appeler maman dans 2h ».
+ * Exemples : « Sortir les poubelles demain 20h !1 #Maison @nuclear », « Appeler maman dans 2h ».
  */
 object QuickAddParser {
     private val timeH = Regex("^(\\d{1,2})h(\\d{2})?$")
@@ -39,6 +39,7 @@ object QuickAddParser {
     private val levels = mapOf(
         "@normal" to ReminderLevel.NORMAL, "@insistant" to ReminderLevel.INSISTANT,
         "@harcelement" to ReminderLevel.HARCELEMENT, "@brr" to ReminderLevel.BRR,
+        "@bully" to ReminderLevel.HARCELEMENT, "@nuclear" to ReminderLevel.BRR, "@nucleaire" to ReminderLevel.BRR,
     )
 
     fun normalize(s: String): String =

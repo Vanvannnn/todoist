@@ -45,7 +45,7 @@ class PunchlineRepository(
         val s = appSettings ?: settings.current()
         val picked = engine.pick(
             pool(),
-            PickRequest(level, isFinal, s.disabledCategories, s.recentPunchlines, taskTitle, minutesLate, snoozeCount, s.contextualPunchlines),
+            PickRequest(level, isFinal, s.disabledCategories, s.recentPunchlines, taskTitle, minutesLate, snoozeCount, s.contextualPunchlines, s.humorMax),
         )
         if (picked.id != null) settings.setRecentPunchlines(PunchlineEngine.pushRecent(s.recentPunchlines, picked.id))
         return picked

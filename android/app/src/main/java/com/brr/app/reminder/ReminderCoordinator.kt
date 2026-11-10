@@ -117,6 +117,11 @@ class ReminderCoordinator(
             apply(t, t.task.reminderState, s)
             return@withLock null
         }
+        // Engagement découvert après la programmation (synchronisation du calendrier) : on décale, sans sonner.
+        if (ReminderPlanner.applyPauses(now, s, t.toPlannerTask()) > now + STALE_MARGIN) {
+            apply(t, t.task.reminderState, s)
+            return@withLock null
+        }
         val plan = ReminderPlanner.onFire(t.toPlannerTask(), s, now, zone())
         if (plan == null) { apply(t, t.task.reminderState, s); return@withLock null }
         val nextAt = apply(t, plan.newState, s)

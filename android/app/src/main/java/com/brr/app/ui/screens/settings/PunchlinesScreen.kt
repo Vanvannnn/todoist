@@ -83,6 +83,14 @@ fun PunchlinesScreen(container: AppContainer, onBack: () -> Unit) {
                         Button(onClick = { vm.drawSample(sampleLevel) }) { Icon(Icons.Default.Refresh, null); Text("  Tirer") }
                     }
                 }
+                Group("Intensité de l'humour")
+                FlowRow(Modifier.padding(horizontal = 20.dp, vertical = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    listOf("Douce", "Piquante", "Sévère", "Nucléaire").forEachIndexed { i, l ->
+                        ChoiceChip(l, st.humorMax == i + 1, { vm.setHumorMax(i + 1) }, Brr.colors.level(ReminderLevel.fromIndex(i)))
+                    }
+                }
+                Text("Les phrases plus piquantes que ce niveau ne sont jamais tirées, même en Bully Mode: Nuclear.",
+                    style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted, modifier = Modifier.padding(horizontal = 20.dp))
                 Group("Catégories")
                 SettingRow("Messages contextuels", "Utilise le nom de la tâche (« La vaisselle ne va pas se laver… »).") {
                     Switch(st.contextualPunchlines, vm::setContextual)

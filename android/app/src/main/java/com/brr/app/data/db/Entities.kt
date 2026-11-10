@@ -1,5 +1,6 @@
 package com.brr.app.data.db
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -55,6 +56,14 @@ data class TaskEntity(
     val lastFiredAt: Long? = null,
     val snoozeCount: Int = 0,
     val nextReminderAt: Long? = null,
+    // V2 — planning automatique et mode pause
+    /** Début du créneau proposé par l'assistant (le rappel sonne à ce moment). */
+    val plannedStart: Long? = null,
+    val plannedMinutes: Int? = null,
+    /** Échéance réelle, distincte du créneau de travail. */
+    val deadlineAt: Long? = null,
+    /** Niveau 4 uniquement : sonne même pendant un cours (choix explicite de l'utilisateur). */
+    @ColumnInfo(defaultValue = "0") val bypassPause: Boolean = false,
 ) {
     val reminderState: ReminderState get() = ReminderState(snoozedUntil, escalationStep, lastFiredAt, snoozeCount)
 
@@ -120,7 +129,7 @@ data class TaskWithDetails(
         dueAt = task.dueAt, hasTime = task.hasTime, completed = task.completed,
         remindersEnabled = task.remindersEnabled, level = task.reminderLevel,
         nagIntervalMinutes = task.nagIntervalMinutes,
-        preOffsetsMinutes = reminders.map { it.offsetMinutes }, state = task.reminderState,
+        preOffsetsMinutes = reminders.map { it.offsetMinutes }, state = task.reminderState, bypassPause = task.bypassPause,
     )
 }
 
@@ -128,4 +137,38 @@ data class ProjectWithCounts(
     @Embedded val project: ProjectEntity,
     val openCount: Int,
     val doneCount: Int,
+)
+
+/** Calendrier importé : lien iCal (CELCAT, iCloud, Google…), fichier .ics ou agenda du téléphone. */
+@Entity(tableName = "calendar_sources")
+data class CalendarSourceEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val name: String,
+    /** ICS_URL, ICS_FILE ou DEVICE. */
+    val kind: String,
+    val url: String? = null,
+    val deviceCalendarId: Long? = null,
+    /** Profil de pause : COURS, RDV, TRAVAIL, PERSO. */
+    val profile: String = "COURS",
+    val travelBefore: Int? = null,
+    val travelAfter: Int? = null,
+    @ColumnInfo(defaultValue = "1") val enabled: Boolean = true,
+    val lastSyncAt: Long? = null,
+    val lastError: String? = null,
+    @ColumnInfo(defaultValue = "0") val eventCount: Int = 0,
+)
+
+@Entity(
+    tableName = "calendar_events",
+    foreignKeys = [ForeignKey(CalendarSourceEntity::class, ["id"], ["sourceId"], onDelete = ForeignKey.CASCADE)],
+    indices = [Index("sourceId"), Index("start")],
+)
+data class CalendarEventEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val sourceId: Long,
+    val title: String,
+    val location: String?,
+    val start: Long,
+    val end: Long,
+    val allDay: Boolean,
 )

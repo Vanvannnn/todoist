@@ -41,6 +41,8 @@ data class EditState(
     val customMessage: String = "",
     val subtasks: List<SubtaskDraft> = emptyList(),
     val offsets: Set<Int> = emptySet(),
+    /** Niveau 4 : sonner même pendant un cours (exception explicite au mode pause). */
+    val bypassPause: Boolean = false,
     val saving: Boolean = false,
     val error: String? = null,
     val savedId: Long? = null,
@@ -74,6 +76,7 @@ class TaskEditViewModel(
                     nagInterval = e.nagIntervalMinutes, customMessage = e.customMessage ?: "",
                     subtasks = t.sortedSubtasks.map { SubtaskDraft(keySeq++, it.title, it.done) },
                     offsets = t.reminders.map { it.offsetMinutes }.toSet(),
+                    bypassPause = e.bypassPause,
                 )
             } else {
                 var s = EditState(loading = false, level = settings.defaultLevel, projectId = presetProjectId)
@@ -115,6 +118,7 @@ class TaskEditViewModel(
                     repeatDays = if (s.repeatType == RepeatType.WEEKLY) s.repeatDays else 0, nagIntervalMinutes = s.nagInterval,
                     customMessage = s.customMessage, subtasks = s.subtasks.map { it.title to it.done },
                     offsets = if (dueAt != null) s.offsets.toList() else emptyList(),
+                    bypassPause = s.bypassPause,
                 ))
                 _state.update { it.copy(saving = false, savedId = id) }
             } catch (e: Exception) {

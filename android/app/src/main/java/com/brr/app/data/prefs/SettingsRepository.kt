@@ -42,8 +42,20 @@ data class AppSettings(
     val disabledCategories: Set<PunchlineCategory> = emptySet(),
     val contextualPunchlines: Boolean = true,
     val recentPunchlines: List<String> = emptyList(),
+    // V2
+    /** Intensité maximale de l'humour (1 douce … 4 nucléaire). */
+    val humorMax: Int = 4,
+    val pauseEnabled: Boolean = true,
+    /** Coupure manuelle de la synchronisation des calendriers. */
+    val calendarSyncEnabled: Boolean = true,
+    val pausedProfiles: Set<String> = DEFAULT_PAUSED_PROFILES,
+    val learnedDurations: Map<String, List<Int>> = emptyMap(),
+    val maxFocusMinutes: Int = 300,
+    val voiceConsent: Boolean = false,
 ) {
-    fun reminderSettings() = ReminderSettings(
+    fun reminderSettings(pauses: List<com.brr.app.domain.PauseWindow> = emptyList()) = ReminderSettings(
+        pauses = pauses,
+        pauseEnabled = pauseEnabled,
         brrModeEnabled = brrModeEnabled,
         progressiveEscalation = progressiveEscalation,
         intervalsMinutes = intervals,
@@ -58,6 +70,7 @@ data class AppSettings(
 
     companion object {
         val DEFAULT_INTERVALS = listOf(5, 5, 5, 5, 10)
+        val DEFAULT_PAUSED_PROFILES = setOf("COURS", "RDV", "TRAVAIL")
         val DEFAULT_SOUNDS = mapOf(
             ReminderLevel.NORMAL to "brr_carillon",
             ReminderLevel.INSISTANT to "brr_ping",
@@ -88,6 +101,13 @@ class SettingsRepository(private val context: Context) {
         val disabledCats = stringSetPreferencesKey("disabled_categories")
         val contextual = booleanPreferencesKey("contextual")
         val recent = stringPreferencesKey("recent_punchlines")
+        val humorMax = intPreferencesKey("humor_max")
+        val pause = booleanPreferencesKey("pause_enabled")
+        val calSync = booleanPreferencesKey("calendar_sync")
+        val pausedProfiles = stringSetPreferencesKey("paused_profiles")
+        val learned = stringPreferencesKey("learned_durations")
+        val maxFocus = intPreferencesKey("max_focus")
+        val voiceConsent = booleanPreferencesKey("voice_consent")
     }
 
     val settings: Flow<AppSettings> = context.dataStore.data
@@ -118,6 +138,13 @@ class SettingsRepository(private val context: Context) {
                 .mapNotNull { n -> PunchlineCategory.entries.firstOrNull { it.name == n } }.toSet(),
             contextualPunchlines = this[K.contextual] ?: d.contextualPunchlines,
             recentPunchlines = this[K.recent]?.split(',')?.filter { it.isNotBlank() } ?: emptyList(),
+            humorMax = this[K.humorMax] ?: d.humorMax,
+            pauseEnabled = this[K.pause] ?: d.pauseEnabled,
+            calendarSyncEnabled = this[K.calSync] ?: d.calendarSyncEnabled,
+            pausedProfiles = this[K.pausedProfiles] ?: d.pausedProfiles,
+            learnedDurations = com.brr.app.domain.voice.DurationEstimator.decode(this[K.learned]),
+            maxFocusMinutes = this[K.maxFocus] ?: d.maxFocusMinutes,
+            voiceConsent = this[K.voiceConsent] ?: d.voiceConsent,
         )
     }
 
@@ -148,6 +175,19 @@ class SettingsRepository(private val context: Context) {
     }
     suspend fun setContextual(v: Boolean) = context.dataStore.edit { it[K.contextual] = v }
     suspend fun setRecentPunchlines(ids: List<String>) = context.dataStore.edit { it[K.recent] = ids.joinToString(",") }
+    suspend fun setHumorMax(v: Int) = context.dataStore.edit { it[K.humorMax] = v.coerceIn(1, 4) }
+    suspend fun setPauseEnabled(v: Boolean) = context.dataStore.edit { it[K.pause] = v }
+    suspend fun setCalendarSync(v: Boolean) = context.dataStore.edit { it[K.calSync] = v }
+    suspend fun setProfilePaused(profile: String, paused: Boolean) = context.dataStore.edit {
+        val cur = it[K.pausedProfiles] ?: AppSettings.DEFAULT_PAUSED_PROFILES
+        it[K.pausedProfiles] = if (paused) cur + profile else cur - profile
+    }
+    suspend fun setMaxFocus(v: Int) = context.dataStore.edit { it[K.maxFocus] = v.coerceIn(60, 720) }
+    suspend fun setVoiceConsent() = context.dataStore.edit { it[K.voiceConsent] = true }
+    suspend fun learnDuration(normTitle: String, minutes: Int) = context.dataStore.edit {
+        val cur = com.brr.app.domain.voice.DurationEstimator.decode(it[K.learned])
+        it[K.learned] = com.brr.app.domain.voice.DurationEstimator.encode(com.brr.app.domain.voice.DurationEstimator.learn(cur, normTitle, minutes))
+    }
 
     companion object {
         fun parseIntervals(raw: String?): List<Int>? =

@@ -100,7 +100,7 @@ fun TaskEditScreen(
             IconButton(onClick = onClose) { Icon(Icons.Default.Close, "Fermer") }
             Text(if (s.isNew) "Nouvelle tâche" else "Modifier", style = MaterialTheme.typography.titleLarge, modifier = Modifier.weight(1f))
             Button(onClick = vm::save, enabled = !s.saving && !s.loading, shape = RoundedCornerShape(12.dp), modifier = Modifier.padding(end = 8.dp)) {
-                if (s.saving) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = Color.White) else Text("Enregistrer")
+                if (s.saving) CircularProgressIndicator(Modifier.size(16.dp), strokeWidth = 2.dp, color = MaterialTheme.colorScheme.onPrimary) else Text("Enregistrer")
             }
         }
         if (s.loading) {
@@ -159,6 +159,16 @@ fun TaskEditScreen(
             if (s.remindersEnabled) {
                 Spacer(Modifier.height(12.dp))
                 ReminderLevel.entries.forEach { l -> LevelCard(l, s.level == l) { vm.update { it.copy(level = l) } } }
+                if (s.level == ReminderLevel.BRR) {
+                    Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text("Sonner même pendant un cours", style = MaterialTheme.typography.titleSmall)
+                            Text("Exception au mode pause, pour cette tâche uniquement. À réserver aux vraies urgences.",
+                                style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted)
+                        }
+                        Switch(s.bypassPause, { v -> vm.update { it.copy(bypassPause = v) } })
+                    }
+                }
                 if (s.date != null) {
                     SubLabel("Rappels supplémentaires avant l'échéance")
                     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -205,7 +215,7 @@ fun TaskEditScreen(
                                     .background(if (on) MaterialTheme.colorScheme.primary else Brr.colors.cardHigh)
                                     .clickable { vm.update { it.copy(repeatDays = WeekDays.toggle(it.repeatDays, i + 1)) } },
                                 contentAlignment = Alignment.Center,
-                            ) { Text(l, color = if (on) Color.White else MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.labelLarge) }
+                            ) { Text(l, color = if (on) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant, style = MaterialTheme.typography.labelLarge) }
                         }
                     }
                 }

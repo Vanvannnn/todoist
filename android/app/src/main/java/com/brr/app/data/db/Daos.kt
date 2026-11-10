@@ -140,3 +140,37 @@ interface PunchlineDao {
     @Delete
     suspend fun delete(p: CustomPunchlineEntity)
 }
+
+@Dao
+interface CalendarDao {
+    @Query("SELECT * FROM calendar_sources ORDER BY id")
+    fun observeSources(): Flow<List<CalendarSourceEntity>>
+
+    @Query("SELECT * FROM calendar_sources ORDER BY id")
+    suspend fun sources(): List<CalendarSourceEntity>
+
+    @Query("SELECT * FROM calendar_sources WHERE id = :id")
+    suspend fun source(id: Long): CalendarSourceEntity?
+
+    @Insert
+    suspend fun insertSource(s: CalendarSourceEntity): Long
+
+    @Update
+    suspend fun updateSource(s: CalendarSourceEntity)
+
+    @Query("DELETE FROM calendar_sources WHERE id = :id")
+    suspend fun deleteSource(id: Long)
+
+    @Query("DELETE FROM calendar_events WHERE sourceId = :sourceId")
+    suspend fun clearEvents(sourceId: Long)
+
+    @Insert
+    suspend fun insertEvents(items: List<CalendarEventEntity>)
+
+    /** Événements des sources actives qui chevauchent [from, to[. */
+    @Query("SELECT e.* FROM calendar_events e JOIN calendar_sources s ON s.id = e.sourceId WHERE s.enabled = 1 AND e.`end` > :from AND e.start < :to ORDER BY e.start")
+    suspend fun eventsBetween(from: Long, to: Long): List<CalendarEventEntity>
+
+    @Query("SELECT e.* FROM calendar_events e JOIN calendar_sources s ON s.id = e.sourceId WHERE s.enabled = 1 AND e.`end` > :from ORDER BY e.start LIMIT :limit")
+    fun observeUpcoming(from: Long, limit: Int = 30): Flow<List<CalendarEventEntity>>
+}

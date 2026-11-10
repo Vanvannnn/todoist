@@ -103,8 +103,9 @@ fun WelcomeScreen(container: AppContainer, onDone: () -> Unit) {
 @Composable
 private fun Intro(glow: Float) {
     Column(Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center) {
-        Box(Modifier.size(84.dp).scale(0.9f + glow * 0.2f).clip(CircleShape).background(BrrPalette.Red), contentAlignment = Alignment.Center) {
-            Text("!", style = MaterialTheme.typography.displayMedium, color = Color.White)
+        // Logo : carré chanfreiné, point d'exclamation (design/tokens.json).
+        Box(Modifier.size(84.dp).scale(0.9f + glow * 0.2f).clip(com.brr.app.ui.theme.AlertShape).background(MaterialTheme.colorScheme.primary), contentAlignment = Alignment.Center) {
+            Text("!", style = MaterialTheme.typography.displayMedium, color = MaterialTheme.colorScheme.onPrimary)
         }
         Spacer(Modifier.height(28.dp))
         Text("BULLYLIST", style = MaterialTheme.typography.displayMedium)

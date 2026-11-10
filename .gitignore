@@ -1,3 +1,5 @@
 android/local.properties
 web/node_modules/
 web/package-lock.json
+web/downloads/*.apk
+web/downloads/latest.json

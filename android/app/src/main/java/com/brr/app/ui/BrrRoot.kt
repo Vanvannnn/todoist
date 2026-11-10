@@ -50,6 +50,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -77,6 +78,8 @@ import com.brr.app.ui.screens.settings.PunchlinesScreen
 import com.brr.app.ui.screens.settings.SettingsScreen
 import com.brr.app.ui.screens.tasks.TasksScreen
 import com.brr.app.ui.screens.welcome.WelcomeScreen
+import com.brr.app.ui.screens.voice.VoiceScreen
+import com.brr.app.ui.screens.calendars.CalendarsScreen
 import com.brr.app.ui.theme.Brr
 import com.brr.app.ui.theme.BrrPalette
 import kotlinx.coroutines.delay
@@ -124,7 +127,8 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                 popExitTransition = { fadeOut(tween(160)) + slideOutHorizontally(tween(220)) { it / 12 } },
             ) {
                 composable(Tab.TASKS.route) {
-                    TasksScreen(container, snackbar, onOpenTask = { nav.navigate("task/$it") }, onOpenEditor = { nav.navigate(editRoute(text = it)) })
+                    TasksScreen(container, snackbar, onOpenTask = { nav.navigate("task/$it") }, onOpenEditor = { nav.navigate(editRoute(text = it)) },
+                        onVoice = { nav.navigate("voice") })
                 }
                 composable(Tab.DASHBOARD.route) {
                     DashboardScreen(container, onOpenTask = { nav.navigate("task/$it") }, onHistory = { nav.navigate("history") }, onPermissions = { nav.navigate("permissions") })
@@ -132,7 +136,8 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                 composable(Tab.PROJECTS.route) { ProjectsScreen(container, onOpenProject = { nav.navigate("project/$it") }) }
                 composable(Tab.SETTINGS.route) {
                     SettingsScreen(container, onAlarms = { nav.navigate("alarms") }, onPunchlines = { nav.navigate("punchlines") },
-                        onPermissions = { nav.navigate("permissions") }, onHistory = { nav.navigate("history") })
+                        onPermissions = { nav.navigate("permissions") }, onHistory = { nav.navigate("history") },
+                        onCalendars = { nav.navigate("calendars") }, onVoice = { nav.navigate("voice") })
                 }
                 composable("task/{id}", arguments = listOf(navArgument("id") { type = NavType.LongType })) { e ->
                     val id = e.arguments?.getLong("id") ?: 0L
@@ -179,6 +184,13 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                 composable("alarms") { AlarmSettingsScreen(container, onBack = { nav.popBackStack() }) }
                 composable("punchlines") { PunchlinesScreen(container, onBack = { nav.popBackStack() }) }
                 composable("permissions") { PermissionsScreen(container, onBack = { nav.popBackStack() }) }
+                composable("voice") {
+                    VoiceScreen(container, onBack = { nav.popBackStack() }, onSaved = { n ->
+                        nav.popBackStack()
+                        scope.launch { snackbar.showSnackbar("$n créneau${if (n > 1) "x" else ""} enregistré${if (n > 1) "s" else ""}. Les rappels sonneront au début de chaque bloc.") }
+                    })
+                }
+                composable("calendars") { CalendarsScreen(container, onBack = { nav.popBackStack() }) }
             }
         }
         InAppAlertBanner(onOpen = { nav.navigate("task/$it") })
@@ -226,18 +238,19 @@ private fun InAppAlertBanner(onOpen: (Long) -> Unit) {
     }
     AnimatedVisibility(alert != null, enter = slideInVertically { -it } + fadeIn(), exit = slideOutVertically { -it } + fadeOut()) {
         val a = alert ?: return@AnimatedVisibility
-        val color = if (a.level == ReminderLevel.INSISTANT) BrrPalette.Orange else BrrPalette.Red
+        val color = com.brr.app.ui.theme.BullyLevels.base[a.level.ordinal]
+        val ink = com.brr.app.ui.theme.BullyLevels.ink[a.level.ordinal]
         Box(Modifier.fillMaxWidth().statusBarsPadding().padding(12.dp)) {
             Row(
-                Modifier.fillMaxWidth().graphicsLayer { translationX = wobble.value * density }.clip(RoundedCornerShape(18.dp))
+                Modifier.fillMaxWidth().graphicsLayer { translationX = wobble.value * density }.clip(com.brr.app.ui.theme.AlertShape)
                     .background(color).clickable { alert = null; onOpen(a.taskId) }.padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Icon(BrrIcons.Megaphone, null, tint = Color.White, modifier = Modifier.size(28.dp))
+                Icon(BrrIcons.Megaphone, null, tint = ink, modifier = Modifier.size(28.dp))
                 Spacer(Modifier.width(12.dp))
                 Column(Modifier.weight(1f)) {
-                    Text(a.title, color = Color.White, style = MaterialTheme.typography.titleMedium, maxLines = 1)
-                    Text(a.message, color = Color.White.copy(alpha = 0.9f), style = MaterialTheme.typography.bodySmall, maxLines = 2)
+                    Text(a.title.uppercase(), color = ink, style = androidx.compose.ui.text.TextStyle(fontFamily = com.brr.app.ui.theme.AlertFont, fontWeight = androidx.compose.ui.text.font.FontWeight.Black, fontSize = 20.sp), maxLines = 1)
+                    Text(a.message, color = ink.copy(alpha = 0.9f), style = MaterialTheme.typography.bodySmall.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.SemiBold), maxLines = 2)
                 }
             }
         }

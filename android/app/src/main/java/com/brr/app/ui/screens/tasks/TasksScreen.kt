@@ -83,6 +83,7 @@ fun TasksScreen(
     onOpenEditor: (text: String) -> Unit,
     onBack: (() -> Unit)? = null,
     onEditProject: ((Long) -> Unit)? = null,
+    onVoice: (() -> Unit)? = null,
 ) {
     val vm = brrViewModel(key = "tasks_$projectId") { TasksViewModel(container, projectId) }
     val state by vm.state.collectAsStateWithLifecycle()
@@ -112,6 +113,7 @@ fun TasksScreen(
                         if (onBack != null) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Retour") }
                         else Spacer(Modifier.width(12.dp))
                         Spacer(Modifier.weight(1f))
+                        if (onVoice != null) IconButton(onClick = onVoice) { Icon(BrrIcons.Mic, "Dicter et planifier ma semaine") }
                         IconButton(onClick = { searching = !searching; if (!searching) vm.query.value = "" }) {
                             Icon(if (searching) Icons.Default.Close else Icons.Default.Search, "Rechercher")
                         }
@@ -195,7 +197,7 @@ fun TasksScreen(
 
         FloatingActionButton(
             onClick = { showQuickAdd = true },
-            containerColor = MaterialTheme.colorScheme.primary, contentColor = Color.White,
+            containerColor = MaterialTheme.colorScheme.primary, contentColor = MaterialTheme.colorScheme.onPrimary,
             shape = RoundedCornerShape(18.dp),
             modifier = Modifier.align(Alignment.BottomEnd).padding(20.dp),
         ) { Icon(Icons.Default.Add, "Nouvelle tâche", modifier = Modifier.size(28.dp)) }
