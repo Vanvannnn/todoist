@@ -13,6 +13,8 @@ data class PickRequest(
     val minutesLate: Long = 0,
     val snoozeCount: Int = 0,
     val contextualEnabled: Boolean = true,
+    /** Intensité maximale de l'humour choisie par l'utilisateur (1 à 4). */
+    val maxIntensity: Int = 4,
 )
 
 data class PickedPunchline(val text: String, val id: String?, val category: PunchlineCategory?)
@@ -35,10 +37,11 @@ class PunchlineEngine(private val random: Random = Random.Default) {
 
     /** Liste des candidats après filtrage (exposé pour les tests). */
     fun candidates(pool: List<Punchline>, req: PickRequest): List<Punchline> {
-        val enabled = pool.filter { it.category !in req.disabledCategories }
+        val enabled = pool.filter { it.category !in req.disabledCategories && it.intensity <= req.maxIntensity }
+            .ifEmpty { pool.filter { it.category !in req.disabledCategories } }
         if (enabled.isEmpty()) return listOf(FALLBACK)
 
-        val target = req.level.ordinal + 1
+        val target = minOf(req.level.ordinal + 1, req.maxIntensity)
         val finals = enabled.filter { it.category == PunchlineCategory.DERNIER_AVERTISSEMENT }
         val base = when {
             req.isFinalWarning && finals.isNotEmpty() -> finals

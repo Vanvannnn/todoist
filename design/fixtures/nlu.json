@@ -1,0 +1,383 @@
+{
+ "$comment": "Cas de compréhension vocale partagés (JS + Kotlin). Référence : lundi 9 novembre 2026, 10h00.",
+ "cases": [
+  {
+   "text": "Cette semaine, j'aimerais réviser les mathématiques, avancer mon dossier de marketing, faire les courses, ranger mon appartement et préparer mon exposé. Il faudrait que le dossier de marketing soit terminé avant jeudi soir. Les mathématiques, j'aimerais bien en faire un peu chaque jour. Les courses, je peux les faire demain après-midi. Et ce soir, il faudrait absolument que je termine mon exposé parce que je dois le rendre demain matin.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Réviser les mathématiques",
+      "deadline": null,
+      "window": null,
+      "recurrence": {
+       "type": "daily",
+       "part": null
+      },
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": 35,
+      "dependsOn": []
+     },
+     {
+      "title": "Avancer mon dossier de marketing",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1080
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 80,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Faire les courses",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-10",
+       "start": 810,
+       "end": 1080,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Ranger mon appartement",
+      "deadline": null,
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 90,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Préparer mon exposé",
+      "deadline": {
+       "date": "2026-11-10",
+       "minute": 480
+      },
+      "window": {
+       "date": "2026-11-09",
+       "start": 1080,
+       "end": 1350,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "URGENT",
+      "level": "BRR",
+      "minutes": 110,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Je dois appeler le dentiste demain à 10h, puis envoyer un mail à mon prof. Il faut que je fasse les courses avant de cuisiner pour samedi soir.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Appeler le dentiste",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-10",
+       "start": 600,
+       "end": 600,
+       "fixed": true
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 15,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Envoyer un mail à mon prof",
+      "deadline": null,
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 10,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Faire les courses",
+      "deadline": {
+       "date": "2026-11-14",
+       "minute": 1080
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Réviser les maths, la physique et la chimie avant vendredi. Ça va me prendre 2 heures pour la physique. Si j'ai le temps, lire un livre.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Réviser les maths",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1439
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Réviser la physique",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1439
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 120,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Réviser la chimie",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1439
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Lire un livre",
+      "deadline": null,
+      "window": null,
+      "recurrence": null,
+      "priority": "LOW",
+      "level": "NORMAL",
+      "minutes": 45,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Planifie ma semaine : sortir les poubelles mardi soir, faire du sport 3 fois et finir le rapport de stage pour le 20 novembre",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Sortir les poubelles",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-10",
+       "start": 1080,
+       "end": 1350,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 10,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Faire du sport",
+      "deadline": null,
+      "window": null,
+      "recurrence": {
+       "type": "count",
+       "n": 3
+      },
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 70,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Finir le rapport de stage",
+      "deadline": {
+       "date": "2026-11-20",
+       "minute": 1439
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 80,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Rappelle-moi de payer le loyer dans 3 jours, c'est urgent.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "add",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Payer le loyer",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "URGENT",
+      "level": "HARCELEMENT",
+      "minutes": 30,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "J'ai besoin de répondre à Julie ce soir vers 21h30 et de ranger ma chambre le 14.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Répondre à Julie",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-09",
+       "start": 1290,
+       "end": 1290,
+       "fixed": true
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 10,
+      "sessionMinutes": null,
+      "dependsOn": []
+     },
+     {
+      "title": "Ranger ma chambre",
+      "deadline": null,
+      "window": {
+       "date": "2026-11-14",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 45,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  },
+  {
+   "text": "Il faudrait que je prépare la présentation pour jeudi après-midi, après avoir fini les recherches. Je dois aussi faire les recherches.",
+   "now": {
+    "date": "2026-11-09",
+    "minute": 600
+   },
+   "expect": {
+    "intent": "plan",
+    "questions": 0,
+    "tasks": [
+     {
+      "title": "Préparer la présentation",
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 810
+      },
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 180,
+      "sessionMinutes": null,
+      "dependsOn": [
+       "t2"
+      ]
+     },
+     {
+      "title": "Faire les recherches",
+      "deadline": null,
+      "window": null,
+      "recurrence": null,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "minutes": 30,
+      "sessionMinutes": null,
+      "dependsOn": []
+     }
+    ]
+   }
+  }
+ ]
+}

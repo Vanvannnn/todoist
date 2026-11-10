@@ -1,0 +1,102 @@
+/* GÉNÉRÉ par design/build.mjs depuis design/*.json — ne pas modifier à la main. */
+:root {
+  --bg: #07080A;
+  --surface-1: #0D0F13;
+  --surface-2: #13161C;
+  --surface-3: #1B1F27;
+  --line: #262B35;
+  --line-strong: #363C49;
+  --text: #EEF0F4;
+  --text-2: #A3A9B7;
+  --text-3: #646B7A;
+  --accent: #D7FF3A;
+  --on-accent: #0A0C00;
+  --accent-text: #D7FF3A;
+  --success: #34E3A0;
+  --info: #6C8CFF;
+  --l1: #6C8CFF;
+  --l1-deep: #0B1330;
+  --l1-ink: #FFFFFF;
+  --l2: #FFB020;
+  --l2-deep: #2B1B00;
+  --l2-ink: #140C00;
+  --l3: #FF5B1F;
+  --l3-deep: #2A0B00;
+  --l3-ink: #FFFFFF;
+  --l4: #FF1F45;
+  --l4-deep: #33000A;
+  --l4-ink: #FFFFFF;
+  --p1: #FF1F45;
+  --p2: #FF5B1F;
+  --p3: #6C8CFF;
+  --p4: #646B7A;
+  --project-0: #D7FF3A;
+  --project-1: #6C8CFF;
+  --project-2: #FF5B1F;
+  --project-3: #34E3A0;
+  --project-4: #C46BFF;
+  --project-5: #FFB020;
+  --project-6: #FF4FA3;
+  --project-7: #3FD0FF;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --s0: 0px;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s7: 32px;
+  --s8: 40px;
+  --s9: 56px;
+  --s10: 72px;
+  --s11: 96px;
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+  --r-chamfer: 12px;
+  --r-chamfer-sm: 7px;
+  --t-fast: 140ms;
+  --t-base: 220ms;
+  --t-slow: 420ms;
+  --ease: cubic-bezier(0.2,0.8,0.2,1);
+  --ease-emph: cubic-bezier(0.7,0,0.2,1);
+  --pulse-l2: 1600ms;
+  --pulse-l3: 1200ms;
+  --pulse-l4: 1000ms;
+  --glow-accent: 0 0 0 1px rgba(215,255,58,.35), 0 8px 32px rgba(215,255,58,.18);
+  --glow-l3: 0 0 48px rgba(255,91,31,.45);
+  --glow-l4: 0 0 64px rgba(255,31,69,.55);
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #F3F3EF;
+  --surface-1: #FFFFFF;
+  --surface-2: #F8F8F5;
+  --surface-3: #ECECE6;
+  --line: #E1E1DA;
+  --line-strong: #C9C9C0;
+  --text: #0B0D11;
+  --text-2: #4F5563;
+  --text-3: #80858F;
+  --accent: #D7FF3A;
+  --on-accent: #0A0C00;
+  --accent-text: #4E6400;
+  --success: #0E9F6A;
+  --info: #3A5BE0;
+  color-scheme: light;
+}
+.t-hero { font-family: var(--font-display); font-size: 64px; line-height: 60px; font-weight: 900; font-stretch: 125%; letter-spacing: -0.035em; }
+.t-display { font-family: var(--font-display); font-size: 40px; line-height: 42px; font-weight: 800; font-stretch: 118%; letter-spacing: -0.03em; }
+.t-h1 { font-family: var(--font-display); font-size: 28px; line-height: 32px; font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; }
+.t-h2 { font-family: var(--font-display); font-size: 21px; line-height: 26px; font-weight: 700; font-stretch: 108%; letter-spacing: -0.01em; }
+.t-title { font-family: var(--font-body); font-size: 16px; line-height: 22px; font-weight: 600; font-stretch: 100%; letter-spacing: 0em; }
+.t-body { font-family: var(--font-body); font-size: 15px; line-height: 22px; font-weight: 400; font-stretch: 100%; letter-spacing: 0em; }
+.t-small { font-family: var(--font-body); font-size: 13px; line-height: 18px; font-weight: 400; font-stretch: 100%; letter-spacing: 0em; }
+.t-label { font-family: var(--font-body); font-size: 11px; line-height: 14px; font-weight: 600; font-stretch: 100%; letter-spacing: 0.14em; text-transform: uppercase; }
+.t-alert { font-family: var(--font-display); font-size: 58px; line-height: 54px; font-weight: 900; font-stretch: 68%; letter-spacing: -0.01em; }

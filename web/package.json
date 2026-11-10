@@ -1,0 +1,10 @@
+{
+  "name": "bullylist-web",
+  "private": true,
+  "type": "module",
+  "description": "Site, simulateur et cœur partagé de BULLYLIST (aucune dépendance).",
+  "scripts": {
+    "test": "TZ=Europe/Paris node --test test/*.test.mjs",
+    "start": "python3 -m http.server 8080"
+  }
+}

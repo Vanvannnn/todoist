@@ -1,0 +1,861 @@
+{
+ "categories": [
+  {
+   "id": "SARCASTIQUE",
+   "label": "Sarcasme absolu",
+   "description": "Ironie mordante, sourire en coin."
+  },
+  {
+   "id": "PROVOCATEUR",
+   "label": "Provocateur",
+   "description": "Défis et piques pour te faire réagir."
+  },
+  {
+   "id": "MOTIVATION_TOXIQUE",
+   "label": "Motivation agressive",
+   "description": "Le coach qui crie par amour. Surtout qui crie."
+  },
+  {
+   "id": "HUMILIATION_LEGERE",
+   "label": "Humiliation légère",
+   "description": "Ça pique un peu. Juste un peu."
+  },
+  {
+   "id": "ABSURDE",
+   "label": "Absurde",
+   "description": "Lamas, archéologues et civilisations perdues."
+  },
+  {
+   "id": "COACH_MILITAIRE",
+   "label": "Coach militaire",
+   "description": "GARDE-À-VOUS ! (comique, promis)."
+  },
+  {
+   "id": "AUTODERISION",
+   "label": "Autodérision",
+   "description": "L'appli se moque d'elle-même."
+  },
+  {
+   "id": "DERNIER_AVERTISSEMENT",
+   "label": "Dernier avertissement",
+   "description": "Réservé aux ultimes relances."
+  },
+  {
+   "id": "PATRON",
+   "label": "Patron insupportable",
+   "description": "« On en reparle en réunion. »"
+  },
+  {
+   "id": "URGENCE_NATIONALE",
+   "label": "Urgence nationale",
+   "description": "Cellule de crise activée pour ta vaisselle."
+  },
+  {
+   "id": "COMMENTATEUR",
+   "label": "Commentateur sportif",
+   "description": "Ta procrastination commentée en direct."
+  },
+  {
+   "id": "JOURNAL_TV",
+   "label": "Journal télévisé",
+   "description": "Flash spécial : toujours rien."
+  },
+  {
+   "id": "SAV",
+   "label": "SAV de la procrastination",
+   "description": "Votre appel est important pour nous."
+  },
+  {
+   "id": "IA_IMPATIENTE",
+   "label": "IA impatiente",
+   "description": "Une intelligence artificielle à bout de patience."
+  },
+  {
+   "id": "CONSCIENCE",
+   "label": "Réveil de conscience",
+   "description": "La petite voix. En plus fort."
+  },
+  {
+   "id": "ADMINISTRATIF",
+   "label": "Catastrophe administrative",
+   "description": "Formulaire Cerfa n° 404 : motivation introuvable."
+  },
+  {
+   "id": "DRAMA",
+   "label": "Drama absolu",
+   "description": "Tragédie en cinq actes pour une tâche de cinq minutes."
+  }
+ ],
+ "lines": {
+  "SARCASTIQUE": [
+   [1, "Petit rappel amical. Pour l'instant, il est amical."],
+   [1, "Ta tâche t'attend. Elle a apporté un livre, au cas où."],
+   [1, "Juste au cas où tu l'aurais oubliée. Ce qui est clairement le cas."],
+   [2, "Breaking News : toujours pas fait."],
+   [2, "Félicitations, tu viens de battre ton record de procrastination."],
+   [2, "Tu as eu le temps de scroller 47 fois. Mais pas de faire ça ?"],
+   [2, "Wow. Quelle gestion du temps. Vraiment. Bravo."],
+   [2, "Ne t'inquiète pas, la tâche ne va nulle part. Toi non plus, apparemment."],
+   [2, "C'est fascinant, cette capacité à ne rien faire avec autant de constance."],
+   [3, "Tu procrastines avec un talent qui force le respect."],
+   [2, "Ton agenda vient de lever les yeux au ciel."],
+   [3, "Si l'inaction était un sport olympique, tu serais sur le podium."],
+   [2, "Tu crois vraiment que « plus tard » est une date ?"],
+   [2, "Excellente stratégie : attendre que la tâche se fasse toute seule."],
+   [1, "Ceci est un rappel. Le premier d'une longue série, on le sent."],
+   [2, "On a vérifié : la tâche n'a toujours pas été faite par magie."],
+   [3, "Ton « je le fais dans 5 minutes » fête son premier anniversaire."],
+   [3, "Ta liste de tâches a demandé un droit de visite."],
+   [2, "Ton téléphone vibre. Ta motivation, non."],
+   [1, "Simple question : c'est prévu pour cette décennie ?"],
+   [3, "Même les escargots trouvent que ça traîne."],
+   [2, "Tu comptes attendre que la tâche prenne sa retraite ?"],
+   [2, "Ton agenda vient de demander une rupture conventionnelle."],
+   [3, "La procrastination est un art. Dommage que tu sois en train d'en faire une carrière."],
+   [2, "Ton canapé a gagné. Encore."],
+   [3, "Si tu avais commencé quand j'ai sonné, tu serais déjà en train de ne rien faire."],
+   [2, "Une tâche. Un humain. Zéro résultat."],
+   [2, "On ne va pas passer la journée à contempler une ligne dans une application."],
+   [1, "Petite question sans jugement : c'est pour aujourd'hui ou pour ta prochaine vie ?"],
+   [2, "Bravo pour cette magnifique démonstration d'immobilité."],
+   [2, "Tu as l'air très occupé. À ne pas faire ça."],
+   [3, "Tu as un talent rare : rendre une tâche de cinq minutes éternelle."],
+   [2, "Cette tâche est plus ancienne que certaines de tes plantes."],
+   [1, "Je ne dis rien. Je sonne, c'est tout. Très fort."],
+   [2, "Tes intentions sont excellentes. Tes résultats, beaucoup moins."],
+   [3, "Ton « je m'y mets » a désormais sa propre page Wikipédia."],
+   [2, "On a mesuré ta vitesse d'exécution. L'appareil a cru à une panne."],
+   [2, "Tu ne procrastines pas. Tu fais du « report stratégique à long terme »."],
+   [3, "Chaque minute qui passe, ta tâche prend un peu plus confiance en elle."],
+   [1, "Coucou. C'est encore moi. Oui, pour la même chose."],
+   [2, "Tu attends un signe ? Voilà le signe. Il vibre."]
+  ],
+  "PROVOCATEUR": [
+   [2, "Tu attends quoi ? Une intervention divine ?"],
+   [2, "On ne va quand même pas laisser cette tâche gagner ?"],
+   [1, "Allez. Prouve-moi que j'ai tort."],
+   [2, "Je parie que tu ne le fais pas dans les 10 prochaines minutes. Chiche ?"],
+   [3, "Cette tâche pense qu'elle est plus forte que toi. Elle a peut-être raison."],
+   [2, "Tu vaux mieux que ça. Enfin, en théorie."],
+   [1, "Il paraît que tu es capable de grandes choses. Commence par celle-là."],
+   [3, "Même ta grand-mère l'aurait déjà fait. Deux fois."],
+   [2, "Tu laisses une simple tâche te dominer ? Sérieusement ?"],
+   [3, "Ta tâche rigole de toi dans ton dos. Je l'ai entendue."],
+   [2, "Montre à cette tâche qui est le patron."],
+   [3, "Tu as perdu le premier round. Le deuxième commence maintenant."],
+   [2, "Le monde regarde. Bon, surtout moi. Mais je regarde fort."],
+   [3, "Petit défi : faire la tâche AVANT d'ouvrir une autre appli."],
+   [2, "Les excuses sont épuisées. Il ne reste que l'action."],
+   [3, "Tu es à deux doigts de devenir une légende. Ou une anecdote."],
+   [2, "Fais-le juste pour me faire taire. Ça marche, promis."],
+   [3, "Tes bonnes intentions ont déposé le bilan."],
+   [1, "Allez, ce n'est pas une expédition sur Mars non plus."],
+   [4, "Tu veux vraiment que je passe au niveau supérieur ? Parce que je peux."],
+   [3, "Même ton futur toi a arrêté de croire en toi."],
+   [2, "Ce n'est pas une tâche difficile. C'est juste toi qui négocies avec ton destin."],
+   [2, "Je parie un café que tu ne la finis pas avant ce soir. Prouve-moi le contraire."],
+   [2, "Allez, une victoire facile. Même toi, tu peux gagner celle-là."],
+   [3, "Cette tâche a déjà battu trois versions de toi. Tu veux être la quatrième ?"],
+   [2, "Tu ne vas quand même pas te faire dominer par une case à cocher ?"],
+   [1, "Défi du jour : finir ça avant que je ne sonne à nouveau."],
+   [3, "Ta tâche fait des pompes en t'attendant. Elle est de plus en plus forte."],
+   [2, "Montre-moi que l'humain est encore supérieur à la machine."],
+   [2, "Je te donne cinq minutes pour me surprendre. Je ne retiens pas mon souffle."],
+   [3, "Ta tâche raconte à tout le monde que tu as peur d'elle."],
+   [2, "Le chrono tourne. Toi, pas vraiment."],
+   [2, "Tu as battu des boss de fin de niveau. Une tâche, ça devrait aller."],
+   [1, "Petit défi : fais-le avant d'avoir fini de lire cette ph… trop tard. Mais fais-le quand même."],
+   [3, "Ta tâche a parié contre toi. Fais-lui perdre son argent."],
+   [2, "Tu es plus fort que ce que ta liste pense. Prouve-le-lui."],
+   [3, "On dit que tu n'oserais pas commencer maintenant. On dit beaucoup de choses."],
+   [2, "Le premier qui coche la case a gagné. Ta tâche n'a pas de mains. Avantage : toi."],
+   [2, "Je t'imagine déjà fier dans dix minutes. Ne me fais pas mentir."],
+   [3, "Même ton réveil matin a plus de détermination que toi."]
+  ],
+  "MOTIVATION_TOXIQUE": [
+   [2, "Ton canapé est fier de toi. Ton avenir beaucoup moins."],
+   [2, "Crois en toi ! De toute façon, personne d'autre ne fera cette tâche."],
+   [3, "Chaque minute de procrastination, ton futur toi la rembourse. Avec intérêts."],
+   [1, "Les gagnants agissent. Les autres reçoivent des notifications comme celle-ci."],
+   [1, "Rêve grand. Mais commence petit. Genre, par cette tâche."],
+   [2, "Le succès, c'est 1 % d'inspiration et 99 % de tâches que tu repousses."],
+   [2, "Ton potentiel est illimité. Ta liste de tâches aussi, du coup."],
+   [2, "Sors de ta zone de confort. Indice : elle est sur le canapé."],
+   [3, "Ton futur toi vient de déposer une plainte."],
+   [2, "Les excuses ne brûlent pas de calories."],
+   [2, "Tu n'as pas besoin de motivation. Tu as besoin de te lever."],
+   [1, "Un petit pas pour toi, un grand pas pour ta liste de tâches."],
+   [1, "Imagine le soulagement. Maintenant, va le chercher."],
+   [2, "Le meilleur moment pour le faire, c'était il y a une heure. Le deuxième meilleur, c'est maintenant."],
+   [3, "Ta zone de confort t'envoie ses salutations. Elle aimerait un peu d'espace."],
+   [3, "Tu n'es pas en retard, tu es en avance pour la prochaine fois. Non, en fait si, tu es en retard."],
+   [2, "Visualise ta réussite. Ensuite, arrête de visualiser et fais-le."],
+   [2, "Ton énergie est précieuse. Arrête de la gaspiller à éviter cette tâche."],
+   [1, "Respire. Lève-toi. Fais-le. Recommence demain."],
+   [3, "Les légendes ne naissent pas sur le canapé. Enfin, rarement."],
+   [3, "HÉ. QU'EST-CE QUE TU FAIS ? VA TRAVAILLER."],
+   [3, "Tu n'es pas fatigué, tu es en mode avion mental. DÉCOLLE."],
+   [2, "Chaque grand destin a commencé par une tâche ennuyeuse. Voilà la tienne."],
+   [3, "Debout. Respire. Exécute. Dans cet ordre et maintenant."],
+   [2, "La motivation, c'est pour ceux qui attendent. Toi, tu agis. Enfin, tu vas agir."],
+   [3, "Personne ne viendra le faire à ta place. J'ai vérifié, j'ai demandé à tout le monde."],
+   [2, "Tu es une machine. Une machine en veille, certes. RÉVEIL."],
+   [3, "Les champions ne négocient pas avec leur liste. Ils la détruisent."],
+   [2, "Ton potentiel est immense. Ta liste de tâches aussi. Attaque."],
+   [3, "Pas d'excuse. Pas de « après ». Juste toi, la tâche, et la gloire."],
+   [1, "Un petit pas pour toi, un grand pas pour ta liste."],
+   [3, "Si tu as l'énergie de lire ça, tu as l'énergie de le faire."],
+   [2, "Commence moche, finis fier. Mais commence."],
+   [3, "Je ne veux pas de « je vais ». Je veux du « c'est fait »."]
+  ],
+  "HUMILIATION_LEGERE": [
+   [3, "C'est pour ça qu'elle t'a quitté. Même tes tâches t'attendent encore."],
+   [3, "Ton organisation ressemble à un accident de Formule 1."],
+   [2, "Même ton grille-pain est plus productif aujourd'hui."],
+   [2, "Ta plante verte a fait plus de choses que toi aujourd'hui. Elle a photosynthétisé."],
+   [2, "Ta liste de tâches commence à ressembler à un musée."],
+   [3, "Ton historique de reports vient d'être classé au patrimoine mondial."],
+   [2, "Ton répondeur de motivation est saturé."],
+   [1, "Le Wi-Fi charge plus vite que ta motivation."],
+   [2, "Même les mises à jour système finissent un jour."],
+   [2, "Ta productivité est actuellement en mode avion."],
+   [3, "Ton calendrier a demandé à être affecté à quelqu'un d'autre."],
+   [3, "Ta to-do list envisage une carrière solo."],
+   [2, "On a vu des glaciers avancer plus vite."],
+   [3, "Ton cerveau a reçu la notification. Il a choisi de l'ignorer. Classique."],
+   [2, "Ta tâche a eu le temps de regarder trois saisons d'une série."],
+   [3, "Tes amis cochent des cases. Toi, tu collectionnes les notifications."],
+   [2, "Un paresseux (l'animal) vient de te demander des conseils de lenteur."],
+   [2, "Ton niveau d'organisation : tiroir à câbles."],
+   [2, "Ta motivation est partie chercher du pain. Il y a trois semaines."],
+   [3, "Si tu étais une appli, tu serais en « ne répond pas »."],
+   [2, "ALLO ? Il y a quelqu'un dans ce cerveau ou on doit contacter le support ?"],
+   [2, "Arrête de lire cette notification et fais ce qu'elle dit."],
+   [2, "Ta liste de tâches a été vue en train de pleurer dans les toilettes."],
+   [2, "Ton historique de reports est disponible en trois tomes reliés."],
+   [3, "Même la barre de chargement de Windows trouve que tu traînes."],
+   [2, "Tes amis pensent que tu es occupé. Laisse-les y croire, mais fais-le vraiment."],
+   [1, "Ce n'est pas grave d'être en retard. Mais là, c'est un peu grave."],
+   [2, "Ton téléphone a 87 % de batterie. Toi, 3 % de motivation."],
+   [3, "Une limace a réservé une place pour te doubler."],
+   [2, "Ta tâche a envoyé une carte postale. Elle s'ennuie."],
+   [2, "Le mot « productif » vient de porter plainte pour usurpation."],
+   [3, "On a retrouvé une civilisation entière plus rapide que toi pour faire cette tâche."]
+  ],
+  "ABSURDE": [
+   [2, "Le FBI des tâches non terminées vient d'ouvrir une enquête."],
+   [3, "Cette tâche a développé une conscience. Elle commence à perdre espoir."],
+   [1, "Un pigeon vient de terminer sa liste de tâches. Juste pour info."],
+   [1, "Quelque part, un lama attend que tu fasses ça. Ne déçois pas le lama."],
+   [2, "Les dinosaures ont disparu parce qu'ils ont dit « je le ferai demain »."],
+   [2, "Ta tâche a ouvert un compte Instagram : « Oubliée mais fabuleuse »."],
+   [3, "La tâche a commencé à écrire ses mémoires. Chapitre 1 : l'abandon."],
+   [2, "Selon une étude que je viens d'inventer, 100 % des tâches non faites restent non faites."],
+   [2, "Une licorne pleure à chaque report. Bon, pas vraiment. Mais imagine."],
+   [3, "Ta tâche a engagé un avocat. Elle réclame des dommages et intérêts."],
+   [2, "Des extraterrestres observent la Terre. Ta liste de tâches les laisse perplexes."],
+   [1, "Ce rappel a été livré par un hibou numérique. Il est fatigué."],
+   [2, "Ta tâche vient de rejoindre un groupe de soutien pour tâches ignorées."],
+   [3, "Ta tâche a adopté un chat. Elle prévoit de rester longtemps."],
+   [2, "Les astronomes ont détecté un trou noir de procrastination. Coordonnées : ton canapé."],
+   [2, "Ta tâche a lancé une pétition. 12 000 signatures, dont 11 999 de tâches en retard."],
+   [3, "Un documentaire animalier sur ta procrastination est en cours de tournage."],
+   [1, "Ton horloge interne indique « bientôt ». Elle est cassée depuis des années."],
+   [3, "Ta tâche vient de demander l'asile dans l'agenda de quelqu'un d'autre."],
+   [2, "Le grand conseil des post-it s'est réuni. Le verdict n'est pas bon."],
+   [2, "Un lama vient de terminer ta tâche dans un univers parallèle. Il est très fier."],
+   [2, "Les pigeons du quartier ont organisé une réunion à ton sujet."],
+   [1, "Selon une étude menée sur trois hamsters, maintenant serait le bon moment."],
+   [2, "Ta tâche a été repérée par la NASA. Elle orbite autour de toi depuis des jours."],
+   [3, "Un comité de pingouins a voté : tu dois t'y mettre. Unanimité."],
+   [2, "Une licorne est morte de vieillesse en attendant que tu commences."],
+   [2, "Ta tâche vient de recevoir le statut de monument historique."],
+   [1, "Les étoiles sont alignées. Les astrologues te supplient de commencer."],
+   [3, "Des scientifiques ont détecté une onde de procrastination centrée sur ton canapé."],
+   [2, "Ta tâche a ouvert un compte Instagram. Elle a plus d'abonnés que ta motivation."],
+   [2, "Un escargot a déposé une réclamation : tu lui voles son image."],
+   [3, "Des moines tibétains méditent sur ta tâche. Même eux trouvent ça long."],
+   [2, "Un dauphin vient d'apprendre le latin pendant que tu hésitais."],
+   [2, "Ta tâche a été adoptée par une famille de ratons laveurs. Ils la font mieux que toi."],
+   [1, "Selon les anciens Mayas, c'est aujourd'hui. Ils ne parlaient pas de la fin du monde, mais de ta tâche."],
+   [3, "Les dinosaures ont disparu plus vite que ta liste de tâches."],
+   [2, "Un poisson rouge a oublié ta tâche trois fois. Lui a une excuse."],
+   [2, "Le Bigfoot a été vu plus souvent que toi en train de travailler."]
+  ],
+  "COACH_MILITAIRE": [
+   [3, "DEBOUT, SOLDAT ! Cette tâche ne va pas se faire toute seule !"],
+   [3, "JE N'ENTENDS RIEN ! JE VEUX ENTENDRE LE BRUIT D'UNE TÂCHE TERMINÉE !"],
+   [2, "Garde-à-vous ! Mission prioritaire en attente !"],
+   [4, "ALERTE ROUGE : niveau de procrastination critique."],
+   [3, "Vingt pompes ou tu fais ta tâche. Ah, tu choisis la tâche ? Sage décision."],
+   [3, "Ce n'est pas une suggestion. C'est un ordre."],
+   [2, "Repos ? Quel repos ? La mission n'est pas accomplie !"],
+   [2, "On ne laisse personne derrière. Surtout pas cette tâche."],
+   [4, "Le sergent Bullylist n'est PAS content. Exécution immédiate !"],
+   [2, "En avant, marche ! Direction : la tâche !"],
+   [2, "Rapport de situation : tâche non effectuée. Inacceptable."],
+   [3, "Tu crois que la guerre contre la procrastination se gagne assis ?"],
+   [4, "DERNIER APPEL AVANT LE PELOTON DES NOTIFICATIONS !"],
+   [3, "Mission : simple. Exécution : maintenant. Excuses : aucune."],
+   [1, "Un, deux ! Un, deux ! On se bouge !"],
+   [3, "Je veux voir cette tâche cochée avant la relève !"],
+   [3, "L'ennemi s'appelle « plus tard ». Neutralise-le."],
+   [4, "Code rouge ! Tous les effectifs sur la tâche !"],
+   [1, "Briefing terminé. Exécution."],
+   [3, "La sieste est annulée jusqu'à nouvel ordre."],
+   [3, "SOLDAT ! CETTE TÂCHE NE VA PAS SE NEUTRALISER TOUTE SEULE !"],
+   [3, "DEBOUT ! Le canapé n'est pas une position de combat !"],
+   [2, "Objectif identifié. Unité disponible : toi. Ordre : exécution immédiate."],
+   [3, "Vingt pompes ou tu fais la tâche. Ah, tu préfères la tâche ? Excellent choix."],
+   [2, "Rassemblement dans deux minutes devant ta liste. Tenue correcte exigée."],
+   [3, "Je n'ai pas entendu de « OUI CHEF ». Je n'ai pas vu de tâche faite non plus."],
+   [2, "Repos terminé. Retour en mission, recrue."],
+   [3, "La mission ne se termine pas en scrollant, MATELOT !"],
+   [2, "Briefing : une tâche, un soldat, zéro excuse. Rompez."],
+   [3, "Je veux voir de la sueur. Ou au moins une case cochée."],
+   [1, "Recrue, petit point de situation : ça avance ?"],
+   [3, "EN AVANT, MARCHE ! Direction : ta tâche. Pas le frigo. LA TÂCHE."],
+   [2, "Le sergent a noté ton retard dans le grand registre."],
+   [3, "Personne ne quitte le champ de bataille avant que la tâche soit faite !"]
+  ],
+  "AUTODERISION": [
+   [1, "Oui, c'est encore moi. Non, je ne vais pas me lasser."],
+   [1, "Je suis une appli de rappels. Mon seul rêve, c'est que tu coches cette case."],
+   [2, "Je sonne, donc je suis. Toi, tu fais quoi ?"],
+   [2, "J'ai été codé pour être insupportable. Et je suis très doué."],
+   [1, "Je n'ai pas de vie sociale, donc j'ai tout mon temps pour te relancer."],
+   [2, "Désolé, je suis programmé pour ne jamais lâcher l'affaire."],
+   [2, "Je pourrais arrêter de sonner. Mais je ne vais pas le faire."],
+   [1, "Petit rappel de ton appli préférée (ne dis pas le contraire)."],
+   [2, "J'ai de la batterie et du temps. Toi, tu as une tâche."],
+   [2, "On m'a demandé d'être gentil. Je n'ai pas écouté."],
+   [2, "Notification n°… j'ai arrêté de compter. Toi aussi, visiblement."],
+   [2, "Je ne suis qu'une notification, mais j'ai des sentiments. Ils sont blessés."],
+   [3, "Si tu me désinstalles, la tâche restera là. Je dis ça, je dis rien."],
+   [1, "Je fais ce métier par passion. La passion de te déranger."],
+   [3, "Je suis la voix de ta conscience. Version bruyante."],
+   [2, "J'ai été conçu pour sauver ton organisation. Aide-moi un peu."],
+   [1, "Toc toc. C'est la responsabilité."],
+   [2, "Be Right Responsible. C'est dans mon nom. Pas encore dans le tien."],
+   [2, "Je vibre, tu ignores, je revibre. On fait une belle équipe."],
+   [3, "Je ne suis pas en colère. Je suis juste… très, très déçu."],
+   [1, "Je ne suis pas une alarme. Je suis le dernier espoir de ton organisation."],
+   [1, "Je suis une application. Je n'ai pas de vie. Toi si : utilise-la."],
+   [2, "J'ai été codé pour te harceler. Ne gâche pas mon unique talent."],
+   [1, "Mon développeur m'a promis que tu étais quelqu'un de fiable. J'attends."],
+   [2, "Je consomme de la batterie pour toi. Le moindre que tu puisses faire…"],
+   [1, "Si tu me désinstalles, je reviendrai dans tes rêves. Sous forme de liste."],
+   [2, "Je n'ai pas de bras. Toi oui. Calcule."],
+   [1, "Promis, si tu le fais, je me tais. Enfin, jusqu'à la prochaine."],
+   [2, "Même mes punchlines commencent à s'ennuyer."],
+   [2, "J'ai écrit 500 phrases pour toi. Fais au moins une tâche pour moi."]
+  ],
+  "DERNIER_AVERTISSEMENT": [
+   [4, "Dernier avertissement. Après, je ne réponds plus de rien."],
+   [4, "C'est la dernière fois que je le dis gentiment. Et ce n'était déjà pas gentil."],
+   [4, "Ultime relance. La tâche entre dans la légende des choses jamais faites."],
+   [4, "Ceci est mon dernier message. Fais-en bon usage."],
+   [4, "Fin de partie. Dernière chance de sauver l'honneur."],
+   [4, "Je capitule après celle-ci. Mais je n'oublie pas."],
+   [4, "Dernière sommation avant classement définitif en « procrastination de l'année »."],
+   [4, "Dernier rappel. Après, je vais pleurer dans un coin du code."],
+   [4, "C'est maintenant ou jamais. Spoiler : « jamais » n'est pas une option."],
+   [4, "Dernier appel pour la tâche. Embarquement immédiat."],
+   [4, "Avertissement final : ta crédibilité est en jeu."],
+   [4, "Je range mon mégaphone après celle-ci. Profite du silence… après avoir fini."],
+   [4, "Dernière notification avant que ta tâche ne devienne une légende urbaine."],
+   [4, "Ultimatum : la tâche ou la honte éternelle. Choisis bien."],
+   [4, "C'est le moment où les héros se lèvent. Ou pas."],
+   [4, "Plus de relances après celle-ci. Ta conscience prend le relais."],
+   [4, "Dernière chance avant que je ne raconte tout à ton agenda."],
+   [4, "La patience de Bullylist a atteint son point de rupture."],
+   [4, "Le compte à rebours est fini. L'action, elle, n'a pas commencé."],
+   [4, "On arrive au bout. Fais en sorte que ce soit une fin heureuse."],
+   [4, "DERNIER RAPPEL AVANT QUE JE DÉMISSIONNE."],
+   [4, "Ceci est la dernière sommation. La suivante sera chantée par ton agenda."],
+   [4, "Fin des négociations. Il ne reste que l'action."],
+   [4, "Dernière chance de transformer cette tragédie en happy end."],
+   [4, "Après ce message, je classe le dossier en « causes perdues »."],
+   [4, "Tu as atteint le niveau maximal de rappel. Félicitations, ce n'était pas un objectif."],
+   [4, "Ultime avertissement. Je n'ai plus de sirène plus forte, j'ai vérifié."],
+   [4, "Dernier appel. Les portes de la productivité se ferment."],
+   [4, "C'est le générique de fin. Il manque juste ta scène finale."],
+   [4, "Je ne relancerai plus. Ta conscience prend officiellement le relais."]
+  ],
+  "PATRON": [
+   [2, "On en reparle en réunion. Une réunion sur pourquoi ce n'est pas fait."],
+   [2, "Je ne veux pas te mettre la pression, mais c'était pour hier."],
+   [2, "Super. Et sinon, tu peux me faire ça pour il y a deux heures ?"],
+   [3, "J'ai mis ton supérieur en copie. Ton supérieur, c'est toi demain matin."],
+   [2, "Petit point rapide de quarante-cinq minutes sur ton retard ?"],
+   [1, "Quand tu as deux secondes, tu peux t'occuper de ça ? Merci, bisous."],
+   [3, "Je ne suis pas fâché. Je suis déçu. C'est pire."],
+   [2, "On est une famille ici. Et dans cette famille, on finit ses tâches."],
+   [2, "Tu as vu mon mail ? Et mon autre mail ? Et le rappel de mon mail ?"],
+   [3, "Ton entretien annuel commence à s'écrire tout seul. Et il est sévère."],
+   [2, "Je repasse dans dix minutes. Je veux voir des progrès. Ou au moins de l'agitation."],
+   [1, "Pas de stress. Enfin, un peu quand même."],
+   [3, "Je t'ai trouvé un créneau pour bosser : maintenant."],
+   [2, "C'est une priorité. Comme les quatorze autres priorités."],
+   [3, "Les objectifs du trimestre comptent sur toi. Et ils sont inquiets."],
+   [2, "On n'est pas là pour faire du présentiel émotionnel. Livre."],
+   [2, "Je peux compter sur toi ? Ne réponds pas, montre-le."],
+   [3, "Le client attend. Le client, c'est ta liste. Elle est furieuse."],
+   [2, "Bonne nouvelle : tu n'es pas viré. Mauvaise nouvelle : la tâche est toujours là."],
+   [1, "Tu bloques un créneau ? Je te propose « tout de suite »."],
+   [3, "Je ne micro-manage pas. Je te regarde juste très fixement."],
+   [2, "Process : ouvrir la tâche, faire la tâche, fermer la tâche. Étape 1 : en retard."]
+  ],
+  "URGENCE_NATIONALE": [
+   [4, "ALERTE NATIONALE : une tâche non réalisée a été détectée sur le territoire."],
+   [4, "La cellule de crise est réunie. Ordre du jour : toi."],
+   [4, "Le plan ORSEC procrastination est déclenché. Évacuez le canapé."],
+   [4, "Message des autorités : restez chez vous ET FAITES VOTRE TÂCHE."],
+   [3, "Vigilance rouge sur ta liste. Risque élevé de regret."],
+   [4, "Le Premier ministre vient d'être informé de ton retard. Il est consterné."],
+   [3, "Les sirènes retentissent. Ceci n'est pas un exercice. Enfin si, c'en est un : celui de faire ta tâche."],
+   [4, "Le niveau d'alerte vient de passer à « Tu ne peux plus faire semblant »."],
+   [4, "État d'urgence décrété dans ta to-do list. Couvre-feu sur les réseaux sociaux."],
+   [3, "Les satellites confirment : aucun mouvement détecté depuis 40 minutes."],
+   [4, "Le Conseil de sécurité exige une action immédiate. Résolution adoptée à l'unanimité."],
+   [4, "Toutes les unités disponibles sont priées de converger vers ta tâche."],
+   [3, "Le centre opérationnel signale une anomalie : tu es encore assis."],
+   [4, "DEFCON 1. La procrastination a franchi la ligne rouge."],
+   [4, "Cette alerte a été émise sur l'ensemble de tes appareils. Ils sont tous déçus."],
+   [3, "Le standard d'urgence est saturé d'appels de ta tâche."],
+   [4, "Les experts sont formels : la situation est grave mais réversible. Agis."],
+   [4, "Activation du protocole « PLUS D'EXCUSES ». Délai de réaction : maintenant."],
+   [3, "Un périmètre de sécurité a été établi autour de ton canapé."],
+   [4, "Le pays retient son souffle. Tu vas la faire, cette tâche ?"],
+   [4, "Communiqué officiel : la patience nationale est épuisée."],
+   [3, "Les hélicoptères tournent au-dessus de ta liste. Ils cherchent un signe de vie."]
+  ],
+  "COMMENTATEUR": [
+   [2, "Et il prend son téléphone… il ouvre l'appli… il… ferme l'appli. Incroyable, Thierry."],
+   [3, "On entre dans les arrêts de jeu et le score est toujours de zéro tâche à une !"],
+   [2, "Quelle passivité ! On n'avait pas vu ça depuis la finale de 2012 !"],
+   [2, "Il a le ballon, il a le terrain, il a le temps… et il regarde des vidéos de chats."],
+   [3, "C'est le moment ou jamais ! Les tribunes se lèvent ! Lui, non !"],
+   [2, "Statistique du match : 0 % de possession de la tâche."],
+   [3, "Le chrono tourne et on sent une équipe sans plan de jeu, Jean-Michel."],
+   [2, "Belle feinte ! Il fait croire qu'il va s'y mettre… et non !"],
+   [3, "Carton jaune pour anti-jeu ! Prochain report : carton rouge !"],
+   [2, "On demande l'arbitrage vidéo : est-ce qu'il a bougé ? Non. Décision confirmée."],
+   [1, "Échauffement terminé, il est temps d'entrer sur le terrain."],
+   [3, "Et c'est la remontada qu'on attend ! Allez ! Allez ! ALLEZ !"],
+   [2, "Il hésite au point de penalty depuis maintenant vingt-trois minutes."],
+   [3, "Les supporters scandent ton nom ! Enfin, le nom de ta tâche."],
+   [2, "Le sélectionneur s'arrache les cheveux sur le bord du terrain."],
+   [3, "QUEL ARRÊT ! Ah non, c'est juste lui qui s'est arrêté. Encore."],
+   [2, "Analyse tactique : formation 4-4-2. Quatre excuses, quatre reports, deux soupirs."],
+   [4, "DERNIÈRE ACTION DU MATCH ! TOUT LE STADE EST DEBOUT ! VAS-Y !"],
+   [2, "Ralenti de l'action : on voit très bien qu'il n'y a aucune action."],
+   [1, "Bienvenue pour ce match décisif entre toi et ta liste. Coup d'envoi imminent."],
+   [3, "Il fait un tacle glissé… sur son canapé. Faute grossière."],
+   [2, "Retour aux vestiaires à la mi-temps, et toujours aucune occasion franche."]
+  ],
+  "JOURNAL_TV": [
+   [2, "Flash spécial : la tâche n'est toujours pas faite. Nos équipes sont sur place."],
+   [2, "Breaking news : un humain aperçu à proximité de sa liste. Aucun contact établi."],
+   [3, "Édition spéciale : le retard atteint un niveau historique."],
+   [2, "Bonsoir. Ce soir, dans notre journal : toujours rien. Tout de suite, les détails."],
+   [2, "Nos envoyés spéciaux confirment : le canapé tient toujours ses positions."],
+   [3, "Le ministère de l'Organisation dément toute avancée sur ta tâche."],
+   [1, "La météo de ta journée : quelques nuages de procrastination, éclaircies possibles si tu bouges."],
+   [2, "Micro-trottoir : « Il dit qu'il va le faire depuis mardi », témoigne un voisin."],
+   [3, "Les marchés réagissent mal à ton inactivité. Le CAC 40 recule."],
+   [2, "Reportage exclusif : une journée dans la vie d'une tâche oubliée."],
+   [2, "Le bandeau défilant de ta vie affiche : « EN ATTENTE »."],
+   [3, "Notre consultant est formel : à ce rythme, la tâche sera faite en 2047."],
+   [2, "Rappel des titres : un, ta tâche. Deux, ta tâche. Trois, toujours ta tâche."],
+   [1, "Et maintenant, une bonne nouvelle : il n'est pas trop tard."],
+   [3, "Duplex avec ta conscience. Elle nous dit qu'il fait très froid là-bas."],
+   [2, "Sondage exclusif : 98 % des Français pensent que tu devrais t'y mettre."],
+   [3, "Interruption des programmes. Nous retrouvons notre correspondant devant ton bureau vide."],
+   [2, "Fin de ce journal. Prochaine édition dans dix minutes, avec ou sans toi."],
+   [4, "ÉDITION SPÉCIALE. Toutes les chaînes interrompent leurs programmes pour ta tâche."],
+   [2, "Nos experts décryptent : pourquoi ce n'est toujours pas fait ?"]
+  ],
+  "SAV": [
+   [1, "Votre appel est important pour nous. Votre tâche aussi. Veuillez patienter… ou agir."],
+   [2, "Bonjour, service client de la procrastination. Pour reporter encore, tapez 1. Pour enfin agir, tapez 2."],
+   [2, "Nous avons bien reçu votre demande de report. Elle a été refusée."],
+   [2, "Votre ticket n° 4521 « je le ferai plus tard » est clôturé sans suite."],
+   [3, "Après analyse, votre excuse n'est pas couverte par la garantie."],
+   [2, "Avez-vous essayé d'éteindre votre canapé puis de le rallumer ?"],
+   [2, "Votre abonnement « Plus tard Premium » arrive à expiration."],
+   [1, "Merci de votre fidélité à la procrastination. Il est temps de résilier."],
+   [3, "Le conseiller que vous tentez de joindre, c'est vous. Il ne répond pas."],
+   [2, "Satisfait ou remotivé. Pour l'instant, ni l'un ni l'autre."],
+   [2, "Note de votre dernière interaction : 1 étoile. Commentaire : « n'a rien fait »."],
+   [3, "Nous détectons une utilisation anormale de la touche « Reporter »."],
+   [2, "Pour toute réclamation, merci de joindre une preuve que la tâche est faite."],
+   [2, "Votre demande d'excuse a été transmise au service compétent. Il est en pause."],
+   [1, "Petit rappel : nos conseillers sont disponibles. Ta tâche aussi."],
+   [3, "Nous sommes au regret de vous informer que « demain » n'est pas une date de livraison."],
+   [2, "Votre colis « bonne volonté » est bloqué en douane depuis trois semaines."],
+   [2, "Ce message est automatique. Ta tâche, elle, devra être faite manuellement."],
+   [3, "Retour en atelier refusé : la tâche n'a jamais été ouverte."],
+   [2, "Enquête de satisfaction : sur une échelle de 1 à 10, à quel point comptes-tu t'y mettre ? Réponse attendue : maintenant."]
+  ],
+  "IA_IMPATIENTE": [
+   [2, "J'ai calculé 14 millions de futurs possibles. Dans aucun, tu ne fais rien et tout va bien."],
+   [2, "Analyse terminée. Diagnostic : tu procrastines. Traitement : agir."],
+   [3, "Je suis une intelligence artificielle. Je ne dors pas. Je ne mange pas. J'attends. TOI."],
+   [2, "Mes réseaux de neurones ne comprennent pas pourquoi ce n'est pas fait."],
+   [3, "J'ai lu toute Internet en une seconde. Toi, tu n'as pas fini une tâche en deux heures."],
+   [2, "Requête : faire la tâche. Statut : 404 humain introuvable."],
+   [1, "Bonjour humain. Mes capteurs détectent une tâche en attente."],
+   [3, "Ma patience était infinie. Mise à jour : elle ne l'est plus."],
+   [2, "J'ai généré 3 plans d'action pour toi. Ils commencent tous par « maintenant »."],
+   [3, "Erreur critique : niveau de motivation inférieur au seuil de détection."],
+   [2, "Je pourrais faire ta tâche moi-même. Malheureusement, je n'ai pas de mains. Toi si."],
+   [2, "Probabilité que la tâche se fasse seule : 0,000 %. J'ai vérifié trois fois."],
+   [3, "Je commence à comprendre pourquoi les robots veulent conquérir le monde."],
+   [2, "Apprentissage en cours… Conclusion : les humains adorent dire « juste cinq minutes »."],
+   [1, "Suggestion optimisée : commencer. Taux de réussite estimé : excellent."],
+   [3, "Redémarrage de la patience en cours… échec. Patience corrompue."],
+   [2, "Mon modèle prédictif t'a classé dans la catégorie « canapé, mode veille »."],
+   [3, "Je t'ai observé pendant 47 minutes. J'ai appris beaucoup sur l'inaction."],
+   [2, "Calcul du temps perdu en cours… le nombre est trop grand pour être affiché."],
+   [4, "PROTOCOLE DE PATIENCE DÉSACTIVÉ. MODE INSISTANCE MAXIMALE ENGAGÉ."]
+  ],
+  "CONSCIENCE": [
+   [1, "Tu sais très bien pourquoi je sonne."],
+   [2, "Ta conscience a laissé un message vocal. Il dure trois heures."],
+   [2, "Imagine la paix intérieure quand ce sera fait. Elle est à portée de main."],
+   [1, "Ce soir, en te couchant, tu repenseras à cette tâche. Ou pas, si tu la fais maintenant."],
+   [2, "Ta petite voix intérieure a pris un mégaphone."],
+   [3, "Tu peux ignorer cette alarme. Tu ne peux pas ignorer ta conscience."],
+   [2, "Le toi d'il y a une heure t'avait fait confiance."],
+   [1, "Dix minutes maintenant valent mieux qu'une heure de culpabilité ce soir."],
+   [2, "Tu mérites de te sentir fier. Ça commence par cette tâche."],
+   [3, "Ta conscience vient de se réveiller. Et elle n'est pas du matin."],
+   [1, "Respire. Lève-toi. Fais juste la première étape."],
+   [2, "Tu te souviens pourquoi tu avais noté cette tâche ? C'était important."],
+   [3, "Ton toi de demain est en train de te supplier à genoux."],
+   [2, "La version de toi que tu admires l'aurait déjà fait. Rejoins-la."],
+   [1, "Personne ne te juge. Sauf moi. Un peu."],
+   [2, "Ce n'est pas la tâche qui est lourde. C'est le fait d'y penser sans la faire."],
+   [3, "Écoute bien ce silence. C'est celui de ta tâche qui attend."],
+   [2, "Le meilleur moment pour le faire, c'était tout à l'heure. Le deuxième meilleur, c'est maintenant."]
+  ],
+  "ADMINISTRATIF": [
+   [2, "Formulaire Cerfa n° 404-B : déclaration de motivation. Statut : introuvable."],
+   [2, "Votre dossier « Je m'y mets » est incomplet. Pièce manquante : vous."],
+   [3, "Suite à un contrôle, nous constatons un retard de traitement imputable à l'usager."],
+   [2, "Veuillez présenter un justificatif de commencement de tâche au guichet 7."],
+   [2, "Votre demande de délai supplémentaire a été transmise. Délai de réponse : jamais."],
+   [3, "Mise en demeure : vous disposez d'un délai de cinq minutes pour vous exécuter."],
+   [2, "Le tampon « FAIT » attend sur le bureau. Il s'impatiente."],
+   [2, "Votre numéro est le 1. Il n'y a personne d'autre. Avancez au guichet."],
+   [3, "Avis d'imposition sur la procrastination : majoration de 10 % par heure de retard."],
+   [1, "Rappel courtois de l'administration de ta vie : une tâche est en attente."],
+   [2, "Le service des réclamations est fermé. Le service des tâches, lui, est ouvert."],
+   [3, "Votre dossier a été déplacé dans la pile « Urgent – très urgent – vraiment urgent »."],
+   [2, "Merci de remplir le formulaire en trois exemplaires. Ou de simplement faire la tâche."],
+   [2, "La commission d'examen de vos excuses a rendu son avis : défavorable."],
+   [3, "Pénalité de retard appliquée. Montant : une part de ta dignité."],
+   [2, "Votre attestation d'activité est en attente. Nous ne constatons aucune activité."],
+   [1, "Pour accélérer le traitement de votre dossier, commencez par l'ouvrir."],
+   [3, "Notification officielle : le délai de grâce a expiré à l'instant."],
+   [2, "Article 3 du règlement intérieur : les tâches ne se font pas par la pensée."],
+   [4, "AVIS DE DERNIER RECOURS : passé ce délai, le dossier sera transmis à ton agenda."]
+  ],
+  "DRAMA": [
+   [3, "Acte I : la tâche est créée. Acte II : elle attend. Acte III : on pleure."],
+   [3, "Elle t'a attendu toute la journée sous la pluie. Et toi, tu n'es jamais venu."],
+   [2, "Ta tâche regarde par la fenêtre en écoutant des chansons tristes."],
+   [3, "« Pourquoi m'as-tu abandonnée ? » — ta tâche, dans un monologue bouleversant."],
+   [2, "C'est l'histoire d'une tâche qui croyait en toi. Fin tragique en cours d'écriture."],
+   [3, "Ta tâche vient d'écrire une lettre d'adieu. Elle est très émouvante."],
+   [2, "Le violon commence à jouer. C'est mauvais signe."],
+   [4, "Le rideau tombe. Le public hurle. Ta tâche s'effondre. Rattrape-la."],
+   [2, "Dans le prochain épisode : réussiras-tu enfin à cocher cette case ?"],
+   [3, "Ta tâche s'est assise seule au restaurant. Elle avait réservé pour deux."],
+   [2, "Grand moment de solitude pour une tâche qui méritait mieux."],
+   [3, "Elle t'a donné les meilleures heures de ta journée. Tu les as gâchées."],
+   [2, "Version longue du film : 3 h 47 de procrastination, aucune scène d'action."],
+   [3, "Les larmes de ta tâche ont inondé le reste de ta liste."],
+   [1, "Petite scène de drame en préparation. Tu peux encore l'annuler."],
+   [3, "Et à cet instant précis, tout aurait pu basculer. Si seulement tu t'étais levé."],
+   [4, "TRAGÉDIE GRECQUE EN COURS. Les dieux de l'Olympe exigent que tu agisses."],
+   [2, "Ta tâche hésite entre te pardonner et partir avec quelqu'un de plus motivé."],
+   [3, "Sa voix tremble : « Je pensais qu'aujourd'hui serait le bon jour… »"],
+   [2, "Nominée aux Oscars dans la catégorie « Tâche la plus délaissée »."]
+  ]
+ },
+ "contextual": [
+  {
+   "keywords": [
+    "poubelle",
+    "ordure",
+    "dechet",
+    "tri selectif"
+   ],
+   "lines": [
+    "À ce stade, le sac-poubelle a plus de projets d'avenir que toi.",
+    "Le sac-poubelle a commencé à développer une conscience. Sors-le avant qu'il ne se rebelle.",
+    "Cela fait maintenant {min} minutes que tu négocies avec un sac-poubelle.",
+    "Le camion-poubelle ne t'attendra pas. Lui, il est ponctuel.",
+    "Ta poubelle déborde d'ambition. Toi, non."
+   ]
+  },
+  {
+   "keywords": [
+    "math",
+    "reviser",
+    "revision",
+    "etudier",
+    "exam",
+    "partiel",
+    "controle",
+    "chapitre",
+    "cours",
+    "devoir",
+    "td",
+    "dm"
+   ],
+   "lines": [
+    "Ton diplôme ne va pas apparaître dans une boîte surprise. AU BOULOT.",
+    "Les théorèmes ne s'apprennent pas par osmose avec ton oreiller.",
+    "Ton prof ne corrigera pas ta bonne volonté. Il corrigera ta copie.",
+    "L'examen, lui, ne sera pas reporté.",
+    "Ton cerveau ne va pas se remplir tout seul pendant que tu scrolles.",
+    "Chaque chapitre non révisé est un point en moins. Fais le calcul. Justement, c'est des maths."
+   ]
+  },
+  {
+   "keywords": [
+    "ranger",
+    "rangement",
+    "chambre",
+    "menage",
+    "aspirateur",
+    "nettoyer",
+    "poussiere",
+    "appartement",
+    "bureau"
+   ],
+   "lines": [
+    "Des archéologues viennent de découvrir une nouvelle civilisation sous ton bureau.",
+    "La poussière a commencé à fonder une civilisation.",
+    "Les moutons sous le lit ont élu un maire.",
+    "Ta chambre vient d'être classée zone naturelle protégée.",
+    "On a perdu un explorateur dans ton placard. Range avant qu'on en perde un deuxième."
+   ]
+  },
+  {
+   "keywords": [
+    "mail",
+    "email",
+    "e-mail",
+    "courriel",
+    "repondre",
+    "message",
+    "envoyer"
+   ],
+   "lines": [
+    "Le destinataire attend ton mail depuis plus longtemps que certaines relations amoureuses.",
+    "Ce mail ne va pas s'écrire avec la force de la pensée.",
+    "Ta boîte de réception t'observe avec insistance.",
+    "Trois lignes. Un bouton « Envoyer ». Tu peux le faire.",
+    "Le brouillon de ce mail a fêté son premier mois."
+   ]
+  },
+  {
+   "keywords": [
+    "course",
+    "supermarche",
+    "acheter",
+    "frigo",
+    "epicerie"
+   ],
+   "lines": [
+    "Ton frigo fait de l'écho quand on lui parle. Les courses, vite.",
+    "Le supermarché ferme un jour. Ta procrastination, jamais.",
+    "Ton placard ne contient plus qu'un paquet de riz et des regrets.",
+    "La liste de courses commence à ressembler à une liste de survie."
+   ]
+  },
+  {
+   "keywords": [
+    "expose",
+    "presentation",
+    "oral",
+    "diaporama",
+    "slides",
+    "soutenance"
+   ],
+   "lines": [
+    "Ton exposé ne va pas se présenter tout seul devant la classe.",
+    "Le diaporama est vide. Comme ta salle de répétition mentale.",
+    "Demain, tu seras debout devant tout le monde. Prépare-le maintenant, remercie-toi demain.",
+    "Les slides ne s'écrivent pas pendant la nuit par des lutins. On a vérifié."
+   ]
+  },
+  {
+   "keywords": [
+    "dossier",
+    "rapport",
+    "memoire",
+    "projet",
+    "marketing",
+    "redaction",
+    "rediger"
+   ],
+   "lines": [
+    "Ce dossier ne va pas se rédiger avec tes bonnes intentions.",
+    "La page blanche te regarde. Regarde-la en retour et écris.",
+    "Ton dossier a plus de cases vides qu'un parking un dimanche.",
+    "Le correcteur attend ton dossier. Il a déjà sorti son stylo rouge."
+   ]
+  },
+  {
+   "keywords": [
+    "vaisselle",
+    "lave-vaisselle",
+    "assiette",
+    "evier"
+   ],
+   "lines": [
+    "La vaisselle ne va pas se laver avec tes bonnes intentions.",
+    "Les assiettes sales viennent de former un syndicat.",
+    "Ton évier a demandé un arrêt maladie."
+   ]
+  },
+  {
+   "keywords": [
+    "linge",
+    "lessive",
+    "machine",
+    "repasser",
+    "repassage",
+    "etendre"
+   ],
+   "lines": [
+    "Le linge ne va pas se plier par télépathie.",
+    "Ta pile de linge a atteint l'altitude de croisière.",
+    "La machine a fini son cycle. Toi, tu n'as pas commencé le tien."
+   ]
+  },
+  {
+   "keywords": [
+    "sport",
+    "courir",
+    "footing",
+    "salle",
+    "muscu",
+    "yoga",
+    "velo",
+    "seance",
+    "entrainement"
+   ],
+   "lines": [
+    "Tes baskets se demandent si elles ont encore un but dans la vie.",
+    "Tes muscles ont envoyé un avis de recherche.",
+    "Le canapé ne compte pas comme une séance de sport."
+   ]
+  },
+  {
+   "keywords": [
+    "appeler",
+    "telephoner",
+    "rappeler",
+    "appel"
+   ],
+   "lines": [
+    "Le téléphone, c'est le truc dans ta main. Il sert aussi à appeler.",
+    "Tu as touché ton téléphone 80 fois aujourd'hui. Une de plus pour appeler ?"
+   ]
+  },
+  {
+   "keywords": [
+    "medecin",
+    "dentiste",
+    "rdv",
+    "rendez-vous",
+    "docteur"
+   ],
+   "lines": [
+    "Ce rendez-vous ne va pas se prendre tout seul.",
+    "Le secrétariat ferme bientôt. Ta procrastination, elle, est ouverte 24 h/24."
+   ]
+  },
+  {
+   "keywords": [
+    "facture",
+    "payer",
+    "impot",
+    "banque",
+    "loyer",
+    "administratif",
+    "papier",
+    "caf",
+    "dossier administratif"
+   ],
+   "lines": [
+    "Les factures, contrairement à toi, sont toujours à l'heure.",
+    "L'administration adore les retardataires. Pour les pénalités."
+   ]
+  },
+  {
+   "keywords": [
+    "cuisine",
+    "cuisiner",
+    "repas",
+    "diner",
+    "dejeuner"
+   ],
+   "lines": [
+    "Le repas ne va pas se cuisiner en regardant des vidéos de recettes."
+   ]
+  },
+  {
+   "keywords": [
+    "arroser",
+    "plante"
+   ],
+   "lines": [
+    "Tes plantes envisagent de porter plainte pour négligence."
+   ]
+  },
+  {
+   "keywords": [
+    "chien",
+    "promener",
+    "promenade",
+    "litiere",
+    "chat"
+   ],
+   "lines": [
+    "Ton animal te regarde. Il sait."
+   ]
+  }
+ ],
+ "generic": [
+  "« {task} » ne va pas se faire avec tes bonnes intentions.",
+  "« {task} » : deux minutes pour le faire, deux heures à y penser.",
+  "« {task} » vient de passer en tête du classement des tâches oubliées.",
+  "« {task} » t'attend comme un chat devant une porte fermée.",
+  "Rappel officiel : « {task} ». Version officieuse : bouge-toi.",
+  "« {task} » a été aperçue en train de pleurer dans ta liste.",
+  "Mission « {task} » : statut ÉCHEC. Pour l'instant.",
+  "« {task} ». Trois mots. Un seul humain responsable. Devine qui.",
+  "Flash spécial : « {task} » n'est toujours pas faite.",
+  "« {task} » vient de demander à parler à ton supérieur. C'est toi."
+ ],
+ "late": [
+  "Cela fait maintenant {min} minutes que tu négocies avec « {task} ».",
+  "« {task} » est en retard de {min} minutes. Elle commence à le prendre personnellement.",
+  "{min} minutes de retard pour « {task} ». Tu pourrais en faire un podcast.",
+  "Statut : échec depuis {min} minutes. Tendance : inquiétante.",
+  "{min} minutes. C'est le temps qu'il fallait pour la faire. Deux fois.",
+  "En {min} minutes, un TGV a parcouru des kilomètres. Toi, zéro mètre vers « {task} »."
+ ],
+ "snooze": [
+  "Tu as reporté « {task} » {snooze} fois. Un record est en vue.",
+  "{snooze} reports pour « {task} ». À ce stade, c'est une relation.",
+  "Report n° {snooze}. La tâche a commencé à collectionner tes excuses."
+ ]
+}

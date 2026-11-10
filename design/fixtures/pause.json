@@ -1,0 +1,84 @@
+{
+ "$comment": "Mode pause : instants en minutes depuis le début de la journée de référence.",
+ "events": [
+  {
+   "start": 840,
+   "end": 960,
+   "title": "Cours 14h-16h",
+   "profile": "COURS",
+   "travelAfter": 30
+  },
+  {
+   "start": 1020,
+   "end": 1050,
+   "title": "Rendez-vous 17h",
+   "profile": "RDV",
+   "travelAfter": 20
+  },
+  {
+   "start": 1080,
+   "end": 1200,
+   "title": "Soirée perso",
+   "profile": "PERSO",
+   "travelAfter": 0
+  },
+  {
+   "start": 1060,
+   "end": 1075,
+   "title": "Appel 17h40",
+   "profile": "RDV",
+   "travelAfter": 0
+  }
+ ],
+ "cases": [
+  {
+   "at": 900,
+   "level": "INSISTANT",
+   "bypass": false,
+   "expect": 990,
+   "why": "pendant le cours → fin du cours + 30 min de trajet"
+  },
+  {
+   "at": 980,
+   "level": "NORMAL",
+   "bypass": false,
+   "expect": 990,
+   "why": "pendant le trajet retour"
+  },
+  {
+   "at": 1030,
+   "level": "BRR",
+   "bypass": false,
+   "expect": 1075,
+   "why": "rdv + trajet puis appel enchaîné : pauses fusionnées"
+  },
+  {
+   "at": 1030,
+   "level": "BRR",
+   "bypass": true,
+   "expect": 1030,
+   "why": "niveau 4 autorisé explicitement à traverser la pause"
+  },
+  {
+   "at": 1030,
+   "level": "HARCELEMENT",
+   "bypass": true,
+   "expect": 1075,
+   "why": "l'exception ne vaut que pour le niveau 4"
+  },
+  {
+   "at": 1100,
+   "level": "INSISTANT",
+   "bypass": false,
+   "expect": 1100,
+   "why": "temps personnel : pas de pause"
+  },
+  {
+   "at": 800,
+   "level": "INSISTANT",
+   "bypass": false,
+   "expect": 800,
+   "why": "avant le cours"
+  }
+ ]
+}
