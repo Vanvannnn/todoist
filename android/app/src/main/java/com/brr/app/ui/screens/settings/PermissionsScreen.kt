@@ -54,7 +54,7 @@ fun PermissionsScreen(container: AppContainer, onBack: (() -> Unit)?) {
     Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).verticalScroll(rememberScrollState()).statusBarsPadding()) {
         if (onBack != null) Row(Modifier.padding(horizontal = 8.dp, vertical = 4.dp)) { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Retour") } }
         Text("Fiabilité", style = MaterialTheme.typography.displaySmall, modifier = Modifier.padding(horizontal = 20.dp))
-        Text("Ce dont B.R.R. a besoin pour te harceler à l'heure.", style = MaterialTheme.typography.bodyMedium, color = Brr.colors.muted,
+        Text("Ce dont Bullylist a besoin pour te harceler à l'heure.", style = MaterialTheme.typography.bodyMedium, color = Brr.colors.muted,
             modifier = Modifier.padding(horizontal = 20.dp))
         Spacer(Modifier.height(16.dp))
         PermissionList(container)
@@ -76,7 +76,7 @@ fun PermissionsScreen(container: AppContainer, onBack: (() -> Unit)?) {
             Text(
                 "Aucune application ne peut garantir une alarme à 100 % : Android et certains constructeurs (Xiaomi, Huawei, Oppo, Samsung…) " +
                     "peuvent retarder ou bloquer les applis en arrière-plan. Autorise le démarrage automatique et retire les restrictions de batterie " +
-                    "pour B.R.R. dans les réglages du téléphone. Le site dontkillmyapp.com détaille la marche à suivre par marque.",
+                    "pour Bullylist dans les réglages du téléphone. Le site dontkillmyapp.com détaille la marche à suivre par marque.",
                 style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted,
             )
             Spacer(Modifier.height(8.dp))
@@ -116,7 +116,7 @@ fun PermissionList(container: AppContainer) {
         BrrCard(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
             Text("Mode du téléphone", style = MaterialTheme.typography.titleMedium)
             Text(s.policy.reason, style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted)
-            Text("B.R.R. ne contourne jamais le silencieux, le vibreur ou Ne pas déranger.", style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted)
+            Text("Bullylist ne contourne jamais le silencieux, le vibreur ou Ne pas déranger.", style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted)
         }
     }
 }

@@ -26,9 +26,14 @@ class ReminderEngine(
         val custom = task.customMessage
         val message = if (custom != null && (plan.level == ReminderLevel.NORMAL || Random.nextFloat() < 0.3f)) custom
         else punchlines.pick(plan.level, plan.isFinalWarning, task.title, plan.minutesLate, task.snoozeCount, s).text
+        // Écrans immersifs : quelques phrases de plus, qui défilent pendant que l'alerte reste affichée.
+        val extra = if (plan.level.ordinal >= ReminderLevel.HARCELEMENT.ordinal) List(2) {
+            punchlines.pick(plan.level, plan.isFinalWarning, task.title, plan.minutesLate, task.snoozeCount, s).text
+        } else emptyList()
         val content = ReminderContent(
             taskId = task.id, taskTitle = task.title, message = message, level = plan.level, kind = plan.kind,
             isFinal = plan.isFinalWarning, minutesLate = plan.minutesLate, nextAt = outcome.nextAt, dueAt = task.dueAt,
+            messages = (listOf(message) + extra).distinct(), snoozeCount = task.snoozeCount,
         )
         notifier.show(content, s)
         if (isForeground() && plan.level.ordinal >= ReminderLevel.INSISTANT.ordinal && plan.kind != TriggerKind.PRE_REMINDER) {
@@ -40,10 +45,12 @@ class ReminderEngine(
     suspend fun preview(level: ReminderLevel, launchImmersive: Boolean) {
         val s = settings.current()
         val title = SAMPLE_TASKS.random()
-        val msg = punchlines.pick(level, false, title, 37, 2, s).text
+        val msgs = List(3) { punchlines.pick(level, false, title, 37, 2, s).text }.distinct()
+        val msg = msgs.first()
         val c = ReminderContent(
             taskId = PREVIEW_ID - level.ordinal, taskTitle = title, message = msg, level = level, kind = TriggerKind.ESCALATION,
             isFinal = false, minutesLate = 37, nextAt = System.currentTimeMillis() + 5 * 60_000, dueAt = null, preview = true,
+            messages = msgs, snoozeCount = 2,
         )
         notifier.show(c, s)
         if (launchImmersive && level.ordinal >= ReminderLevel.HARCELEMENT.ordinal) {

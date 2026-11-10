@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="brr_black">#FF0A0A0B</color>
-    <color name="brr_red">#FFFF2D3D</color>
-    <color name="brr_alarm_red">#FF8A0010</color>
-    <color name="ic_launcher_background">#FF0E0E10</color>
+    <!-- Valeurs de design/tokens.json (bg, texte, niveau 4). -->
+    <color name="bully_bg">#FF121419</color>
+    <color name="bully_bone">#FFF2EFE8</color>
+    <color name="bully_nuclear_deep">#FF30030B</color>
+    <color name="ic_launcher_background">#FF121419</color>
 </resources>

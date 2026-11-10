@@ -63,6 +63,11 @@ android {
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // Cas de test partagés avec le web (design/fixtures/*.json).
+        unitTests.all {
+            it.systemProperty("fixtures", rootProject.file("../design/fixtures").absolutePath)
+            it.systemProperty("user.timezone", "Europe/Paris")
+        }
     }
 }
 
@@ -94,5 +99,6 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android)
 
     testImplementation(libs.junit)
+    testImplementation(libs.json)
     testImplementation(libs.kotlinx.coroutines.test)
 }

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.BRR" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@color/brr_black</item>
+    <style name="Theme.Bullylist" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/bully_bg</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:colorAccent">@color/brr_red</item>
+        <item name="android:colorAccent">@color/bully_bone</item>
     </style>
-    <style name="Theme.BRR.Alarm">
-        <item name="android:windowBackground">@color/brr_alarm_red</item>
+    <style name="Theme.Bullylist.Alarm">
+        <item name="android:windowBackground">@color/bully_nuclear_deep</item>
     </style>
 </resources>

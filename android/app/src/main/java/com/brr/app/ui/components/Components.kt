@@ -196,7 +196,7 @@ fun BrrCard(modifier: Modifier = Modifier, padding: PaddingValues = PaddingValue
     )
 }
 
-/** Petite puce sélectionnable à l'identité B.R.R. */
+/** Petite puce sélectionnable à l'identité Bullylist */
 @Composable
 fun ChoiceChip(text: String, selected: Boolean, onClick: () -> Unit, color: Color = MaterialTheme.colorScheme.primary, icon: ImageVector? = null) {
     val bg by animateColorAsState(if (selected) color.copy(alpha = 0.18f) else Brr.colors.cardHigh, label = "chipbg")

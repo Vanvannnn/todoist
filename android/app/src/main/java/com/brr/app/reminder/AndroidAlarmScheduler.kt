@@ -70,4 +70,6 @@ object Extras {
     const val SNOOZE_MINUTES = "snooze_minutes"
     const val PREVIEW = "preview"
     const val TITLE = "title"
+    const val MESSAGES = "messages"
+    const val SNOOZE_COUNT = "snooze_count"
 }

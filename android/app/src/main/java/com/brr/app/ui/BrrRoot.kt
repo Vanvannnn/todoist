@@ -152,7 +152,7 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                         onClose = { nav.popBackStack() },
                         onSaved = { savedId, isNew ->
                             nav.popBackStack()
-                            if (isNew) scope.launch { snackbar.showSnackbar("Mission enregistrée. B.R.R. veille.") }
+                            if (isNew) scope.launch { snackbar.showSnackbar("Mission enregistrée. Bullylist veille.") }
                             else if (nav.currentDestination?.route != "task/{id}") nav.navigate("task/$savedId")
                         },
                     )

@@ -85,7 +85,7 @@ fun WelcomeScreen(container: AppContainer, onDone: () -> Unit) {
                     else -> Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState())) {
                         Spacer(Modifier.height(24.dp))
                         Text("Dernière étape", style = MaterialTheme.typography.headlineLarge)
-                        Text("Donne à B.R.R. les moyens de te harceler. Tu pourras changer d'avis à tout moment.",
+                        Text("Donne à Bullylist les moyens de te harceler. Tu pourras changer d'avis à tout moment.",
                             style = MaterialTheme.typography.bodyLarge, color = Brr.colors.muted, modifier = Modifier.padding(top = 8.dp, bottom = 20.dp))
                         PermissionList(container)
                     }
@@ -107,7 +107,7 @@ private fun Intro(glow: Float) {
             Text("!", style = MaterialTheme.typography.displayMedium, color = Color.White)
         }
         Spacer(Modifier.height(28.dp))
-        Text("B.R.R.", style = MaterialTheme.typography.displayLarge)
+        Text("BULLYLIST", style = MaterialTheme.typography.displayMedium)
         Text("Be Right Responsible", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.primary)
         Spacer(Modifier.height(20.dp))
         Text(

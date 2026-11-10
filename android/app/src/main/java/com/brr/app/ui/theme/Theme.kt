@@ -2,7 +2,10 @@ package com.brr.app.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
@@ -12,20 +15,28 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
 import com.brr.app.domain.model.Priority
 import com.brr.app.domain.model.ReminderLevel
 import com.brr.app.domain.model.ThemeMode
 
+/**
+ * Charte BULLYLIST (valeurs générées dans Tokens.kt depuis design/tokens.json).
+ * Principe : « la couleur, c'est l'alarme ». L'interface au calme est monochrome ; les couleurs de niveau
+ * ne servent qu'à signaler une urgence (retard, report, niveau d'alerte).
+ */
 object BrrPalette {
-    val Red = Color(0xFFFF2D3D)
-    val RedDeep = Color(0xFFB0001A)
-    val Orange = Color(0xFFFF6A1A)
-    val Amber = Color(0xFFFFB020)
-    val Blue = Color(0xFF4C8DFF)
-    val Green = Color(0xFF2ECC71)
-    val Gray = Color(0xFF6B6B75)
+    val Red = BullyLevels.base[3]
+    val Orange = BullyLevels.base[2]
+    val Amber = BullyLevels.base[1]
+    val Blue = BullyLevels.base[0]
+    val Green = BullyDark.success
 }
+
+/** Coins chanfreinés : réservés à ce qui relève de l'alerte. */
+val AlertShape = CutCornerShape(topStart = BullyTokens.radiusChamfer.dp, bottomEnd = BullyTokens.radiusChamfer.dp)
+val AlertShapeSmall = CutCornerShape(topStart = BullyTokens.radiusChamferSm.dp, bottomEnd = BullyTokens.radiusChamferSm.dp)
 
 @Immutable
 data class BrrExtraColors(
@@ -38,55 +49,60 @@ data class BrrExtraColors(
     val isDark: Boolean,
 ) {
     fun priority(p: Priority): Color = when (p) {
-        Priority.URGENT -> BrrPalette.Red
-        Priority.HIGH -> BrrPalette.Orange
-        Priority.NORMAL -> BrrPalette.Blue
+        Priority.URGENT -> BullyPriority.p1
+        Priority.HIGH -> BullyPriority.p2
+        Priority.NORMAL -> if (isDark) BullyPriority.p3 else BullyLight.text2
         Priority.LOW -> muted
     }
 
-    fun level(l: ReminderLevel): Color = when (l) {
-        ReminderLevel.NORMAL -> BrrPalette.Blue
-        ReminderLevel.INSISTANT -> BrrPalette.Amber
-        ReminderLevel.HARCELEMENT -> BrrPalette.Orange
-        ReminderLevel.BRR -> BrrPalette.Red
-    }
+    fun level(l: ReminderLevel): Color = BullyLevels.base[l.ordinal]
 }
 
 private val DarkExtras = BrrExtraColors(
-    muted = Color(0xFF8B8B94), faint = Color(0xFF55555C), card = Color(0xFF141416), cardHigh = Color(0xFF1C1C20),
-    hairline = Color(0xFF26262B), success = BrrPalette.Green, isDark = true,
+    muted = BullyDark.text2, faint = BullyDark.text3, card = BullyDark.surface1, cardHigh = BullyDark.surface2,
+    hairline = BullyDark.line, success = BullyDark.success, isDark = true,
 )
 private val LightExtras = BrrExtraColors(
-    muted = Color(0xFF6B6B73), faint = Color(0xFFA3A3AA), card = Color(0xFFFFFFFF), cardHigh = Color(0xFFF1F1EF),
-    hairline = Color(0xFFE5E5E1), success = Color(0xFF1E9E55), isDark = false,
+    muted = BullyLight.text2, faint = BullyLight.text3, card = BullyLight.surface1, cardHigh = BullyLight.surface2,
+    hairline = BullyLight.line, success = BullyLight.success, isDark = false,
 )
 
 private val DarkScheme = darkColorScheme(
-    primary = BrrPalette.Red, onPrimary = Color.White,
-    primaryContainer = Color(0xFF3A0A10), onPrimaryContainer = Color(0xFFFFD9DC),
-    secondary = BrrPalette.Orange, onSecondary = Color.Black,
-    secondaryContainer = Color(0xFF3A1A08), onSecondaryContainer = Color(0xFFFFDCC8),
-    background = Color(0xFF0A0A0B), onBackground = Color(0xFFEDEDEF),
-    surface = Color(0xFF0A0A0B), onSurface = Color(0xFFEDEDEF),
-    surfaceVariant = Color(0xFF1C1C20), onSurfaceVariant = Color(0xFF9A9AA3),
-    surfaceContainerLowest = Color(0xFF0A0A0B), surfaceContainerLow = Color(0xFF111113),
-    surfaceContainer = Color(0xFF141416), surfaceContainerHigh = Color(0xFF1A1A1D), surfaceContainerHighest = Color(0xFF222226),
-    outline = Color(0xFF3A3A40), outlineVariant = Color(0xFF26262B),
-    error = BrrPalette.Red, onError = Color.White,
+    primary = BullyDark.accent, onPrimary = BullyDark.onAccent,
+    primaryContainer = BullyDark.surface3, onPrimaryContainer = BullyDark.text,
+    secondary = BullyDark.text2, onSecondary = BullyDark.bg,
+    secondaryContainer = BullyDark.surface2, onSecondaryContainer = BullyDark.text,
+    tertiary = BullyLevels.base[1], onTertiary = BullyLevels.ink[1],
+    background = BullyDark.bg, onBackground = BullyDark.text,
+    surface = BullyDark.bg, onSurface = BullyDark.text,
+    surfaceVariant = BullyDark.surface2, onSurfaceVariant = BullyDark.text2,
+    surfaceContainerLowest = BullyDark.bg, surfaceContainerLow = BullyDark.surface1,
+    surfaceContainer = BullyDark.surface1, surfaceContainerHigh = BullyDark.surface2, surfaceContainerHighest = BullyDark.surface3,
+    outline = BullyDark.lineStrong, outlineVariant = BullyDark.line,
+    error = BullyLevels.base[3], onError = Color.White,
 )
 
 private val LightScheme = lightColorScheme(
-    primary = Color(0xFFE0182D), onPrimary = Color.White,
-    primaryContainer = Color(0xFFFFE1E3), onPrimaryContainer = Color(0xFF5C0010),
-    secondary = Color(0xFFE85A0C), onSecondary = Color.White,
-    secondaryContainer = Color(0xFFFFE6D6), onSecondaryContainer = Color(0xFF4A1A00),
-    background = Color(0xFFF7F7F5), onBackground = Color(0xFF111113),
-    surface = Color(0xFFF7F7F5), onSurface = Color(0xFF111113),
-    surfaceVariant = Color(0xFFEDEDEA), onSurfaceVariant = Color(0xFF5E5E66),
-    surfaceContainerLowest = Color.White, surfaceContainerLow = Color(0xFFFBFBFA),
-    surfaceContainer = Color.White, surfaceContainerHigh = Color(0xFFF1F1EF), surfaceContainerHighest = Color(0xFFEAEAE7),
-    outline = Color(0xFFC9C9C4), outlineVariant = Color(0xFFE5E5E1),
-    error = Color(0xFFE0182D), onError = Color.White,
+    primary = BullyLight.accent, onPrimary = BullyLight.onAccent,
+    primaryContainer = BullyLight.surface3, onPrimaryContainer = BullyLight.text,
+    secondary = BullyLight.text2, onSecondary = BullyLight.surface1,
+    secondaryContainer = BullyLight.surface3, onSecondaryContainer = BullyLight.text,
+    tertiary = Color(0xFFB27A00), onTertiary = Color.White,
+    background = BullyLight.bg, onBackground = BullyLight.text,
+    surface = BullyLight.bg, onSurface = BullyLight.text,
+    surfaceVariant = BullyLight.surface3, onSurfaceVariant = BullyLight.text2,
+    surfaceContainerLowest = BullyLight.surface1, surfaceContainerLow = BullyLight.surface2,
+    surfaceContainer = BullyLight.surface1, surfaceContainerHigh = BullyLight.surface2, surfaceContainerHighest = BullyLight.surface3,
+    outline = BullyLight.lineStrong, outlineVariant = BullyLight.line,
+    error = Color(0xFFD0102C), onError = Color.White,
+)
+
+private val BullyShapes = Shapes(
+    extraSmall = RoundedCornerShape(BullyTokens.radiusXs.dp),
+    small = RoundedCornerShape(BullyTokens.radiusSm.dp),
+    medium = RoundedCornerShape(BullyTokens.radiusMd.dp),
+    large = RoundedCornerShape(BullyTokens.radiusLg.dp),
+    extraLarge = RoundedCornerShape(BullyTokens.radiusXl.dp),
 )
 
 val LocalBrrColors = staticCompositionLocalOf { DarkExtras }
@@ -114,6 +130,6 @@ fun BrrTheme(mode: ThemeMode?, content: @Composable () -> Unit) {
         }
     }
     CompositionLocalProvider(LocalBrrColors provides if (dark) DarkExtras else LightExtras) {
-        MaterialTheme(colorScheme = if (dark) DarkScheme else LightScheme, typography = BrrTypography, content = content)
+        MaterialTheme(colorScheme = if (dark) DarkScheme else LightScheme, typography = BrrTypography, shapes = BullyShapes, content = content)
     }
 }

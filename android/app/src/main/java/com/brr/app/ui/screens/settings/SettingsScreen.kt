@@ -48,7 +48,7 @@ fun SettingsScreen(container: AppContainer, onAlarms: () -> Unit, onPunchlines: 
         Text("Règle le niveau de nuisance qui te convient.", style = MaterialTheme.typography.bodyMedium, color = Brr.colors.muted, modifier = Modifier.padding(horizontal = 20.dp))
 
         Group("Rappels")
-        SettingRow("Mode B.R.R.", if (st.brrModeEnabled) "Activé : le niveau 4 peut se déclencher." else "Désactivé : les rappels plafonnent au niveau Harcèlement.", BrrIcons.Bolt) {
+        SettingRow("Bully Mode: Nuclear", if (st.brrModeEnabled) "Activé : le niveau 4 peut se déclencher." else "Désactivé : les rappels plafonnent au niveau Harcèlement.", BrrIcons.Bolt) {
             Switch(st.brrModeEnabled, vm::setBrr)
         }
         SettingRow("Escalade progressive", "Chaque relance monte d'un niveau, jusqu'au niveau choisi pour la tâche.", BrrIcons.Megaphone) {
@@ -79,7 +79,7 @@ fun SettingsScreen(container: AppContainer, onAlarms: () -> Unit, onPunchlines: 
         SettingRow("Stockage", "Tout reste sur ton téléphone. Aucun compte, aucun serveur, aucune pub.", Icons.Default.Info)
 
         Group("À propos")
-        SettingRow("B.R.R. — Be Right Responsible", "Version ${BuildConfig.VERSION_NAME}. Sons et punchlines originaux. Polices Space Grotesk et Inter (SIL OFL).")
+        SettingRow("BULLYLIST — Your tasks. Your problem. Our business.", "Version ${BuildConfig.VERSION_NAME}. Sons et punchlines originaux. Polices Archivo et JetBrains Mono (SIL OFL).")
         Spacer(Modifier.height(120.dp))
     }
 }

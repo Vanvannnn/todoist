@@ -108,6 +108,8 @@ class AlarmActivity : ComponentActivity() {
             .putExtra(Extras.NEXT_AT, c.nextAt ?: -1L)
             .putExtra("due_at", c.dueAt ?: -1L)
             .putExtra(Extras.PREVIEW, c.preview)
+            .putStringArrayListExtra(Extras.MESSAGES, ArrayList(c.messages))
+            .putExtra(Extras.SNOOZE_COUNT, c.snoozeCount)
 
         private fun read(i: Intent): ReminderContent? {
             val id = i.getLongExtra(Extras.TASK_ID, 0L)
@@ -123,6 +125,8 @@ class AlarmActivity : ComponentActivity() {
                 nextAt = i.getLongExtra(Extras.NEXT_AT, -1L).takeIf { it > 0 },
                 dueAt = i.getLongExtra("due_at", -1L).takeIf { it > 0 },
                 preview = i.getBooleanExtra(Extras.PREVIEW, false),
+                messages = i.getStringArrayListExtra(Extras.MESSAGES) ?: emptyList(),
+                snoozeCount = i.getIntExtra(Extras.SNOOZE_COUNT, 0),
             )
         }
     }

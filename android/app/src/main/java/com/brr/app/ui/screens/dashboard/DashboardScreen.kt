@@ -230,11 +230,11 @@ private fun Stat(label: String, value: Int, color: Color, modifier: Modifier) {
 private fun ProcrastinationGauge(score: Int) {
     val anim by animateFloatAsState(score / 100f, tween(900), label = "gauge")
     val (label, sub) = when {
-        score <= 20 -> "Machine de guerre" to "Rien ne te résiste. B.R.R. s'ennuie un peu."
+        score <= 20 -> "Machine de guerre" to "Rien ne te résiste. Bullylist s'ennuie un peu."
         score <= 40 -> "Plutôt responsable" to "Quelques écarts, mais on te fait confiance. Presque."
         score <= 60 -> "Négociateur" to "Tu négocies beaucoup avec tes tâches."
         score <= 80 -> "Procrastinateur confirmé" to "Le canapé t'a nommé employé du mois."
-        else -> "Légende du canapé" to "Niveau d'alerte maximal. Le mode B.R.R. a été conçu pour toi."
+        else -> "Légende du canapé" to "Niveau d'alerte maximal. Le Bully Mode: Nuclear a été conçu pour toi."
     }
     val track = Brr.colors.cardHigh
     val color = when { score <= 40 -> Brr.colors.success; score <= 60 -> BrrPalette.Amber; score <= 80 -> BrrPalette.Orange; else -> BrrPalette.Red }

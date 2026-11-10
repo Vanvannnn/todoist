@@ -8,7 +8,7 @@ import com.brr.app.R
 
 data class AlarmSound(val id: String, val label: String, val description: String, val rawRes: Int?)
 
-/** Bibliothèque de sons originaux (synthétisés pour B.R.R., libres de droits — voir tools/generate_sounds.py). */
+/** Bibliothèque de sons originaux (synthétisés pour Bullylist, libres de droits — voir tools/generate_sounds.py). */
 object AlarmSounds {
     const val SILENT = "none"
     const val SYSTEM = "system"

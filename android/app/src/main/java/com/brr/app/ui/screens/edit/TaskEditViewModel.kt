@@ -100,7 +100,7 @@ class TaskEditViewModel(
 
     fun save() {
         val s = _state.value
-        if (s.title.isBlank()) { _state.update { it.copy(error = "Une tâche sans titre ? Même B.R.R. ne peut pas te rappeler « rien ».") }; return }
+        if (s.title.isBlank()) { _state.update { it.copy(error = "Une tâche sans titre ? Même Bullylist ne peut pas te rappeler « rien ».") }; return }
         if (s.repeatType != RepeatType.NONE && s.date == null) { _state.update { it.copy(error = "Une tâche répétitive a besoin d'une date de départ.") }; return }
         _state.update { it.copy(saving = true) }
         viewModelScope.launch {

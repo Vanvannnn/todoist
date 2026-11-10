@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BRR"
+        android:theme="@style/Theme.Bullylist"
         tools:targetApi="35">
 
         <activity
@@ -31,7 +31,7 @@
             android:exported="true"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/Theme.BRR">
+            android:theme="@style/Theme.Bullylist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -46,8 +46,8 @@
             android:launchMode="singleTop"
             android:showWhenLocked="true"
             android:turnScreenOn="true"
-            android:taskAffinity="com.brr.app.alarm"
-            android:theme="@style/Theme.BRR.Alarm" />
+            android:taskAffinity="com.brr.app.bullylist.alarm"
+            android:theme="@style/Theme.Bullylist.Alarm" />
 
         <receiver
             android:name=".reminder.ReminderReceiver"

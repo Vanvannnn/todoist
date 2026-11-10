@@ -13,7 +13,7 @@ import android.util.Log
 import com.brr.app.data.prefs.AppSettings
 import com.brr.app.domain.model.ReminderLevel
 
-/** Ce que le téléphone autorise actuellement. B.R.R. ne contourne jamais ces réglages. */
+/** Ce que le téléphone autorise actuellement. Bullylist ne contourne jamais ces réglages. */
 data class DeviceAlertPolicy(val soundAllowed: Boolean, val vibrationAllowed: Boolean, val reason: String) {
     companion object {
         fun read(context: Context): DeviceAlertPolicy {

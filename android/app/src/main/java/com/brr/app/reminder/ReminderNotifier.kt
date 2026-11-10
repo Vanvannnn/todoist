@@ -29,6 +29,9 @@ data class ReminderContent(
     val nextAt: Long?,
     val dueAt: Long?,
     val preview: Boolean = false,
+    /** Punchlines supplémentaires qui défilent sur l'écran immersif. */
+    val messages: List<String> = emptyList(),
+    val snoozeCount: Int = 0,
 )
 
 class ReminderNotifier(private val context: Context) : ReminderPresenter {
@@ -115,7 +118,7 @@ class ReminderNotifier(private val context: Context) : ReminderPresenter {
             }
         }
         val n = b.build()
-        // Son répété jusqu'à action : uniquement en mode B.R.R. (et toujours soumis aux réglages du téléphone).
+        // Son répété jusqu'à action : uniquement en Bully Mode: Nuclear (et toujours soumis aux réglages du téléphone).
         if (level == ReminderLevel.BRR && !silent) n.flags = n.flags or Notification.FLAG_INSISTENT
         return n
     }
@@ -140,7 +143,7 @@ class ReminderNotifier(private val context: Context) : ReminderPresenter {
             c.level == ReminderLevel.NORMAL -> c.taskTitle
             c.level == ReminderLevel.INSISTANT -> "Toujours pas fait : ${c.taskTitle}"
             c.level == ReminderLevel.HARCELEMENT -> "MISSION EN COURS : ${c.taskTitle.uppercase()}"
-            else -> "🚨 B.R.R. — ${c.taskTitle.uppercase()}"
+            else -> "ALERTE NATIONALE — ${c.taskTitle.uppercase()}"
         }
 
         fun body(c: ReminderContent): String {

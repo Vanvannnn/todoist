@@ -11,8 +11,8 @@ enum class Priority(val label: String, val weight: Int) {
 enum class ReminderLevel(val label: String, val tagline: String) {
     NORMAL("Normal", "Une notification polie. Pour l'instant."),
     INSISTANT("Insistant", "Prioritaire, vibrante, sarcastique."),
-    HARCELEMENT("Harcèlement", "Écran immersif, compte à rebours, relances."),
-    BRR("Mode B.R.R.", "Urgence nationale. Persistant jusqu'à action.");
+    HARCELEMENT("Bully Mode", "Écran immersif, compte à rebours, messages qui changent."),
+    BRR("Bully Mode: Nuclear", "Alerte nationale. Persistant jusqu'à action.");
 
     fun atMost(cap: ReminderLevel): ReminderLevel = if (ordinal <= cap.ordinal) this else cap
 
