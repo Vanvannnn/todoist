@@ -42,7 +42,7 @@ export function showAlert(host, o) {
   host.querySelectorAll(':scope > .al').forEach((n) => n.remove());
   const level = o.level;
   const variants = VARIANTS[level];
-  const variant = o.variant ?? (variants ? variants[(o.seed ?? Math.floor(Math.random() * 99)) % variants.length] : null);
+  const variant = o.variant ?? (variants ? variants[Number(missionNumber(o.seed ?? Math.random())) % variants.length] : null);
   const root = document.createElement('section');
   root.className = `al al-${level}${level >= 3 ? ' al-full' : ''}`;
   root.setAttribute('role', level >= 3 ? 'alertdialog' : 'alert');

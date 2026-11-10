@@ -46,7 +46,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: relative; width: min(360px, 100%); aspect-ratio: 9 / 19; border-radius: 46px; padding: 11px;
   background: linear-gradient(145deg, #2a2e36, #0d0f12 60%); box-shadow: 0 0 0 1px #3a3f49, 0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px #000;
 }
-.phone-screen { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: var(--bg); isolation: isolate; container-type: inline-size; }
+.phone-screen { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: var(--bg); color: var(--text); isolation: isolate; container-type: inline-size; }
 .phone-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 20px; background: #000; z-index: 50; }
 .phone-status { position: absolute; inset: 0 0 auto; height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 6px 26px 0; font-size: 12px; font-weight: 600; z-index: 40; pointer-events: none; }
 

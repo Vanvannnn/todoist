@@ -63,7 +63,7 @@ export function renderPlan(el, result) {
   for (const d of result.days) {
     const blocks = d.blocks.filter((b) => b.kind !== 'past');
     if (!blocks.some((b) => b.kind === 'task' || b.kind === 'event')) continue;
-    parts.push(`<section class="plan-day"><h4>${esc(d.label)}<small>${fmtMin(d.focus)} de travail · ${fmtMin(d.free)} libres</small></h4><ul class="blocks">${blocks.map((b) =>
+    parts.push(`<section class="plan-day"><h4>${esc(d.label)}<small>${fmtMin(d.focus)} de travail${d.free != null ? ` · ${fmtMin(d.free)} libres` : ''}</small></h4><ul class="blocks">${blocks.map((b) =>
       `<li class="blk ${b.kind}" ${b.level ? `data-level="${b.level}"` : ''}><span class="hr">${fmtTime(b.start)} – ${fmtTime(Math.min(b.end, 1440))}</span><span>${esc(b.title)}${b.location ? ` <span class="muted">· ${esc(b.location)}</span>` : ''}</span></li>`).join('')}</ul></section>`);
   }
   el.innerHTML = parts.join('');

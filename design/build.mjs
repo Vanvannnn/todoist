@@ -11,7 +11,7 @@ const write = (p, s) => { fs.mkdirSync(path.dirname(path.join(root, p)), { recur
 const t = read('design/tokens.json');
 const pl = read('design/punchlines.json');
 const HEADER = 'GÉNÉRÉ par design/build.mjs depuis design/*.json — ne pas modifier à la main.';
-const kebab = (s) => s.replace(/[A-Z0-9]+/g, (m) => '-' + m.toLowerCase());
+const kebab = (s) => s.replace(/[A-Z]+/g, (m) => '-' + m.toLowerCase());
 
 // ---------- Web : tokens.css ----------
 const cssVars = (colors) => Object.entries(colors).map(([k, v]) => `  --${kebab(k)}: ${v};`).join('\n');
@@ -26,7 +26,7 @@ const bez = (a) => `cubic-bezier(${a.join(',')})`;
 css += `  --t-fast: ${t.motion.fast}ms;\n  --t-base: ${t.motion.base}ms;\n  --t-slow: ${t.motion.slow}ms;\n  --ease: ${bez(t.motion.ease)};\n  --ease-emph: ${bez(t.motion.emphasis)};\n`;
 for (const [k, v] of Object.entries(t.motion.pulse)) css += `  --pulse-${k}: ${v}ms;\n`;
 for (const [k, v] of Object.entries(t.glow)) css += `  --glow-${k}: ${v};\n`;
-css += `  color-scheme: dark;\n}\n:root[data-theme="light"] {\n${cssVars(t.color.light)}\n  color-scheme: light;\n}\n`;
+css += `  color-scheme: dark;\n}\n:root[data-theme="light"], [data-theme="light"] {\n${cssVars(t.color.light)}\n  color-scheme: light;\n}\n`;
 for (const [k, s] of Object.entries(t.type)) {
   css += `.t-${k} { font-family: var(--font-${k === 'body' || k === 'small' || k === 'title' || k === 'label' ? 'body' : 'display'}); font-size: ${s.size}px; line-height: ${s.line}px; font-weight: ${s.weight}; font-stretch: ${s.width}%; letter-spacing: ${s.tracking}em;${k === 'label' ? ' text-transform: uppercase;' : ''} }\n`;
 }

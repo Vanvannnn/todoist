@@ -1,14 +1,14 @@
 /* GÉNÉRÉ par design/build.mjs depuis design/*.json — ne pas modifier à la main. */
 :root {
   --bg: #121419;
-  --surface-1: #181B21;
-  --surface-2: #1F232B;
-  --surface-3: #282D37;
+  --surface1: #181B21;
+  --surface2: #1F232B;
+  --surface3: #282D37;
   --line: #2C313B;
   --line-strong: #3C4250;
   --text: #F2EFE8;
-  --text-2: #A9AAB0;
-  --text-3: #71747D;
+  --text2: #A9AAB0;
+  --text3: #71747D;
   --accent: #F2EFE8;
   --on-accent: #121419;
   --accent-text: #F2EFE8;
@@ -74,16 +74,16 @@
   --glow-l4: 0 0 72px rgba(255,35,64,.55);
   color-scheme: dark;
 }
-:root[data-theme="light"] {
+:root[data-theme="light"], [data-theme="light"] {
   --bg: #E9ECEF;
-  --surface-1: #FFFFFF;
-  --surface-2: #F5F6F8;
-  --surface-3: #E1E5E9;
+  --surface1: #FFFFFF;
+  --surface2: #F5F6F8;
+  --surface3: #E1E5E9;
   --line: #D5DAE0;
   --line-strong: #B9C0C8;
   --text: #15171C;
-  --text-2: #4C515B;
-  --text-3: #7A808A;
+  --text2: #4C515B;
+  --text3: #7A808A;
   --accent: #15171C;
   --on-accent: #F7F7F5;
   --accent-text: #15171C;

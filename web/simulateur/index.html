@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulateur — BULLYLIST</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/alerts.css">
+<link rel="stylesheet" href="../assets/css/plan.css">
+<link rel="stylesheet" href="sim.css">
+</head>
+<body>
+<div class="banner" role="note"><b>Simulation navigateur.</b> Elle reproduit l'interface et la logique de Bullylist. Elle ne prouve pas que les vraies notifications, alarmes et autorisations Android fonctionnent : cela se vérifie sur un téléphone.</div>
+<div class="layout">
+  <div class="device-col">
+    <div class="phone" id="phone">
+      <div class="phone-screen" id="screen">
+        <div class="phone-notch"></div>
+        <div class="phone-status"><span id="clock">--:--</span><span id="status-icons"></span></div>
+        <div class="app" id="app">
+          <div class="view" id="view"></div>
+          <button class="fab chamfer" id="fab-voice" aria-label="Dicter des tâches"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12Z" fill="currentColor"/></svg></button>
+          <nav class="tabs" id="tabs" aria-label="Navigation de l'application">
+            <button data-tab="today" aria-current="page">Tâches</button>
+            <button data-tab="plan">Planning</button>
+            <button data-tab="cal">Agenda</button>
+            <button data-tab="punch">Punchlines</button>
+            <button data-tab="settings">Réglages</button>
+          </nav>
+        </div>
+        <div class="shade" id="shade" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="console" aria-label="Console de test">
+    <header><a class="logo" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 1h24v24l-6 6H1V7z" fill="currentColor"/><path d="M13.5 7h5l-.9 11.5h-3.2zM13.4 21.6h5.2v4.4h-5.2z" fill="var(--bg)"/></svg>BULLYLIST</a><span class="muted">Console de test</span></header>
+
+    <section>
+      <h2>Déclencher une alerte</h2>
+      <div class="field-inline"><label for="c-task">Tâche</label><select id="c-task"></select></div>
+      <div class="levelbtns">
+        <button data-test="1" class="lv1">TEST NIVEAU 1</button>
+        <button data-test="2" class="lv2">TEST NIVEAU 2</button>
+        <button data-test="3" class="lv3">TEST NIVEAU 3</button>
+        <button data-test="4" class="lv4">TEST NIVEAU 4</button>
+      </div>
+      <div class="row-btns">
+        <button id="c-late">Simuler une tâche en retard</button>
+        <button id="c-pause">Simuler une pause de calendrier</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Téléphone</h2>
+      <div class="seg" id="c-mode" role="group" aria-label="Mode sonnerie">
+        <button data-v="sound" aria-pressed="true">Son activé</button>
+        <button data-v="vibrate" aria-pressed="false">Vibreur</button>
+        <button data-v="silent" aria-pressed="false">Silencieux</button>
+      </div>
+      <label class="switch"><input type="checkbox" id="c-dnd"> Ne pas déranger</label>
+      <label class="switch"><input type="checkbox" id="c-locked"> Écran verrouillé (plein écran Android)</label>
+    </section>
+
+    <section>
+      <h2>Horloge simulée</h2>
+      <p class="clockline"><span id="c-clock" class="mono"></span> <span class="muted" id="c-clock-mode"></span></p>
+      <div class="row-btns">
+        <button data-adv="5">+5 min</button><button data-adv="15">+15 min</button><button data-adv="60">+1 h</button><button id="c-now">Heure réelle</button>
+      </div>
+      <p class="hint">Avancer l'horloge fait sonner les échéances et l'escalade (+5, +10, +15 min) sans attendre.</p>
+    </section>
+
+    <section>
+      <h2>Données</h2>
+      <div class="row-btns">
+        <button id="c-demo">Charger la semaine étudiante</button>
+        <button id="c-reset">Tout effacer</button>
+      </div>
+    </section>
+
+    <section class="log-sec">
+      <h2>Journal</h2>
+      <ol class="log" id="log" aria-live="polite"></ol>
+    </section>
+  </aside>
+</div>
+<script type="module" src="sim.js"></script>
+</body>
+</html>
