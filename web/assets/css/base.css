@@ -1,0 +1,55 @@
+/* BULLYLIST — base commune au site et au simulateur. Les valeurs viennent de tokens.css (généré). */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.5; font-stretch: 100%;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, svg, video { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Boutons — calmes (arrondis) */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 22px; border-radius: var(--r-md); border: 1px solid var(--line-strong);
+  background: transparent; font-weight: 600; font-stretch: 105%; text-decoration: none; cursor: pointer;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+.btn:hover { border-color: var(--text2); }
+.btn:active { transform: translateY(1px); }
+.btn-primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, transparent); }
+.btn-sm { min-height: 36px; padding: 0 14px; font-size: 14px; border-radius: var(--r-sm); }
+
+/* Formes d'alerte : coins chanfreinés */
+.chamfer { clip-path: polygon(var(--r-chamfer) 0, 100% 0, 100% calc(100% - var(--r-chamfer)), calc(100% - var(--r-chamfer)) 100%, 0 100%, 0 var(--r-chamfer)); }
+.chamfer-sm { clip-path: polygon(var(--r-chamfer-sm) 0, 100% 0, 100% calc(100% - var(--r-chamfer-sm)), calc(100% - var(--r-chamfer-sm)) 100%, 0 100%, 0 var(--r-chamfer-sm)); }
+
+/* Pastille de niveau */
+.lvl { --c: var(--l1); display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 700; font-stretch: 85%; letter-spacing: .04em; color: var(--c); }
+.lvl::before { content: ''; width: 8px; height: 8px; background: var(--c); clip-path: polygon(30% 0, 100% 0, 100% 70%, 70% 100%, 0 100%, 0 30%); }
+.lvl[data-l="2"] { --c: var(--l2); } .lvl[data-l="3"] { --c: var(--l3); } .lvl[data-l="4"] { --c: var(--l4); }
+
+/* Logo */
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 900; font-stretch: 125%; letter-spacing: -0.02em; font-size: 18px; }
+.logo svg { width: 26px; height: 26px; }
+
+/* Téléphone (démo / simulateur) */
+.phone {
+  position: relative; width: min(360px, 100%); aspect-ratio: 9 / 19; border-radius: 46px; padding: 11px;
+  background: linear-gradient(145deg, #2a2e36, #0d0f12 60%); box-shadow: 0 0 0 1px #3a3f49, 0 40px 80px rgba(0,0,0,.55), inset 0 0 0 2px #000;
+}
+.phone-screen { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: var(--bg); isolation: isolate; container-type: inline-size; }
+.phone-notch { position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 92px; height: 26px; border-radius: 20px; background: #000; z-index: 50; }
+.phone-status { position: absolute; inset: 0 0 auto; height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 6px 26px 0; font-size: 12px; font-weight: 600; z-index: 40; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}

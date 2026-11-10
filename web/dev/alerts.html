@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atelier des alertes</title>
+<link rel="stylesheet" href="../assets/css/tokens.css"><link rel="stylesheet" href="../assets/css/base.css"><link rel="stylesheet" href="../assets/css/alerts.css">
+<style>body{padding:24px;display:flex;flex-wrap:wrap;gap:24px}.phone{width:300px}figure{margin:0}figcaption{margin-top:8px;color:var(--text2);font-size:13px}</style>
+</head><body>
+<script type="module">
+import { showAlert } from '../js/ui/alerts.js';
+const cases = [[1,null],[2,null],[3,'mission'],[3,'radar'],[3,'controle'],[4,'nationale'],[4,'defcon'],[4,'flash']];
+for (const [level, variant] of cases) {
+  const f = document.createElement('figure');
+  f.innerHTML = `<div class="phone"><div class="phone-screen"><div class="phone-notch"></div><div class="phone-status"><span>9:41</span><span>5G</span></div></div></div><figcaption>Niveau ${level} ${variant ?? ''}</figcaption>`;
+  document.body.append(f);
+  showAlert(f.querySelector('.phone-screen'), { level, variant, task: 'Sortir les poubelles', message: "À ce stade, le sac-poubelle a plus de projets d'avenir que toi.", minutesLate: 47, snoozeCount: 3, nextInSec: 287, seed: 428 });
+}
+</script></body></html>

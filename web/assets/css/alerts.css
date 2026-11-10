@@ -1,0 +1,123 @@
+/* BULLYLIST — écrans de rappel. Rendus dans un conteneur (.phone-screen ou plein écran) : tailles en cqw. */
+.al { position: absolute; inset: 0; z-index: 30; font-family: var(--font-display); color: #fff; pointer-events: auto; word-spacing: .12em; }
+.al .mono, .al .bar, .al .mission { word-spacing: 0; }
+.al * { box-sizing: border-box; }
+.al button { cursor: pointer; border: 0; font-family: var(--font-display); }
+.al-stack > * { opacity: 0; transform: translateY(10px); animation: al-in .5s var(--ease) forwards; }
+.al-stack > *:nth-child(2) { animation-delay: .08s } .al-stack > *:nth-child(3) { animation-delay: .16s }
+.al-stack > *:nth-child(4) { animation-delay: .24s } .al-stack > *:nth-child(5) { animation-delay: .32s }
+.al-stack > *:nth-child(6) { animation-delay: .40s } .al-stack > *:nth-child(7) { animation-delay: .48s }
+.al-stack > *:nth-child(8) { animation-delay: .56s } .al-stack > *:nth-child(9) { animation-delay: .64s }
+@keyframes al-in { to { opacity: 1; transform: none; } }
+
+/* ---------- Niveau 1 : notification discrète ---------- */
+.al-1 { inset: 0 0 auto; padding: 48px 10px 0; pointer-events: none; }
+.al-1 .card {
+  pointer-events: auto; display: grid; grid-template-columns: 36px 1fr; gap: 4px 12px; padding: 14px 14px 12px;
+  border-radius: 22px; background: color-mix(in srgb, var(--surface2) 86%, transparent); backdrop-filter: blur(18px);
+  border: 1px solid var(--line); color: var(--text); box-shadow: 0 18px 40px rgba(0,0,0,.35);
+  animation: al-drop .55s var(--ease) both;
+}
+@keyframes al-drop { from { transform: translateY(-120%); } }
+.al-1 .ico { grid-row: span 3; width: 36px; height: 36px; border-radius: 10px; background: var(--text); display: grid; place-items: center; }
+.al-1 .ico svg { width: 22px; height: 22px; }
+.al-1 .meta { font-size: 12px; color: var(--text3); font-family: var(--font-body); display: flex; justify-content: space-between; }
+.al-1 .t { font-weight: 700; font-stretch: 100%; font-size: 15px; }
+.al-1 .m { font-family: var(--font-body); font-size: 14px; color: var(--text2); line-height: 1.35; }
+.al-1 .acts { grid-column: 2; display: flex; gap: 8px; margin-top: 8px; }
+.al-1 .acts button { white-space: nowrap; background: color-mix(in srgb, var(--text) 12%, transparent); color: var(--text); border-radius: 10px; padding: 7px 12px; font-size: 13px; font-weight: 600; }
+
+/* ---------- Niveau 2 : insistant ---------- */
+.al-2 { inset: 0 0 auto; padding: 46px 10px 0; pointer-events: none; }
+.al-2 .card {
+  pointer-events: auto; position: relative; overflow: hidden; padding: 16px 16px 14px; color: #140c00;
+  background: var(--l2); box-shadow: 0 0 0 0 rgba(255,176,0,.55), 0 22px 50px rgba(0,0,0,.45);
+  animation: al-drop .45s var(--ease) both, al-buzz .5s .45s 2, al-ring var(--pulse-l2) .9s infinite;
+}
+@keyframes al-buzz { 0%,100% { transform: translateX(0) } 20% { transform: translateX(-6px) rotate(-.6deg) } 40% { transform: translateX(6px) rotate(.6deg) } 60% { transform: translateX(-4px) } 80% { transform: translateX(3px) } }
+@keyframes al-ring { 0% { box-shadow: 0 0 0 0 rgba(255,176,0,.6), 0 22px 50px rgba(0,0,0,.45) } 100% { box-shadow: 0 0 0 18px rgba(255,176,0,0), 0 22px 50px rgba(0,0,0,.45) } }
+.al-2 .card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.45) 50%, transparent 65%); transform: translateX(-100%); animation: al-sheen 2.4s 1s infinite; }
+@keyframes al-sheen { 60%, 100% { transform: translateX(100%); } }
+.al-2 .top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 800; font-stretch: 80%; letter-spacing: .08em; }
+.al-2 .t { margin-top: 8px; font-weight: 900; font-stretch: 78%; font-size: 26px; line-height: .98; text-transform: uppercase; }
+.al-2 .m { margin-top: 8px; font-family: var(--font-body); font-weight: 600; font-size: 14.5px; line-height: 1.35; }
+.al-2 .acts { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 6px; margin-top: 12px; position: relative; z-index: 1; }
+.al-2 .acts button { background: #140c00; color: var(--l2); padding: 10px 6px; font-weight: 800; font-stretch: 85%; font-size: 13px; }
+.al-2 .acts button.ghost { background: rgba(20,12,0,.14); color: #140c00; }
+
+/* ---------- Plein écran (niveaux 3 et 4) ---------- */
+.al-full { display: flex; flex-direction: column; overflow: hidden; }
+.al-full .scroll { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; padding: 52px 6.5cqw 6cqw; overflow-y: auto; }
+.al-full .bar { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: max(10px, 3.1cqw); font-weight: 700; letter-spacing: .06em; }
+.al-full .dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; display: inline-block; margin-right: 8px; animation: al-blink 1s steps(1) infinite; }
+@keyframes al-blink { 50% { opacity: .15; } }
+.al-full .kicker { margin-top: auto; font-family: var(--font-mono); font-size: max(10px, 3.2cqw); letter-spacing: .12em; opacity: .8; }
+.al-full .task { margin: 1.5cqw 0 0; font-weight: 900; font-stretch: 64%; text-transform: uppercase; line-height: .9; letter-spacing: -.005em; overflow-wrap: anywhere; }
+.al-full .quote { margin-top: 4cqw; font-family: var(--font-body); font-weight: 600; font-size: max(14px, 4.6cqw); line-height: 1.32; min-height: 3.2em; }
+.al-full .quote .caret { display: inline-block; width: .5em; height: 1.05em; vertical-align: -.15em; background: currentColor; margin-left: 2px; animation: al-blink 1s steps(1) infinite; }
+.al-full .acts { display: grid; gap: 2.4cqw; margin-top: 5cqw; }
+.al-full .acts button { min-height: 13cqw; padding: 0 4cqw; font-weight: 900; font-stretch: 72%; font-size: max(15px, 5cqw); text-transform: uppercase; letter-spacing: .01em; }
+.al-full .acts .row { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4cqw; }
+.al-full .acts .row button { min-height: 11cqw; font-size: max(12px, 3.6cqw); }
+.al-full .shake { display: inline-block; animation: al-shake 3s 1.2s infinite; }
+@keyframes al-shake { 0%, 86%, 100% { transform: none } 88% { transform: translate(-2px, 1px) rotate(-.4deg) } 90% { transform: translate(3px, -1px) rotate(.4deg) } 92% { transform: translate(-2px, 0) } 94% { transform: translate(2px, 1px) } }
+.al-full .noise { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; }
+
+/* Niveau 3 — Bully Mode */
+.al-3 { background: radial-gradient(120% 70% at 50% 20%, #5a1a05 0%, var(--l3-deep) 55%, #0c0402 100%); color: #fff; }
+.al-3 .bar { color: var(--l3); }
+.al-3 .task { font-size: clamp(34px, 15cqw, 76px); }
+.al-3 .acts .go { background: var(--l3); color: #1a0700; }
+.al-3 .acts .alt { background: rgba(255,90,31,.14); color: #ffd9c9; box-shadow: inset 0 0 0 1px rgba(255,90,31,.5); }
+.al-3 .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(255,90,31,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,90,31,.10) 1px, transparent 1px); background-size: 8cqw 8cqw; mask-image: radial-gradient(90% 60% at 50% 30%, #000 30%, transparent 80%); }
+.al-3 .ring { position: relative; width: 34cqw; aspect-ratio: 1; margin: 5cqw 0 0; flex: none; }
+.al-3 .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.al-3 .ring .v { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; font-family: var(--font-mono); font-weight: 800; font-size: 6.5cqw; line-height: 1; }
+.al-3 .ring .v small { display: block; font-size: 2.4cqw; font-weight: 700; opacity: .7; margin-top: 1cqw; letter-spacing: .1em; }
+.al-3 .radar { position: absolute; right: -18cqw; top: 14cqw; width: 70cqw; aspect-ratio: 1; border-radius: 50%; z-index: 0; opacity: .55;
+  background: repeating-radial-gradient(circle, rgba(255,90,31,.35) 0 1px, transparent 1px 9cqw), conic-gradient(from 0deg, rgba(255,90,31,.55), transparent 22%); animation: al-spin 4s linear infinite; }
+@keyframes al-spin { to { transform: rotate(1turn); } }
+.al-3 .gauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; margin-top: 5cqw; }
+.al-3 .gauge { padding: 2.6cqw; background: rgba(255,90,31,.08); box-shadow: inset 0 0 0 1px rgba(255,90,31,.35); }
+.al-3 .gauge b { display: block; font-family: var(--font-mono); font-size: 6cqw; line-height: 1; }
+.al-3 .gauge > span { display: block; margin-top: 1.4cqw; font-family: var(--font-body); font-size: max(9px, 2.6cqw); opacity: .75; line-height: 1.2; }
+.al-3 .meter { height: 1.4cqw; margin-top: 2cqw; background: rgba(255,255,255,.12); }
+.al-3 .meter i { display: block; height: 100%; background: var(--l3); width: 0; transition: width 1.6s var(--ease); }
+
+/* Niveau 4 — Bully Mode: Nuclear */
+.al-4 { background: #160105; color: #fff; }
+.al-4::before { content: ''; position: absolute; inset: 0; z-index: 0; background: radial-gradient(110% 65% at 50% 28%, #8d0016 0%, #3a0009 50%, #0e0003 100%); animation: al-breathe var(--pulse-l4) ease-in-out infinite alternate; }
+@keyframes al-breathe { from { opacity: .72; } to { opacity: 1; } }
+.al-4 .flash { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: #ff2340; mix-blend-mode: screen; opacity: 0; animation: al-flash 1s 2 .1s; }
+@keyframes al-flash { 0% { opacity: .85 } 40%, 100% { opacity: 0 } }
+.al-4 .hazard { position: relative; z-index: 2; flex: none; height: 7cqw; background: repeating-linear-gradient(-45deg, #ffd400 0 4cqw, #0d0d0d 4cqw 8cqw); background-size: 11.3cqw 100%; animation: al-hazard 1.2s linear infinite; }
+.al-4 .hazard.top { margin-top: 44px; }
+@keyframes al-hazard { to { background-position: 11.3cqw 0; } }
+.al-4 .scroll { padding-top: 5cqw; }
+.al-4 .bar { color: #ff8c9a; }
+.al-4 .title { margin-top: 4cqw; font-weight: 900; font-stretch: 62%; font-size: clamp(30px, 14.5cqw, 72px); line-height: .86; letter-spacing: -.01em; text-shadow: 0 0 6cqw rgba(255,35,64,.75); }
+.al-4 .mission { display: flex; justify-content: space-between; gap: 3cqw; margin-top: 3cqw; padding: 2.2cqw 3cqw; font-family: var(--font-mono); font-size: max(10px, 3.2cqw); font-weight: 700; background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 1px rgba(255,35,64,.55); }
+.al-4 .task { margin-top: 4.5cqw; font-size: clamp(26px, 11cqw, 58px); color: #fff; }
+.al-4 .status { margin-top: 3cqw; font-family: var(--font-mono); font-weight: 800; font-size: max(11px, 3.5cqw); word-spacing: -.15em; color: #ffd400; }
+.al-4 .status b { font-size: 1.25em; }
+.al-4 .quote { font-style: normal; border-left: 3px solid var(--l4); padding-left: 3.5cqw; }
+.al-4 .acts .go { background: #fff; color: #9b0018; box-shadow: 0 0 8cqw rgba(255,255,255,.35); }
+.al-4 .acts .alt { background: rgba(255,255,255,.1); color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+.al-4 .acts .hopeless { background: transparent; color: #ff9aa6; min-height: 10cqw; font-size: max(12px, 3.4cqw); text-decoration: underline; text-underline-offset: 4px; }
+.al-4 .defcon { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.4cqw; margin-top: 4cqw; }
+.al-4 .defcon span { padding: 2.2cqw 0; text-align: center; font-family: var(--font-mono); font-weight: 800; font-size: 4cqw; background: rgba(255,255,255,.06); color: rgba(255,255,255,.35); transition: background .3s, color .3s; }
+.al-4 .defcon span.on { background: var(--l4); color: #fff; box-shadow: 0 0 6cqw rgba(255,35,64,.7); }
+.al-4 .tv { position: relative; z-index: 2; margin-top: 44px; display: flex; align-items: stretch; font-weight: 900; font-stretch: 70%; text-transform: uppercase; }
+.al-4 .tv .live { background: #fff; color: #c4001d; padding: 2cqw 3cqw; font-size: 4cqw; }
+.al-4 .tv .flashsp { flex: 1; background: #c4001d; padding: 2cqw 3cqw; font-size: 4cqw; }
+.al-4 .ticker { position: relative; z-index: 2; flex: none; overflow: hidden; white-space: nowrap; background: #ffd400; color: #111; font-weight: 800; font-stretch: 85%; font-size: max(11px, 3.4cqw); padding: 1.8cqw 0; }
+.al-4 .ticker span { display: inline-block; padding-left: 100%; animation: al-ticker 22s linear infinite; }
+@keyframes al-ticker { to { transform: translateX(-100%); } }
+
+.al .preview-tag { position: absolute; z-index: 60; top: 50px; right: 12px; font-family: var(--font-mono); font-size: 10px; padding: 3px 6px; background: rgba(0,0,0,.55); color: #fff; letter-spacing: .08em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .al .radar, .al-4 .hazard, .al-4 .ticker span, .al-4::before { animation: none !important; }
+  .al-4 .flash { display: none; }
+  .al-stack > * { opacity: 1; transform: none; }
+}
