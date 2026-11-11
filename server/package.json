@@ -1,0 +1,16 @@
+{
+  "name": "bullylist-assistant-server",
+  "private": true,
+  "type": "module",
+  "description": "Serveur léger de compréhension vocale de Bullylist : garde la clé API hors de l'application.",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0"
+  }
+}
