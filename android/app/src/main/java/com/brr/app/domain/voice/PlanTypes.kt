@@ -13,15 +13,15 @@ import java.time.temporal.ChronoUnit
 data class Moment(val date: LocalDate, val minute: Int)
 data class Deadline(val date: LocalDate, val minute: Int, val label: String, val assumed: Boolean)
 data class Window(val date: LocalDate, val start: Int, val end: Int, val fixed: Boolean, val label: String)
-data class Recurrence(val type: Type, val part: String? = null, val n: Int = 0) { enum class Type { DAILY, COUNT } }
+data class Recurrence(val type: Type, val part: String? = null, val n: Int = 0, val dates: List<LocalDate> = emptyList()) { enum class Type { DAILY, COUNT, DAYS } }
 data class Horizon(val from: LocalDate, val until: LocalDate)
 data class Estimate(val min: Int, val max: Int, val minutes: Int, val family: String, val familyLabel: String, val learned: Boolean)
 
 /** Tâche comprise dans une dictée (modifiable par l'utilisateur avant validation). */
 data class VoiceTask(
     val id: String,
-    val title: String,
-    val norm: String,
+    var title: String,
+    var norm: String,
     var deadline: Deadline? = null,
     var window: Window? = null,
     var recurrence: Recurrence? = null,
@@ -38,9 +38,20 @@ data class VoiceTask(
     var sessionMinutes: Int? = null,
     var priority: Priority = Priority.NORMAL,
     var level: ReminderLevel = ReminderLevel.INSISTANT,
-)
+    /** Projet qui regroupe les séances d'une tâche composée (compréhension IA). */
+    val group: String? = null,
+    /** Sous-tâches à cocher, enregistrées avec la tâche. */
+    val subtasks: List<String> = emptyList(),
+) {
+    /** Tâche créée d'après une dépendance (« après avoir fini les recherches ») : son titre cède à une formulation explicite. */
+    var fromDep: Boolean = false
+    var except: List<Int> = emptyList()
+}
 
-data class Dictation(val tasks: List<VoiceTask>, val questions: List<String>, val isPlanRequest: Boolean)
+/** Indisponibilité comprise (« mardi j'ai cours le matin », « rien après 18 heures »), en minutes locales. */
+data class Constraint(val date: LocalDate, val start: Int, val end: Int, val label: String)
+
+data class Dictation(val tasks: List<VoiceTask>, val questions: List<String>, val isPlanRequest: Boolean, val constraints: List<Constraint> = emptyList())
 
 object PlanDates {
     private val DAYS = listOf("lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche")

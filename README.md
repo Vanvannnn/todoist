@@ -28,7 +28,8 @@ Aucune installation : Node.js et Python 3 suffisent (déjà présents).
 | `web/js/core/` | Dictée → tâches, estimation des durées, planning, lecture ICS, mode pause, punchlines |
 | `design/` | **Charte partagée** : `tokens.json`, `punchlines.json`, cas de test communs (`fixtures/`), générateur `build.mjs` |
 | `scripts/` | `preview.sh`, `test.sh`, `publish-apk.sh` |
-| `docs/` | Audit, installation, calendriers, charte, bilan |
+| `docs/` | Audit, installation, calendriers, charte, assistant IA, bilan |
+| `server/` | Serveur léger de compréhension IA (garde la clé API hors de l’application) |
 | `releases/v1/` | APK de la version 1 (B.R.R.), conservés |
 
 ## Commandes
@@ -49,5 +50,7 @@ Pour compiler l'APK, `android/local.properties` doit pointer vers le SDK (`sdk.d
 - [docs/AUDIT.md](docs/AUDIT.md) : l'ordinateur, Starva Cloud, l'état du projet V1, les installations réalisées
 - [docs/INSTALLATION.md](docs/INSTALLATION.md) : compiler, installer l'APK, publier le site
 - [docs/CALENDRIERS.md](docs/CALENDRIERS.md) : CELCAT, Google, Apple, mode pause
+- [docs/ASSISTANT-IA.md](docs/ASSISTANT-IA.md) : assistant vocal V2.1, serveur IA, coûts, confidentialité, tests
+- [docs/rapports/assistant-local.md](docs/rapports/assistant-local.md) : banque de 34 scénarios, moteur local
 - [docs/CHARTE.md](docs/CHARTE.md) : identité visuelle
 - [docs/BILAN.md](docs/BILAN.md) : ce qui est terminé, ce qui est testé et comment, ce qui reste à vérifier sur téléphone

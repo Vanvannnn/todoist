@@ -52,7 +52,16 @@ data class AppSettings(
     val learnedDurations: Map<String, List<Int>> = emptyMap(),
     val maxFocusMinutes: Int = 300,
     val voiceConsent: Boolean = false,
+    // V2.1 : assistant IA (compréhension des dictées par un serveur qui garde la clé API)
+    val aiEnabled: Boolean = false,
+    val aiServerUrl: String = "",
+    val aiToken: String = "",
+    /** Accord explicite pour envoyer le TEXTE des dictées au service IA (jamais l'audio). */
+    val aiConsent: Boolean = false,
 ) {
+    /** L'IA n'est utilisée que si l'utilisateur l'a activée, configurée et acceptée. */
+    val aiReady get() = aiEnabled && aiConsent && aiServerUrl.isNotBlank()
+
     fun reminderSettings(pauses: List<com.brr.app.domain.PauseWindow> = emptyList()) = ReminderSettings(
         pauses = pauses,
         pauseEnabled = pauseEnabled,
@@ -108,6 +117,10 @@ class SettingsRepository(private val context: Context) {
         val learned = stringPreferencesKey("learned_durations")
         val maxFocus = intPreferencesKey("max_focus")
         val voiceConsent = booleanPreferencesKey("voice_consent")
+        val aiEnabled = booleanPreferencesKey("ai_enabled")
+        val aiUrl = stringPreferencesKey("ai_url")
+        val aiToken = stringPreferencesKey("ai_token")
+        val aiConsent = booleanPreferencesKey("ai_consent")
     }
 
     val settings: Flow<AppSettings> = context.dataStore.data
@@ -145,6 +158,10 @@ class SettingsRepository(private val context: Context) {
             learnedDurations = com.brr.app.domain.voice.DurationEstimator.decode(this[K.learned]),
             maxFocusMinutes = this[K.maxFocus] ?: d.maxFocusMinutes,
             voiceConsent = this[K.voiceConsent] ?: d.voiceConsent,
+            aiEnabled = this[K.aiEnabled] ?: d.aiEnabled,
+            aiServerUrl = this[K.aiUrl] ?: d.aiServerUrl,
+            aiToken = this[K.aiToken] ?: d.aiToken,
+            aiConsent = this[K.aiConsent] ?: d.aiConsent,
         )
     }
 
@@ -184,6 +201,9 @@ class SettingsRepository(private val context: Context) {
     }
     suspend fun setMaxFocus(v: Int) = context.dataStore.edit { it[K.maxFocus] = v.coerceIn(60, 720) }
     suspend fun setVoiceConsent() = context.dataStore.edit { it[K.voiceConsent] = true }
+    suspend fun setAiEnabled(v: Boolean) = context.dataStore.edit { it[K.aiEnabled] = v }
+    suspend fun setAiServer(url: String, token: String) = context.dataStore.edit { it[K.aiUrl] = url.trim(); it[K.aiToken] = token.trim() }
+    suspend fun setAiConsent(v: Boolean) = context.dataStore.edit { it[K.aiConsent] = v }
     suspend fun learnDuration(normTitle: String, minutes: Int) = context.dataStore.edit {
         val cur = com.brr.app.domain.voice.DurationEstimator.decode(it[K.learned])
         it[K.learned] = com.brr.app.domain.voice.DurationEstimator.encode(com.brr.app.domain.voice.DurationEstimator.learn(cur, normTitle, minutes))

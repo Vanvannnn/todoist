@@ -1,0 +1,1127 @@
+{
+ "$comment": "Généré par web/tools/gen-nlu-parity.mjs — sorties du moteur local (JS = Kotlin).",
+ "now": {
+  "date": "2026-11-09",
+  "minute": 600
+ },
+ "cases": [
+  {
+   "text": "Mardi, je fais mes courses. Mercredi, je révise. Dimanche, je range.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire mes courses",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Réviser",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Ranger",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je dois terminer mon projet avant vendredi, mais je veux commencer mardi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Terminer mon projet",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": {
+       "date": "2026-11-12",
+       "minute": 1439
+      },
+      "minutes": 80,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi, je travaille deux heures sur le dossier. Enfin non, une heure trente.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Travailler sur le dossier",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 90,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Cette semaine, je veux réviser les maths un peu chaque jour, sauf mercredi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Réviser les maths",
+      "window": null,
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": {
+       "type": "days",
+       "n": 0,
+       "dates": [
+        "2026-11-09",
+        "2026-11-10",
+        "2026-11-12",
+        "2026-11-13",
+        "2026-11-14",
+        "2026-11-15"
+       ]
+      },
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Jeudi, j'ai cours le matin, donc prévois les révisions l'après-midi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Révisions l'",
+      "window": {
+       "date": "2026-11-12",
+       "start": 810,
+       "end": 1080,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-12",
+      "start": 480,
+      "end": 720,
+      "label": "J'ai cours le matin"
+     }
+    ],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Il faut que je fasse les recherches avant de commencer les diapositives.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les recherches",
+      "window": null,
+      "deadline": null,
+      "minutes": 30,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Commencer les diapositives",
+      "window": null,
+      "deadline": null,
+      "minutes": 25,
+      "recurrence": null,
+      "dependsOn": [
+       "t1"
+      ],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je dois rendre le dossier le 25 novembre, mais je veux qu'il soit terminé deux jours avant.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Rendre le dossier",
+      "window": null,
+      "deadline": {
+       "date": "2026-11-25",
+       "minute": 1439
+      },
+      "minutes": 135,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Dimanche, je fais les courses, je prépare mes repas et je range l'appartement.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Préparer mes repas",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Ranger l'appartement",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 90,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Ah, et n'oublie pas de mettre le rendez-vous chez le dentiste jeudi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Rendez-vous chez le dentiste",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi, je dois faire les courses. Mercredi, je dois appeler le garage. Finalement, déplace la tâche de mardi à samedi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-14",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Appeler le garage",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 15,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Alors, mardi j'ai cours le matin. Après, j'aimerais bien avancer sur mon dossier de marketing. Il faut que je fasse aussi les recherches pour la deuxième partie, et surtout que je n'oublie pas d'envoyer le mail à mon professeur. Mercredi, je voudrais réviser les maths, mais pas forcément toute la journée. Je pense qu'une heure et demie devrait suffire. Jeudi, j'ai envie de terminer le dossier marketing. Il faudrait que je prévoie un peu de temps pour relire ce que j'ai fait mercredi aussi. Et dimanche, je veux préparer mes affaires pour la semaine, faire les courses et ranger un peu l'appartement. Ah, et il faudrait absolument que j'aie terminé le dossier avant vendredi soir.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Avancer sur mon dossier de marketing",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1080
+      },
+      "minutes": 80,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "URGENT"
+     },
+     {
+      "title": "Faire les recherches pour la deuxième partie",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 30,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Envoyer le mail à mon professeur",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 10,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Réviser les maths",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 90,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Terminer le dossier marketing",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1080
+      },
+      "minutes": 50,
+      "recurrence": null,
+      "dependsOn": [
+       "t1"
+      ],
+      "priority": "URGENT"
+     },
+     {
+      "title": "Relire ce que j'ai fait mercredi",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 15,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Préparer mes affaires pour la semaine",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Ranger l'appartement",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 90,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-10",
+      "start": 480,
+      "end": 720,
+      "label": "J'ai cours le matin"
+     }
+    ],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi, je voudrais travailler sur mon exposé. Il faudrait que je fasse les recherches, que je trouve des images, que je prépare les diapositives et que je regarde aussi si les sources sont bonnes. Ah oui, et il faut que je pense à contacter Paul pour récupérer les documents. Je pense que les recherches vont prendre une heure, les diapositives peut-être deux heures, mais je ne suis pas certain.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Travailler sur mon exposé",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 110,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Faire les recherches",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 60,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Trouver des images",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Préparer les diapositives",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 120,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Regarder si les sources sont bonnes",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Penser à contacter Paul pour récupérer les documents",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mercredi, je vais réviser les maths pendant deux heures. Enfin non, plutôt une heure et demie, parce que j'ai aussi envie de sortir.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Réviser les maths",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 90,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Jeudi, je vais faire les courses. Ah non, finalement, mets ça dimanche.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-15",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Pour le dossier marketing, je voudrais faire les recherches mardi et la rédaction jeudi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les recherches",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 30,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Faire la rédaction",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 135,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi, je dois faire les courses. Mercredi, je dois réviser les maths. Ah, j'ai oublié quelque chose. Mardi, il faut aussi que je passe à la pharmacie. Et mercredi, ne me mets rien après 18 heures.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Réviser les maths",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Passer à la pharmacie",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-11",
+      "start": 1080,
+      "end": 1440,
+      "label": "Ne me mets rien après 18 heures"
+     }
+    ],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Dans deux semaines, je dois rendre mon projet.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Rendre mon projet",
+      "window": null,
+      "deadline": {
+       "date": "2026-11-23",
+       "minute": 1439
+      },
+      "minutes": 135,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Le 18 novembre, je dois envoyer mon dossier.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Envoyer mon dossier",
+      "window": {
+       "date": "2026-11-18",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 135,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Jeudi prochain, je dois terminer mon dossier.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Terminer mon dossier",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 80,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je dois appeler ma grand-mère.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Appeler ma grand-mère",
+      "window": null,
+      "deadline": null,
+      "minutes": 15,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Si j'ai le temps, je voudrais lire un livre.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Lire un livre",
+      "window": null,
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "LOW"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je dois absolument envoyer ma candidature avant demain midi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Envoyer ma candidature",
+      "window": null,
+      "deadline": {
+       "date": "2026-11-10",
+       "minute": 720
+      },
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "URGENT"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi, je dois faire les courses et appeler le garage. Finalement, laisse tomber les courses.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Appeler le garage",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 15,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Le 3 novembre, je dois payer le loyer.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Payer le loyer",
+      "window": null,
+      "deadline": null,
+      "minutes": 30,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 1
+   }
+  },
+  {
+   "text": "Mercredi après-midi, je ne suis pas disponible. Je dois quand même réviser l'anglais mercredi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Réviser l'anglais",
+      "window": {
+       "date": "2026-11-11",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-11",
+      "start": 810,
+      "end": 1080,
+      "label": "Pas disponible"
+     }
+    ],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je veux faire du sport trois fois cette semaine.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire du sport",
+      "window": null,
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": {
+       "type": "count",
+       "n": 3,
+       "dates": []
+      },
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Vendredi à 20h30, je dois aller au cinéma avec Léa.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Aller au cinéma avec Léa",
+      "window": {
+       "date": "2026-11-13",
+       "start": 1230,
+       "end": 1230,
+       "fixed": true
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Je dois écrire un rapport qui va me prendre quatre heures, à rendre vendredi. J'aimerais le répartir entre mardi et jeudi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Écrire un rapport qui va me",
+      "window": null,
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1439
+      },
+      "minutes": 240,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Mardi je dois faire les courses. Oui, mardi, les courses.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire les courses",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 70,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Après avoir fini les recherches, je rédigerai l'introduction. Les recherches, je les fais mardi.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Rédiger l'introduction",
+      "window": null,
+      "deadline": null,
+      "minutes": 135,
+      "recurrence": null,
+      "dependsOn": [
+       "t2"
+      ],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Finir les recherches",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 20,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Ce week-end, je dois ranger le garage et laver la voiture.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Ranger le garage",
+      "window": null,
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     },
+     {
+      "title": "Laver la voiture",
+      "window": null,
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Demain matin, je dois appeler la banque à 9h.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Appeler la banque",
+      "window": {
+       "date": "2026-11-10",
+       "start": 540,
+       "end": 540,
+       "fixed": true
+      },
+      "deadline": null,
+      "minutes": 15,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Euh, alors, mardi, je dois, euh, faire le ménage, enfin, le ménage de la cuisine.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Faire le ménage",
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 45,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  },
+  {
+   "text": "Jeudi, je travaille sur le mémoire, au moins trois heures, peut-être quatre.",
+   "expect": {
+    "tasks": [
+     {
+      "title": "Travailler sur le mémoire",
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "minutes": 180,
+      "recurrence": null,
+      "dependsOn": [],
+      "priority": "NORMAL"
+     }
+    ],
+    "constraints": [],
+    "questions": 0
+   }
+  }
+ ]
+}

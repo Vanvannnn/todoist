@@ -39,7 +39,7 @@ import com.brr.app.ui.theme.Brr
 @Composable
 fun SettingsScreen(
     container: AppContainer, onAlarms: () -> Unit, onPunchlines: () -> Unit, onPermissions: () -> Unit, onHistory: () -> Unit,
-    onCalendars: () -> Unit = {}, onVoice: () -> Unit = {},
+    onCalendars: () -> Unit = {}, onVoice: () -> Unit = {}, onAssistant: () -> Unit = {},
 ) {
     val vm = brrViewModel { SettingsViewModel(container) }
     val s by vm.settings.collectAsStateWithLifecycle()
@@ -66,6 +66,7 @@ fun SettingsScreen(
         }
         SettingRow("Calendriers et mode pause", "CELCAT, iCloud, Google, fichiers .ics · pause pendant les cours", com.brr.app.ui.components.BrrIcons.Calendar, onClick = onCalendars) { Chevron() }
         SettingRow("Assistant vocal", "Dicte ta semaine, Bullylist la planifie entre tes cours", com.brr.app.ui.components.BrrIcons.Mic, onClick = onVoice) { Chevron() }
+        SettingRow("Assistant IA", if (st.aiReady) "Activé : compréhension fine des dictées" else "Désactivé : analyse sur le téléphone", com.brr.app.ui.components.BrrIcons.Bolt, onClick = onAssistant) { Chevron() }
         SettingRow("Personnalisation des alarmes", "Relances, horaires, sons, volume, vibrations, aperçus", BrrIcons.Alarm, onClick = onAlarms) { Chevron() }
         SettingRow("Bibliothèque de punchlines", "Catégories, messages perso, contextualisation", BrrIcons.Notes, onClick = onPunchlines) { Chevron() }
         SettingRow("Fiabilité et autorisations", "Notifications, alarmes exactes, plein écran, batterie", BrrIcons.Shield, onClick = onPermissions) { Chevron() }
@@ -81,7 +82,7 @@ fun SettingsScreen(
 
         Group("Données")
         SettingRow("Historique", "Tâches terminées et journal d'activité", BrrIcons.History, onClick = onHistory) { Chevron() }
-        SettingRow("Stockage", "Tout reste sur ton téléphone. Aucun compte, aucun serveur, aucune pub.", Icons.Default.Info)
+        SettingRow("Stockage", "Tout reste sur ton téléphone, sans compte ni pub. Seule exception, si tu l'actives : le texte des dictées est envoyé à l'assistant IA.", Icons.Default.Info)
 
         Group("À propos")
         SettingRow("BULLYLIST — Your tasks. Your problem. Our business.", "Version ${BuildConfig.VERSION_NAME}. Sons et punchlines originaux. Polices Archivo et JetBrains Mono (SIL OFL).")

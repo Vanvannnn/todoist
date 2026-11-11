@@ -18,7 +18,7 @@ object SchedulePlanner {
         val dayStart: Int = 8 * 60, val dayEnd: Int = 22 * 60 + 30,
         val lunch: Meal = Meal(11 * 60 + 45, 14 * 60, 60), val dinner: Meal = Meal(19 * 60, 21 * 60, 45),
         val breakMin: Int = 15, val maxBlock: Int = 90, val minBlock: Int = 25,
-        val maxFocusPerDay: Int = 5 * 60, val deadlineMargin: Int = 60, val maxDays: Int = 14,
+        val maxFocusPerDay: Int = 5 * 60, val deadlineMargin: Int = 60, val maxDays: Int = 42,
     )
 
     /** Engagement du calendrier, en heure locale (un événement sur plusieurs jours est découpé). */
@@ -81,7 +81,7 @@ object SchedulePlanner {
         val maxDate = now.date.plusDays((s.maxDays - 1).toLong())
         var lastDate = now.date
         for (t in tasks) {
-            val end = listOfNotNull(t.horizon?.until, t.deadline?.date).maxOrNull() ?: now.date.plusDays(6)
+            val end = (listOfNotNull(t.horizon?.until, t.deadline?.date, t.window?.date) + (t.recurrence?.dates ?: emptyList())).maxOrNull() ?: now.date.plusDays(6)
             if (end > lastDate) lastDate = end
         }
         if (lastDate > maxDate) lastDate = maxDate
@@ -123,6 +123,9 @@ object SchedulePlanner {
                     var x = from
                     while (x <= until) { sessions += Session(t, latest, from, null, t.sessionMinutes ?: 30, onlyDay = x, part = t.recurrence?.part); x = x.plusDays(1) }
                 }
+                // Jours choisis (« chaque jour sauf mercredi ») : une séance par jour cité, dans la période planifiée.
+                Recurrence.Type.DAYS -> for (x in t.recurrence!!.dates) if (x >= now.date && x <= lastDate)
+                    sessions += Session(t, latest, from, null, t.sessionMinutes ?: 30, onlyDay = x, part = t.recurrence?.part)
                 Recurrence.Type.COUNT -> repeat(t.recurrence!!.n) { sessions += Session(t, latest, from, null, minOf(t.minutes, s.maxBlock)) }
                 null -> for (dur in chunks(t.minutes, s.maxBlock, s.minBlock)) sessions += Session(t, latest, from, t.window, dur)
             }

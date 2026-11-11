@@ -8,7 +8,7 @@ export const DEFAULT_SETTINGS = {
   lunch: { from: 11 * 60 + 45, to: 14 * 60, dur: 60 },
   dinner: { from: 19 * 60, to: 21 * 60, dur: 45 },
   breakMin: 15, maxBlock: 90, minBlock: 25,
-  maxFocusPerDay: 5 * 60, deadlineMargin: 60, maxDays: 14,
+  maxFocusPerDay: 5 * 60, deadlineMargin: 60, maxDays: 42,
 };
 const PRIORITY_WEIGHT = { URGENT: 3, HIGH: 2, NORMAL: 1, LOW: 0 };
 const PART_RANGE = { matin: [480, 720], 'apres-midi': [810, 1080], soir: [1080, 1350] };
@@ -54,7 +54,7 @@ export function plan({ tasks, events = [], now, settings = {} }) {
   const maxDate = addDays(now.date, S.maxDays - 1);
   let lastDate = now.date;
   for (const t of tasks) {
-    const end = [t.horizon?.until, t.deadline?.date].filter(Boolean).sort().pop() ?? addDays(now.date, 6);
+    const end = [t.horizon?.until, t.deadline?.date, t.window?.date, ...(t.recurrence?.dates ?? [])].filter(Boolean).sort().pop() ?? addDays(now.date, 6);
     if (end > lastDate) lastDate = end;
   }
   if (lastDate > maxDate) lastDate = maxDate;
@@ -90,6 +90,9 @@ export function plan({ tasks, events = [], now, settings = {} }) {
       for (let d = from; d <= until; d = addDays(d, 1)) {
         sessions.push({ ...base, dur: t.sessionMinutes ?? 30, onlyDay: d, part: t.recurrence.part, window: null });
       }
+    } else if (t.recurrence?.type === 'days') {
+      // Jours choisis (« chaque jour sauf mercredi ») : une séance par jour cité, dans la période planifiée.
+      for (const d of t.recurrence.dates) if (d >= now.date && d <= lastDate) sessions.push({ ...base, dur: t.sessionMinutes ?? 30, onlyDay: d, part: t.recurrence.part ?? null, window: null });
     } else if (t.recurrence?.type === 'count') {
       for (let i = 0; i < t.recurrence.n; i++) sessions.push({ ...base, dur: Math.min(t.minutes, S.maxBlock), window: null });
     } else {

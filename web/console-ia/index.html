@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Console vocale — BULLYLIST</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/plan.css">
+<link rel="stylesheet" href="console.css">
+</head>
+<body>
+<div class="banner" role="note"><b>Console de test de l'assistant vocal.</b> Elle utilise exactement le moteur de compréhension et le planificateur de l'application. La dictée du navigateur n'est pas la reconnaissance vocale d'Android : la transcription peut différer sur le téléphone.</div>
+<header class="top">
+  <a class="logo" href="../index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 1h24v24l-6 6H1V7z" fill="currentColor"/><path d="M13.5 7h5l-.9 11.5h-3.2zM13.4 21.6h5.2v4.4h-5.2z" fill="var(--bg)"/></svg>BULLYLIST</a>
+  <span class="muted">Console vocale V2.1</span>
+  <a class="muted" href="../simulateur/">Simulateur →</a>
+</header>
+
+<main class="grid">
+  <section class="col" aria-label="Dictée">
+    <fieldset class="card">
+      <legend>Moteur</legend>
+      <label class="row"><input type="radio" name="engine" value="ia" checked> IA (serveur Bullylist)</label>
+      <label class="row"><input type="radio" name="engine" value="local"> Local, sans IA (mode de secours)</label>
+      <div id="ia-cfg">
+        <label>Adresse du serveur <input id="url" type="url" value="http://localhost:8787" spellcheck="false"></label>
+        <label>Jeton d'application (facultatif) <input id="token" type="password" autocomplete="off"></label>
+        <label class="row consent"><input type="checkbox" id="consent"> J'accepte que le texte de mes dictées soit envoyé au service IA pour être analysé. L'audio n'est jamais envoyé.</label>
+        <p class="hint" id="health">Serveur non vérifié.</p>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend>Contexte</legend>
+      <div class="row2">
+        <label>Date de référence <input id="ref-date" type="date"></label>
+        <label>Heure <input id="ref-time" type="time"></label>
+      </div>
+      <label class="row"><input type="checkbox" id="sample-cal"> Agenda d'exemple (semaine étudiante : cours, TD, trajets)</label>
+    </fieldset>
+
+    <div class="card">
+      <label for="text"><b id="text-label">Ce que tu veux organiser</b></label>
+      <textarea id="text" rows="7" placeholder="« Mardi j'ai cours le matin. Après, j'aimerais avancer mon dossier marketing… »"></textarea>
+      <div class="actions">
+        <button id="mic" class="ghost" type="button" aria-pressed="false">Dicter</button>
+        <button id="go" class="primary" type="button">Analyser</button>
+        <button id="reset" class="ghost" type="button">Nouvelle conversation</button>
+      </div>
+      <p class="hint" id="mic-hint"></p>
+      <details class="examples"><summary>Exemples</summary><ul id="examples"></ul></details>
+    </div>
+
+    <div class="card" id="turns-card" hidden>
+      <h3>Conversation</h3>
+      <ol id="turns"></ol>
+      <p class="hint">Dicte une précision ou une correction : elle modifie le planning sans repartir de zéro.</p>
+    </div>
+  </section>
+
+  <section class="col wide" aria-label="Résultat">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="interp">Interprétation</button>
+      <button role="tab" aria-selected="false" data-tab="plan">Planning</button>
+      <button role="tab" aria-selected="false" data-tab="json">Données structurées</button>
+      <button role="tab" aria-selected="false" data-tab="compare">Comparer</button>
+    </div>
+    <div class="status" id="status" aria-live="polite"></div>
+    <div class="panel" data-panel="interp">
+      <p class="summary" id="summary"></p>
+      <div id="questions"></div>
+      <div id="issues"></div>
+      <h3 id="constraints-h" hidden>Indisponibilités comprises</h3>
+      <ul id="constraints" class="plain"></ul>
+      <h3 id="tasks-h" hidden>Tâches (modifiables)</h3>
+      <ul id="tasks" class="xtasks"></ul>
+    </div>
+    <div class="panel" data-panel="plan" hidden><div id="plan"></div></div>
+    <div class="panel" data-panel="json" hidden><pre id="json"></pre></div>
+    <div class="panel" data-panel="compare" hidden>
+      <div class="cmp">
+        <div><h3>Transcription</h3><div id="cmp-text" class="mono"></div></div>
+        <div><h3>Moteur IA</h3><ul id="cmp-ia" class="plain"></ul></div>
+        <div><h3>Moteur local</h3><ul id="cmp-local" class="plain"></ul></div>
+      </div>
+    </div>
+    <div class="validate" id="validate" hidden>
+      <button id="accept" class="primary" type="button">Valider le planning</button>
+      <span class="hint" id="accepted"></span>
+    </div>
+  </section>
+</main>
+<script type="module" src="console.js"></script>
+</body>
+</html>

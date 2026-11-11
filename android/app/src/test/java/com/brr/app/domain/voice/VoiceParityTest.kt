@@ -44,6 +44,39 @@ class VoiceParityTest {
         }
     }
 
+    /** Dictées conversationnelles (jours en tête, corrections, indisponibilités…) : sorties figées par le JS (nlu-conversation.json). */
+    @Test fun `conversation, mêmes sorties qu'en JavaScript`() {
+        val fx = Fixtures.obj("nlu-conversation.json")
+        val now = moment(fx.getJSONObject("now"))
+        val cases = fx.getJSONArray("cases")
+        for (i in 0 until cases.length()) {
+            val c = cases.getJSONObject(i)
+            val ctx = c.getString("text").take(60)
+            val r = VoiceParser.parse(c.getString("text"), now)
+            val exp = c.getJSONObject("expect")
+            val et = exp.getJSONArray("tasks")
+            assertEquals("$ctx : ${r.tasks.map { it.title }}", (0 until et.length()).map { et.getJSONObject(it).getString("title") }, r.tasks.map { it.title })
+            for (k in 0 until et.length()) {
+                val e = et.getJSONObject(k); val t = r.tasks[k]; val at = "$ctx · ${t.title}"
+                assertEquals(at, if (e.isNull("window")) null else e.getJSONObject("window").let { listOf(it.getString("date"), it.getInt("start"), it.getInt("end"), it.getBoolean("fixed")) },
+                    t.window?.let { listOf(it.date.toString(), it.start, it.end, it.fixed) })
+                assertEquals(at, if (e.isNull("deadline")) null else e.getJSONObject("deadline").let { it.getString("date") to it.getInt("minute") },
+                    t.deadline?.let { it.date.toString() to it.minute })
+                assertEquals(at, e.getInt("minutes"), t.minutes)
+                assertEquals(at, if (e.isNull("recurrence")) null else e.getJSONObject("recurrence").let { r0 ->
+                    val ds = r0.getJSONArray("dates"); listOf(r0.getString("type").uppercase(), r0.getInt("n"), (0 until ds.length()).map { ds.getString(it) })
+                }, t.recurrence?.let { listOf(it.type.name, it.n, it.dates.map(LocalDate::toString)) })
+                val deps = e.getJSONArray("dependsOn")
+                assertEquals(at, (0 until deps.length()).map { deps.getString(it) }, t.dependsOn)
+                assertEquals(at, e.getString("priority"), t.priority.name)
+            }
+            val ec = exp.getJSONArray("constraints")
+            assertEquals(ctx, (0 until ec.length()).map { ec.getJSONObject(it).let { o -> listOf(o.getString("date"), o.getInt("start"), o.getInt("end"), o.getString("label")) } },
+                r.constraints.map { listOf(it.date.toString(), it.start, it.end, it.label) })
+            assertEquals(ctx, exp.getInt("questions"), r.questions.size)
+        }
+    }
+
     private val week = Fixtures.obj("student-week.json")
     private val now = moment(week.getJSONObject("now"))
     private val events = week.getJSONArray("events").let { a ->

@@ -82,7 +82,7 @@ private val SAMPLE = "Cette semaine, j'aimerais réviser les mathématiques, ava
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun VoiceScreen(container: AppContainer, onBack: () -> Unit, onSaved: (Int) -> Unit) {
+fun VoiceScreen(container: AppContainer, onBack: () -> Unit, onSaved: (Int) -> Unit, onAiSettings: () -> Unit = {}) {
     val vm = brrViewModel { VoiceViewModel(container) }
     val st by vm.state.collectAsStateWithLifecycle()
     val settings by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
@@ -117,9 +117,15 @@ fun VoiceScreen(container: AppContainer, onBack: () -> Unit, onSaved: (Int) -> U
         Row(Modifier.padding(horizontal = 8.dp, vertical = 4.dp)) { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, "Retour") } }
         Column(Modifier.padding(horizontal = 20.dp)) {
             Text("Raconte-moi ta semaine.", style = MaterialTheme.typography.displaySmall)
-            Text("Parle comme à un ami. Je repère les tâches, les échéances et les durées, puis je les place entre tes cours.",
+            Text("Parle comme à un ami : plusieurs jours, des précisions, des changements d'avis. Je repère les tâches, les dates et les durées, puis je les place entre tes cours.",
                 style = MaterialTheme.typography.bodyMedium, color = Brr.colors.muted)
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(10.dp))
+            val ai = settings?.aiReady == true
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Pill(if (ai) "Assistant IA activé" else "Analyse sur le téléphone", if (ai) BrrPalette.Green else Brr.colors.muted)
+                TextButton(onClick = onAiSettings) { Text(if (ai) "Réglages IA" else "Activer l'assistant IA") }
+            }
+            Spacer(Modifier.height(10.dp))
 
             if (settings?.voiceConsent == false) {
                 BrrCard(Modifier.fillMaxWidth()) {
@@ -149,30 +155,64 @@ fun VoiceScreen(container: AppContainer, onBack: () -> Unit, onSaved: (Int) -> U
                 style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted, modifier = Modifier.align(Alignment.CenterHorizontally))
             error?.let { Spacer(Modifier.height(8.dp)); Text(it, color = BrrPalette.Amber, style = MaterialTheme.typography.bodySmall) }
             Spacer(Modifier.height(12.dp))
+            if (st.turns.isNotEmpty()) {
+                BrrCard(Modifier.fillMaxWidth()) {
+                    Text("Ce que tu m'as dit", style = MaterialTheme.typography.titleSmall)
+                    st.turns.forEachIndexed { i, t -> Text("${i + 1}. $t", style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted, modifier = Modifier.padding(top = 4.dp)) }
+                }
+                Spacer(Modifier.height(10.dp))
+            }
             OutlinedTextField(
                 value = st.transcript + if (st.partial.isNotEmpty()) " " + st.partial else "",
                 onValueChange = { vm.setTranscript(it) },
                 modifier = Modifier.fillMaxWidth().heightIn(min = 120.dp),
-                label = { Text("Transcription (modifiable)") },
+                label = { Text(if (st.turns.isEmpty()) "Transcription (modifiable)" else "Ajouter, préciser ou corriger") },
             )
             Row(Modifier.padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Button(onClick = { recognizer.pause(); vm.analyse() }, enabled = st.transcript.isNotBlank() || st.partial.isNotBlank()) { Text("Analyser") }
+                Button(onClick = { recognizer.pause(); vm.analyse() }, enabled = !st.analysing && (st.transcript.isNotBlank() || st.partial.isNotBlank())) {
+                    Text(if (st.analysing) "Analyse…" else if (st.turns.isEmpty()) "Analyser" else "Ajouter")
+                }
                 OutlinedButton(onClick = { recognizer.pause(); vm.restart() }) { Text("Recommencer") }
-                TextButton(onClick = { vm.setTranscript(SAMPLE); vm.analyse() }) { Text("Exemple") }
+                if (st.turns.isEmpty()) TextButton(onClick = { vm.setTranscript(SAMPLE); vm.analyse() }) { Text("Exemple") }
             }
 
+            st.notice?.let {
+                Spacer(Modifier.height(12.dp))
+                Text("$it Analyse faite sur le téléphone, sans IA.", color = BrrPalette.Amber, style = MaterialTheme.typography.bodyMedium)
+            }
             if (st.questions.isNotEmpty()) {
                 Spacer(Modifier.height(12.dp))
-                st.questions.forEach { Text(it, color = BrrPalette.Amber, style = MaterialTheme.typography.bodyMedium) }
+                Text("À préciser", style = MaterialTheme.typography.titleSmall, color = BrrPalette.Amber)
+                st.questions.forEach { Text("• $it", color = BrrPalette.Amber, style = MaterialTheme.typography.bodyMedium) }
             }
-            if (st.tasks.isNotEmpty()) {
+            if (st.tasks.isNotEmpty() || st.constraints.isNotEmpty()) {
                 Spacer(Modifier.height(20.dp))
                 val single = !st.isPlanRequest && st.tasks.size == 1 && st.questions.isEmpty()
-                Text(if (single) "Je l'ajoute comme ceci :" else "Voici comment je te propose d'organiser ta semaine.", style = MaterialTheme.typography.headlineSmall)
+                Text(when {
+                    single -> "Je l'ajoute comme ceci :"
+                    st.engine == Engine.AI -> "J'ai compris ! Voilà comment je te propose d'organiser ta semaine."
+                    else -> "Voici comment je te propose d'organiser ta semaine."
+                }, style = MaterialTheme.typography.headlineSmall)
+                if (st.summary.isNotBlank()) { Spacer(Modifier.height(6.dp)); Text(st.summary, style = MaterialTheme.typography.bodyMedium) }
+                if (st.issues.isNotEmpty()) {
+                    Spacer(Modifier.height(6.dp))
+                    st.issues.forEach { Text("Vérifié : $it", style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted) }
+                }
+                if (st.constraints.isNotEmpty()) {
+                    Spacer(Modifier.height(10.dp))
+                    Text("Tes indisponibilités", style = MaterialTheme.typography.titleSmall)
+                    st.constraints.forEach { k ->
+                        Text("${PlanDates.fmtDay(k.date, st.today)} · ${PlanDates.fmtTime(k.start)}–${PlanDates.fmtTime(minOf(k.end, 1439))} · ${k.label}",
+                            style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted, modifier = Modifier.padding(top = 2.dp))
+                    }
+                }
                 Spacer(Modifier.height(10.dp))
                 st.tasks.forEach { TaskCard(it, st, vm) }
                 st.plan?.let { PlanView(it, st) }
                 Spacer(Modifier.height(16.dp))
+                Spacer(Modifier.height(8.dp))
+                Text("Oublié quelque chose ? Reprends le micro : je modifie ce planning sans repartir de zéro.", style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted)
+                Spacer(Modifier.height(8.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     Button(onClick = { vm.accept(onSaved) }, enabled = !st.saving && st.plan != null) { Text(if (single) "Ajouter" else "Tout accepter") }
                     OutlinedButton(onClick = { vm.replan() }) { Text("Recommencer la planification") }
@@ -198,9 +238,12 @@ private fun TaskCard(t: VoiceTask, st: VoiceUiState, vm: VoiceViewModel) {
             t.window?.let { Pill(if (it.fixed) "À ${PlanDates.fmtTime(it.start)}, ${PlanDates.fmtDay(it.date, st.today).lowercase()}" else "Souhaité : ${PlanDates.fmtDay(it.date, st.today).lowercase()}", Brr.colors.muted) }
             if (t.recurrence?.type == Recurrence.Type.DAILY) Pill("Chaque jour", Brr.colors.muted)
             if (t.recurrence?.type == Recurrence.Type.COUNT) Pill("${t.recurrence?.n} séances", Brr.colors.muted)
+            if (t.recurrence?.type == Recurrence.Type.DAYS) Pill("${t.recurrence?.dates?.size} séances : " + t.recurrence!!.dates.joinToString(", ") { PlanDates.fmtDay(it, st.today).substringBefore(' ').lowercase() }, Brr.colors.muted)
+            t.group?.takeIf { it != t.title }?.let { Pill("Projet : $it", Brr.colors.muted) }
             val est = t.estimate
-            Pill(if (t.recurrence?.type == Recurrence.Type.DAILY) "≈ ${t.sessionMinutes} min / jour" else "≈ ${t.minutes} min" + (if (t.explicitMinutes == null && est != null) " (${est.min}–${est.max})" else ""), Brr.colors.muted)
+            Pill(if (t.recurrence?.type == Recurrence.Type.DAILY || t.recurrence?.type == Recurrence.Type.DAYS) "≈ ${t.sessionMinutes} min / séance" else "≈ ${t.minutes} min" + (if (t.explicitMinutes == null && est != null) " (${est.min}–${est.max})" else ""), Brr.colors.muted)
         }
+        if (t.subtasks.isNotEmpty()) { Spacer(Modifier.height(6.dp)); Text("À cocher : " + t.subtasks.joinToString(" · "), style = MaterialTheme.typography.bodySmall) }
         if (t.notes.isNotEmpty()) { Spacer(Modifier.height(6.dp)); Text(t.notes.joinToString("\n"), style = MaterialTheme.typography.bodySmall, color = Brr.colors.muted) }
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
             TextButton(onClick = { vm.changeMinutes(t.id, -15) }) { Text("−15 min") }
@@ -209,7 +252,7 @@ private fun TaskCard(t: VoiceTask, st: VoiceUiState, vm: VoiceViewModel) {
                 TextButton(onClick = { dayMenu = true }) { Text("Jour") }
                 DropdownMenu(dayMenu, { dayMenu = false }) {
                     DropdownMenuItem({ Text("Automatique") }, { vm.moveTo(t.id, null); dayMenu = false })
-                    (0..6).forEach { i -> val d = st.today.plusDays(i.toLong()); DropdownMenuItem({ Text(PlanDates.fmtDay(d, st.today)) }, { vm.moveTo(t.id, d); dayMenu = false }) }
+                    (0..20).forEach { i -> val d = st.today.plusDays(i.toLong()); DropdownMenuItem({ Text(PlanDates.fmtDay(d, st.today)) }, { vm.moveTo(t.id, d); dayMenu = false }) }
                 }
             }
             Box {

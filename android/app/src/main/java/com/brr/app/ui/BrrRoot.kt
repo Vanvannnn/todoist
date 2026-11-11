@@ -14,6 +14,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -120,7 +121,10 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
             snackbarHost = { SnackbarHost(snackbar) },
             bottomBar = { if (showBar) BottomBar(nav, route) },
         ) { pad ->
-            NavHost(nav, startDestination = Tab.TASKS.route, modifier = Modifier.padding(bottom = pad.calculateBottomPadding()).consumeWindowInsets(pad),
+            // Seul le bas est appliqué ici : on ne consomme que lui. Consommer tout `pad` (haut compris) annulait le
+            // statusBarsPadding() de chaque écran, dont les en-têtes passaient sous l'heure et la batterie.
+            val bottomOnly = PaddingValues(bottom = pad.calculateBottomPadding())
+            NavHost(nav, startDestination = Tab.TASKS.route, modifier = Modifier.padding(bottomOnly).consumeWindowInsets(bottomOnly),
                 enterTransition = { fadeIn(tween(220)) + slideInHorizontally(tween(260)) { it / 12 } },
                 exitTransition = { fadeOut(tween(160)) },
                 popEnterTransition = { fadeIn(tween(220)) },
@@ -137,7 +141,7 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                 composable(Tab.SETTINGS.route) {
                     SettingsScreen(container, onAlarms = { nav.navigate("alarms") }, onPunchlines = { nav.navigate("punchlines") },
                         onPermissions = { nav.navigate("permissions") }, onHistory = { nav.navigate("history") },
-                        onCalendars = { nav.navigate("calendars") }, onVoice = { nav.navigate("voice") })
+                        onCalendars = { nav.navigate("calendars") }, onVoice = { nav.navigate("voice") }, onAssistant = { nav.navigate("assistant") })
                 }
                 composable("task/{id}", arguments = listOf(navArgument("id") { type = NavType.LongType })) { e ->
                     val id = e.arguments?.getLong("id") ?: 0L
@@ -185,12 +189,13 @@ fun BrrRoot(container: AppContainer, settings: AppSettings?, openTaskId: Long?, 
                 composable("punchlines") { PunchlinesScreen(container, onBack = { nav.popBackStack() }) }
                 composable("permissions") { PermissionsScreen(container, onBack = { nav.popBackStack() }) }
                 composable("voice") {
-                    VoiceScreen(container, onBack = { nav.popBackStack() }, onSaved = { n ->
+                    VoiceScreen(container, onBack = { nav.popBackStack() }, onAiSettings = { nav.navigate("assistant") }, onSaved = { n ->
                         nav.popBackStack()
                         scope.launch { snackbar.showSnackbar("$n créneau${if (n > 1) "x" else ""} enregistré${if (n > 1) "s" else ""}. Les rappels sonneront au début de chaque bloc.") }
                     })
                 }
                 composable("calendars") { CalendarsScreen(container, onBack = { nav.popBackStack() }) }
+                composable("assistant") { com.brr.app.ui.screens.settings.AssistantSettingsScreen(container, onBack = { nav.popBackStack() }) }
             }
         }
         InAppAlertBanner(onOpen = { nav.navigate("task/$it") })

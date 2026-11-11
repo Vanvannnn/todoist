@@ -3,3 +3,6 @@ web/node_modules/
 web/package-lock.json
 web/downloads/*.apk
 web/downloads/latest.json
+server/node_modules/
+graphify-out/
+server/.env

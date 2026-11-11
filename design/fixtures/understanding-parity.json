@@ -1,0 +1,422 @@
+{
+ "$comment": "Généré par web/tools/gen-nlu-parity.mjs — conversion compréhension IA → séances (JS = Kotlin).",
+ "now": {
+  "date": "2026-11-09",
+  "minute": 600
+ },
+ "cases": [
+  {
+   "understanding": {
+    "tasks": [
+     {
+      "description": "",
+      "planned_day": null,
+      "part_of_day": null,
+      "start_time": null,
+      "deadline": {
+       "date": "2026-11-13",
+       "time": "18:00",
+       "said": "avant vendredi soir"
+      },
+      "duration_minutes": null,
+      "duration_source": "unknown",
+      "priority": "high",
+      "session_days": [],
+      "session_minutes": null,
+      "subtasks": [
+       {
+        "planned_day": {
+         "date": "2026-11-10",
+         "said": "mardi"
+        },
+        "duration_minutes": 60,
+        "duration_source": "said",
+        "depends_on": [],
+        "confidence": "high",
+        "id": "t1.1",
+        "title": "Faire les recherches"
+       },
+       {
+        "planned_day": {
+         "date": "2026-11-12",
+         "said": "jeudi"
+        },
+        "duration_minutes": 180,
+        "duration_source": "estimated",
+        "depends_on": [
+         "t1.1"
+        ],
+        "confidence": "high",
+        "id": "t1.2",
+        "title": "Rédiger le dossier"
+       },
+       {
+        "planned_day": null,
+        "duration_minutes": null,
+        "duration_source": "unknown",
+        "depends_on": [],
+        "confidence": "high",
+        "id": "t1.3",
+        "title": "Envoyer le mail au professeur"
+       }
+      ],
+      "depends_on": [],
+      "project": null,
+      "source_quote": "",
+      "confidence": "high",
+      "id": "t1",
+      "title": "Préparer le dossier marketing"
+     },
+     {
+      "description": "",
+      "planned_day": null,
+      "part_of_day": "soir",
+      "start_time": null,
+      "deadline": null,
+      "duration_minutes": null,
+      "duration_source": "unknown",
+      "priority": "normal",
+      "session_days": [
+       "2026-11-10",
+       "2026-11-12",
+       "2026-11-13"
+      ],
+      "session_minutes": 45,
+      "subtasks": [],
+      "depends_on": [],
+      "project": null,
+      "source_quote": "",
+      "confidence": "high",
+      "id": "t2",
+      "title": "Réviser les maths"
+     },
+     {
+      "description": "",
+      "planned_day": {
+       "date": "2026-11-10",
+       "said": "demain"
+      },
+      "part_of_day": null,
+      "start_time": "09:00",
+      "deadline": null,
+      "duration_minutes": null,
+      "duration_source": "unknown",
+      "priority": "urgent",
+      "session_days": [],
+      "session_minutes": null,
+      "subtasks": [],
+      "depends_on": [
+       "t1"
+      ],
+      "project": null,
+      "source_quote": "",
+      "confidence": "high",
+      "id": "t3",
+      "title": "Appeler la banque"
+     },
+     {
+      "description": "",
+      "planned_day": null,
+      "part_of_day": null,
+      "start_time": null,
+      "deadline": null,
+      "duration_minutes": 40,
+      "duration_source": "said",
+      "priority": "low",
+      "session_days": [],
+      "session_minutes": null,
+      "subtasks": [],
+      "depends_on": [],
+      "project": null,
+      "source_quote": "",
+      "confidence": "high",
+      "id": "t4",
+      "title": "Lire un livre"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-11",
+      "start_time": "18:00",
+      "end_time": "24:00",
+      "reason": "Pas après 18 h",
+      "said": "rien après 18 heures"
+     }
+    ],
+    "questions": [
+     "Jeudi prochain ?"
+    ],
+    "summary": "ok"
+   },
+   "expect": {
+    "tasks": [
+     {
+      "id": "t1/t1.1",
+      "title": "Faire les recherches",
+      "group": "Préparer le dossier marketing",
+      "subtasks": [],
+      "minutes": 60,
+      "priority": "HIGH",
+      "level": "INSISTANT",
+      "dependsOn": [],
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1080
+      },
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t1/t1.2",
+      "title": "Rédiger le dossier",
+      "group": "Préparer le dossier marketing",
+      "subtasks": [],
+      "minutes": 180,
+      "priority": "HIGH",
+      "level": "INSISTANT",
+      "dependsOn": [
+       "t1/t1.1"
+      ],
+      "window": {
+       "date": "2026-11-12",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1080
+      },
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t1",
+      "title": "Préparer le dossier marketing",
+      "group": "Préparer le dossier marketing",
+      "subtasks": [
+       "Envoyer le mail au professeur"
+      ],
+      "minutes": 15,
+      "priority": "HIGH",
+      "level": "INSISTANT",
+      "dependsOn": [],
+      "window": null,
+      "deadline": {
+       "date": "2026-11-13",
+       "minute": 1080
+      },
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t2",
+      "title": "Réviser les maths",
+      "group": null,
+      "subtasks": [],
+      "minutes": 70,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "dependsOn": [],
+      "window": null,
+      "deadline": null,
+      "recurrence": {
+       "type": "days",
+       "dates": [
+        "2026-11-10",
+        "2026-11-12",
+        "2026-11-13"
+       ]
+      },
+      "sessionMinutes": 45,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t3",
+      "title": "Appeler la banque",
+      "group": null,
+      "subtasks": [],
+      "minutes": 15,
+      "priority": "URGENT",
+      "level": "HARCELEMENT",
+      "dependsOn": [
+       "t1"
+      ],
+      "window": {
+       "date": "2026-11-10",
+       "start": 540,
+       "end": 540,
+       "fixed": true
+      },
+      "deadline": null,
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t4",
+      "title": "Lire un livre",
+      "group": null,
+      "subtasks": [],
+      "minutes": 40,
+      "priority": "LOW",
+      "level": "NORMAL",
+      "dependsOn": [],
+      "window": null,
+      "deadline": null,
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     }
+    ],
+    "constraints": [
+     {
+      "date": "2026-11-11",
+      "start": 1080,
+      "end": 1440,
+      "label": "Pas après 18 h"
+     }
+    ]
+   }
+  },
+  {
+   "understanding": {
+    "tasks": [
+     {
+      "description": "",
+      "planned_day": {
+       "date": "2026-11-10",
+       "said": "mardi"
+      },
+      "part_of_day": null,
+      "start_time": null,
+      "deadline": null,
+      "duration_minutes": null,
+      "duration_source": "unknown",
+      "priority": "normal",
+      "session_days": [],
+      "session_minutes": null,
+      "subtasks": [
+       {
+        "planned_day": null,
+        "duration_minutes": 60,
+        "duration_source": "said",
+        "depends_on": [],
+        "confidence": "high",
+        "id": "t1.1",
+        "title": "Faire les recherches"
+       },
+       {
+        "planned_day": null,
+        "duration_minutes": null,
+        "duration_source": "unknown",
+        "depends_on": [],
+        "confidence": "high",
+        "id": "t1.2",
+        "title": "Trouver des images"
+       },
+       {
+        "planned_day": null,
+        "duration_minutes": 120,
+        "duration_source": "said",
+        "depends_on": [
+         "t1.1"
+        ],
+        "confidence": "high",
+        "id": "t1.3",
+        "title": "Préparer les diapositives"
+       }
+      ],
+      "depends_on": [],
+      "project": "Exposé",
+      "source_quote": "",
+      "confidence": "high",
+      "id": "t1",
+      "title": "Préparer l’exposé"
+     }
+    ],
+    "constraints": [],
+    "questions": [],
+    "summary": ""
+   },
+   "expect": {
+    "tasks": [
+     {
+      "id": "t1/t1.1",
+      "title": "Faire les recherches",
+      "group": "Exposé",
+      "subtasks": [],
+      "minutes": 60,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "dependsOn": [],
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t1/t1.3",
+      "title": "Préparer les diapositives",
+      "group": "Exposé",
+      "subtasks": [],
+      "minutes": 120,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "dependsOn": [
+       "t1/t1.1"
+      ],
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     },
+     {
+      "id": "t1",
+      "title": "Préparer l’exposé",
+      "group": "Exposé",
+      "subtasks": [
+       "Trouver des images"
+      ],
+      "minutes": 45,
+      "priority": "NORMAL",
+      "level": "INSISTANT",
+      "dependsOn": [],
+      "window": {
+       "date": "2026-11-10",
+       "start": 480,
+       "end": 1350,
+       "fixed": false
+      },
+      "deadline": null,
+      "recurrence": null,
+      "sessionMinutes": null,
+      "horizonUntil": "2026-11-15"
+     }
+    ],
+    "constraints": []
+   }
+  }
+ ]
+}
